@@ -17,24 +17,27 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Hypervisor.hpp"
-#include "Kernel.hpp"
 #include "Image.hpp"
+#include "Kernel.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct VmProperties {
-Hypervisor hypervisor;
-Kernel kernel;
-Image image;
+        Hypervisor hypervisor;
+        Kernel kernel;
+        Image image;
 };
 }
 }
 }
-

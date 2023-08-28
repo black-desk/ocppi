@@ -17,93 +17,96 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
-#include "NamespaceType.hpp"
-#include "Personality.hpp"
-#include "SyscallArg.hpp"
-#include "Syscall.hpp"
-#include "Major.hpp"
-#include "FileMode.hpp"
-#include "FileType.hpp"
-#include "Device.hpp"
-#include "Env.hpp"
-#include "BlockIODevice.hpp"
-#include "BlockIODeviceWeight.hpp"
-#include "BlockIODeviceThrottle.hpp"
-#include "DeviceCgroup.hpp"
-#include "NetworkInterfacePriority.hpp"
-#include "Rdma.hpp"
-#include "NamespaceReference.hpp"
-#include "TimeOffsets.hpp"
-#include "MapStringString.hpp"
+#include <nlohmann/json.hpp>
+
 #include "ArrayOfGiDs.hpp"
 #include "ArrayOfStrings.hpp"
+#include "BlockIODevice.hpp"
+#include "BlockIODeviceThrottle.hpp"
+#include "BlockIODeviceWeight.hpp"
+#include "Device.hpp"
+#include "DeviceCgroup.hpp"
+#include "Env.hpp"
+#include "FileMode.hpp"
 #include "FilePath.hpp"
+#include "FileType.hpp"
 #include "Hook.hpp"
 #include "IdMapping.hpp"
+#include "Major.hpp"
+#include "MapStringString.hpp"
 #include "Mount.hpp"
+#include "NamespaceReference.hpp"
+#include "NamespaceType.hpp"
+#include "NetworkInterfacePriority.hpp"
 #include "OciVersion.hpp"
+#include "Personality.hpp"
+#include "Rdma.hpp"
+#include "Syscall.hpp"
+#include "SyscallArg.hpp"
+#include "TimeOffsets.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Definitions {
-std::optional<NamespaceType> personalityDomain;
-std::optional<Personality> personality;
-std::optional<NamespaceType> rootfsPropagation;
-std::optional<NamespaceType> seccompArch;
-std::optional<NamespaceType> seccompAction;
-std::optional<NamespaceType> seccompFlag;
-std::optional<NamespaceType> seccompOperators;
-std::optional<SyscallArg> syscallArg;
-std::optional<Syscall> syscall;
-std::optional<Major> major;
-std::optional<Major> minor;
-std::optional<FileMode> fileMode;
-std::optional<FileType> fileType;
-std::optional<Device> device;
-std::optional<Env> weight;
-std::optional<BlockIODevice> blockIODevice;
-std::optional<BlockIODeviceWeight> blockIODeviceWeight;
-std::optional<BlockIODeviceThrottle> blockIODeviceThrottle;
-std::optional<DeviceCgroup> deviceCgroup;
-std::optional<NetworkInterfacePriority> networkInterfacePriority;
-std::optional<Rdma> rdma;
-std::optional<NamespaceType> namespaceType;
-std::optional<NamespaceReference> namespaceReference;
-std::optional<TimeOffsets> timeOffsets;
-std::optional<NamespaceType> schedulerPolicy;
-std::optional<NamespaceType> schedulerFlag;
-std::optional<NamespaceType> rootImageFormat;
-std::optional<FileMode> int8;
-std::optional<FileMode> int16;
-std::optional<FileMode> int32;
-std::optional<FileMode> int64;
-std::optional<FileMode> uint8;
-std::optional<FileMode> uint16;
-std::optional<FileMode> uint32;
-std::optional<FileMode> uint64;
-std::optional<FileMode> percent;
-std::optional<MapStringString> mapStringString;
-std::optional<Env> uid;
-std::optional<Env> gid;
-std::optional<Env> umask;
-std::optional<ArrayOfGiDs> arrayOfGIDs;
-std::optional<ArrayOfStrings> arrayOfStrings;
-std::optional<FilePath> filePath;
-std::optional<Env> env;
-std::optional<Hook> hook;
-std::optional<ArrayOfGiDs> arrayOfHooks;
-std::optional<IdMapping> idMapping;
-std::optional<Mount> mount;
-std::optional<OciVersion> ociVersion;
-std::optional<Env> annotations;
+        std::optional<NamespaceType> personalityDomain;
+        std::optional<Personality> personality;
+        std::optional<NamespaceType> rootfsPropagation;
+        std::optional<NamespaceType> seccompArch;
+        std::optional<NamespaceType> seccompAction;
+        std::optional<NamespaceType> seccompFlag;
+        std::optional<NamespaceType> seccompOperators;
+        std::optional<SyscallArg> syscallArg;
+        std::optional<Syscall> syscall;
+        std::optional<Major> major;
+        std::optional<Major> minor;
+        std::optional<FileMode> fileMode;
+        std::optional<FileType> fileType;
+        std::optional<Device> device;
+        std::optional<Env> weight;
+        std::optional<BlockIODevice> blockIODevice;
+        std::optional<BlockIODeviceWeight> blockIODeviceWeight;
+        std::optional<BlockIODeviceThrottle> blockIODeviceThrottle;
+        std::optional<DeviceCgroup> deviceCgroup;
+        std::optional<NetworkInterfacePriority> networkInterfacePriority;
+        std::optional<Rdma> rdma;
+        std::optional<NamespaceType> namespaceType;
+        std::optional<NamespaceReference> namespaceReference;
+        std::optional<TimeOffsets> timeOffsets;
+        std::optional<NamespaceType> schedulerPolicy;
+        std::optional<NamespaceType> schedulerFlag;
+        std::optional<NamespaceType> rootImageFormat;
+        std::optional<FileMode> int8;
+        std::optional<FileMode> int16;
+        std::optional<FileMode> int32;
+        std::optional<FileMode> int64;
+        std::optional<FileMode> uint8;
+        std::optional<FileMode> uint16;
+        std::optional<FileMode> uint32;
+        std::optional<FileMode> uint64;
+        std::optional<FileMode> percent;
+        std::optional<MapStringString> mapStringString;
+        std::optional<Env> uid;
+        std::optional<Env> gid;
+        std::optional<Env> umask;
+        std::optional<ArrayOfGiDs> arrayOfGIDs;
+        std::optional<ArrayOfStrings> arrayOfStrings;
+        std::optional<FilePath> filePath;
+        std::optional<Env> env;
+        std::optional<Hook> hook;
+        std::optional<ArrayOfGiDs> arrayOfHooks;
+        std::optional<IdMapping> idMapping;
+        std::optional<Mount> mount;
+        std::optional<OciVersion> ociVersion;
+        std::optional<Env> annotations;
 };
 }
 }
 }
-

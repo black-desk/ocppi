@@ -17,30 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "DeviceCgroupProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct DeviceCgroup {
-FilePathType type;
-DeviceCgroupProperties properties;
-std::vector<std::wstring> required;
+        FilePathType type;
+        DeviceCgroupProperties properties;
+        std::vector<std::wstring> required;
 };
 }
 }
 }
-

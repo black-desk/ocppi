@@ -17,25 +17,28 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
 #include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct UserProperties {
-Env uid;
-Env gid;
-Env umask;
-Env additionalGids;
-FilePath username;
+        Env uid;
+        Env gid;
+        Env umask;
+        Env additionalGids;
+        FilePath username;
 };
 }
 }
 }
-

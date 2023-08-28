@@ -17,49 +17,52 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "Apparmor.hpp"
+#include "ArrayOfGiDs.hpp"
+#include "Cgroup.hpp"
+#include "Env.hpp"
+#include "FilePath.hpp"
+#include "IntelRdt.hpp"
+#include "Namespaces.hpp"
+#include "PersonalityClass.hpp"
+#include "PurpleCapabilities.hpp"
+#include "PurpleResources.hpp"
+#include "Seccomp.hpp"
+#include "TimeOffsetsClass.hpp"
 #include "helper.hpp"
 
-#include "ArrayOfGiDs.hpp"
-#include "Namespaces.hpp"
-#include "PurpleResources.hpp"
-#include "FilePath.hpp"
-#include "Env.hpp"
-#include "Seccomp.hpp"
-#include "IntelRdt.hpp"
-#include "PersonalityClass.hpp"
-#include "TimeOffsetsClass.hpp"
-#include "PurpleCapabilities.hpp"
-#include "Cgroup.hpp"
-#include "Apparmor.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct LinuxProperties {
-std::optional<ArrayOfGiDs> devices;
-std::optional<ArrayOfGiDs> uidMappings;
-std::optional<ArrayOfGiDs> gidMappings;
-Namespaces namespaces;
-std::optional<PurpleResources> resources;
-std::optional<FilePath> cgroupsPath;
-std::optional<Env> rootfsPropagation;
-Seccomp seccomp;
-std::optional<Env> sysctl;
-std::optional<Env> maskedPaths;
-std::optional<Env> readonlyPaths;
-std::optional<FilePath> mountLabel;
-IntelRdt intelRdt;
-std::optional<PersonalityClass> personality;
-std::optional<TimeOffsetsClass> timeOffsets;
-std::optional<PurpleCapabilities> capabilities;
-std::optional<Cgroup> cgroup;
-std::optional<Apparmor> apparmor;
-std::optional<Apparmor> selinux;
+        std::optional<ArrayOfGiDs> devices;
+        std::optional<ArrayOfGiDs> uidMappings;
+        std::optional<ArrayOfGiDs> gidMappings;
+        Namespaces namespaces;
+        std::optional<PurpleResources> resources;
+        std::optional<FilePath> cgroupsPath;
+        std::optional<Env> rootfsPropagation;
+        Seccomp seccomp;
+        std::optional<Env> sysctl;
+        std::optional<Env> maskedPaths;
+        std::optional<Env> readonlyPaths;
+        std::optional<FilePath> mountLabel;
+        IntelRdt intelRdt;
+        std::optional<PersonalityClass> personality;
+        std::optional<TimeOffsetsClass> timeOffsets;
+        std::optional<PurpleCapabilities> capabilities;
+        std::optional<Cgroup> cgroup;
+        std::optional<Apparmor> apparmor;
+        std::optional<Apparmor> selinux;
 };
 }
 }
 }
-

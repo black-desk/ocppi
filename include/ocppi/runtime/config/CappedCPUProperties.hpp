@@ -17,20 +17,23 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct CappedCPUProperties {
-FilePath ncpus;
+        FilePath ncpus;
 };
 }
 }
 }
-

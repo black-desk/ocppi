@@ -17,29 +17,32 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
 #include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct IndecentProperties {
-Env kernel;
-Env kernelTCP;
-Env limit;
-Env reservation;
-Env swap;
-Env swappiness;
-FilePath disableOOMKiller;
-FilePath useHierarchy;
-FilePath checkBeforeUpdate;
+        Env kernel;
+        Env kernelTCP;
+        Env limit;
+        Env reservation;
+        Env swap;
+        Env swappiness;
+        FilePath disableOOMKiller;
+        FilePath useHierarchy;
+        FilePath checkBeforeUpdate;
 };
 }
 }
 }
-

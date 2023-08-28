@@ -17,30 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "SchedulerProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Scheduler {
-FilePathType type;
-std::vector<std::wstring> required;
-SchedulerProperties properties;
+        FilePathType type;
+        std::vector<std::wstring> required;
+        SchedulerProperties properties;
 };
 }
 }
 }
-

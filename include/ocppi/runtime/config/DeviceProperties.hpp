@@ -17,30 +17,33 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
 #include "FilePath.hpp"
 #include "NamespaceType.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct DeviceProperties {
-std::optional<Env> type;
-std::optional<Env> path;
-std::optional<Env> fileMode;
-std::optional<Env> major;
-std::optional<Env> minor;
-std::optional<Env> uid;
-std::optional<Env> gid;
-std::optional<FilePath> id;
-std::optional<NamespaceType> idType;
+        std::optional<Env> type;
+        std::optional<Env> path;
+        std::optional<Env> fileMode;
+        std::optional<Env> major;
+        std::optional<Env> minor;
+        std::optional<Env> uid;
+        std::optional<Env> gid;
+        std::optional<FilePath> id;
+        std::optional<NamespaceType> idType;
 };
 }
 }
 }
-

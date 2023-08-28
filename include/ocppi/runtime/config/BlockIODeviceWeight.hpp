@@ -17,28 +17,35 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
 #include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 struct BlockIODeviceWeightAllOf;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct BlockIODeviceWeight {
-FilePathType type;
-std::vector<BlockIODeviceWeightAllOf> allOf;
+        FilePathType type;
+        std::vector<BlockIODeviceWeightAllOf> allOf;
 };
 }
 }
 }
-

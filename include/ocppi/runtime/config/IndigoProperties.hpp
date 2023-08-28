@@ -17,22 +17,25 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "Env.hpp"
+#include "MemBWSchemaClass.hpp"
 #include "helper.hpp"
 
-#include "MemBWSchemaClass.hpp"
-#include "Env.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct IndigoProperties {
-MemBWSchemaClass pageSize;
-Env limit;
+        MemBWSchemaClass pageSize;
+        Env limit;
 };
 }
 }
 }
-

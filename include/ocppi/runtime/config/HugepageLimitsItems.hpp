@@ -17,30 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "IndigoProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct HugepageLimitsItems {
-FilePathType type;
-IndigoProperties properties;
-std::vector<std::wstring> required;
+        FilePathType type;
+        IndigoProperties properties;
+        std::vector<std::wstring> required;
 };
 }
 }
 }
-

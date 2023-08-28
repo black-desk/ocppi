@@ -17,23 +17,26 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct SyscallArgProperties {
-Env index;
-Env value;
-Env valueTwo;
-Env op;
+        Env index;
+        Env value;
+        Env valueTwo;
+        Env op;
 };
 }
 }
 }
-

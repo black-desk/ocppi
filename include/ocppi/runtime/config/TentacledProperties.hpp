@@ -17,36 +17,39 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
-#include "Env.hpp"
+#include <nlohmann/json.hpp>
+
 #include "ArrayOfGiDs.hpp"
-#include "Pids.hpp"
 #include "BlockIO.hpp"
-#include "PurpleCPU.hpp"
+#include "Env.hpp"
 #include "HugepageLimits.hpp"
+#include "Pids.hpp"
+#include "PurpleCPU.hpp"
 #include "PurpleMemory.hpp"
 #include "PurpleNetwork.hpp"
 #include "RdmaClass.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct TentacledProperties {
-Env unified;
-ArrayOfGiDs devices;
-Pids pids;
-BlockIO blockIO;
-PurpleCPU cpu;
-HugepageLimits hugepageLimits;
-PurpleMemory memory;
-PurpleNetwork network;
-RdmaClass rdma;
+        Env unified;
+        ArrayOfGiDs devices;
+        Pids pids;
+        BlockIO blockIO;
+        PurpleCPU cpu;
+        HugepageLimits hugepageLimits;
+        PurpleMemory memory;
+        PurpleNetwork network;
+        RdmaClass rdma;
 };
 }
 }
 }
-

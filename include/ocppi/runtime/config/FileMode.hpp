@@ -17,29 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
 #include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct FileMode {
-std::optional<std::wstring> description;
-FilePathType type;
-int64_t minimum;
-int64_t maximum;
+        std::optional<std::wstring> description;
+        FilePathType type;
+        int64_t minimum;
+        int64_t maximum;
 };
 }
 }
 }
-

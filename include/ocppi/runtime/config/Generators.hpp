@@ -17,2800 +17,4377 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
-#include "Schema.hpp"
-#include "Zos.hpp"
-#include "ZosProperties.hpp"
-#include "Windows.hpp"
-#include "WindowsProperties.hpp"
-#include "FluffyResources.hpp"
-#include "FriskyProperties.hpp"
-#include "Storage.hpp"
-#include "StorageProperties.hpp"
-#include "FluffyMemory.hpp"
-#include "FluffyCPU.hpp"
-#include "MischievousProperties.hpp"
-#include "FluffyNetwork.hpp"
-#include "MagentaProperties.hpp"
-#include "LayerFolders.hpp"
-#include "Hyperv.hpp"
-#include "HypervProperties.hpp"
-#include "Vm.hpp"
-#include "VmProperties.hpp"
-#include "Kernel.hpp"
-#include "KernelProperties.hpp"
-#include "Image.hpp"
-#include "ImageProperties.hpp"
-#include "Hypervisor.hpp"
-#include "HypervisorProperties.hpp"
-#include "Solaris.hpp"
-#include "SolarisProperties.hpp"
-#include "CappedMemory.hpp"
-#include "CappedMemoryProperties.hpp"
-#include "CappedCPU.hpp"
-#include "CappedCPUProperties.hpp"
+#include <nlohmann/json.hpp>
+
+#include "AmbitiousProperties.hpp"
 #include "Anet.hpp"
 #include "AnetItems.hpp"
-#include "CunningProperties.hpp"
-#include "SchemaProperties.hpp"
-#include "Root.hpp"
-#include "RootProperties.hpp"
-#include "Process.hpp"
-#include "ProcessProperties.hpp"
-#include "User.hpp"
-#include "UserProperties.hpp"
-#include "Scheduler.hpp"
-#include "SchedulerProperties.hpp"
-#include "Rlimits.hpp"
-#include "RlimitsItems.hpp"
-#include "AmbitiousProperties.hpp"
-#include "IoPriority.hpp"
-#include "IoPriorityProperties.hpp"
-#include "ConsoleSize.hpp"
-#include "ConsoleSizeProperties.hpp"
-#include "FluffyCapabilities.hpp"
-#include "CapabilitiesProperties.hpp"
-#include "Hooks.hpp"
-#include "HooksProperties.hpp"
-#include "Linux.hpp"
-#include "LinuxProperties.hpp"
-#include "TimeOffsetsClass.hpp"
-#include "TimeOffsetsPropertiesClass.hpp"
-#include "Seccomp.hpp"
-#include "SeccompProperties.hpp"
-#include "PurpleResources.hpp"
-#include "TentacledProperties.hpp"
-#include "RdmaClass.hpp"
-#include "Pids.hpp"
-#include "PidsProperties.hpp"
-#include "PurpleNetwork.hpp"
-#include "HilariousProperties.hpp"
-#include "PurpleMemory.hpp"
-#include "IndecentProperties.hpp"
-#include "HugepageLimits.hpp"
-#include "HugepageLimitsItems.hpp"
-#include "IndigoProperties.hpp"
-#include "PurpleCPU.hpp"
-#include "StickyProperties.hpp"
-#include "BlockIO.hpp"
-#include "BlockIOProperties.hpp"
-#include "PersonalityClass.hpp"
-#include "Namespaces.hpp"
-#include "NamespacesItems.hpp"
-#include "IntelRdt.hpp"
-#include "IntelRdtProperties.hpp"
-#include "Cgroup.hpp"
-#include "CgroupProperties.hpp"
-#include "PurpleCapabilities.hpp"
-#include "MemBWSchemaClass.hpp"
 #include "Apparmor.hpp"
 #include "ApparmorProperties.hpp"
-#include "Definitions.hpp"
-#include "TimeOffsets.hpp"
-#include "TimeOffsetsProperties.hpp"
-#include "SyscallArg.hpp"
-#include "SyscallArgProperties.hpp"
-#include "Syscall.hpp"
-#include "SyscallProperties.hpp"
-#include "Names.hpp"
-#include "Rdma.hpp"
-#include "RdmaProperties.hpp"
-#include "Personality.hpp"
-#include "PersonalityProperties.hpp"
-#include "OciVersion.hpp"
-#include "NetworkInterfacePriority.hpp"
-#include "NetworkInterfacePriorityProperties.hpp"
-#include "NamespaceReference.hpp"
-#include "NamespaceReferenceProperties.hpp"
-#include "Mount.hpp"
-#include "MountProperties.hpp"
-#include "MapStringString.hpp"
-#include "PatternProperties.hpp"
-#include "Major.hpp"
-#include "IdMapping.hpp"
-#include "IdMappingProperties.hpp"
-#include "Hook.hpp"
-#include "HookProperties.hpp"
-#include "Pid.hpp"
-#include "FileType.hpp"
-#include "FileMode.hpp"
-#include "DeviceCgroup.hpp"
-#include "DeviceCgroupProperties.hpp"
-#include "Device.hpp"
-#include "DeviceProperties.hpp"
-#include "NamespaceType.hpp"
-#include "BlockIODeviceWeight.hpp"
-#include "BlockIODeviceWeightAllOf.hpp"
-#include "FluffyProperties.hpp"
-#include "BlockIODeviceThrottle.hpp"
-#include "BlockIODeviceThrottleAllOf.hpp"
-#include "PurpleProperties.hpp"
+#include "ArrayOfGIDsType.hpp"
+#include "ArrayOfGiDs.hpp"
+#include "ArrayOfStrings.hpp"
+#include "BlockIO.hpp"
 #include "BlockIODevice.hpp"
 #include "BlockIODeviceProperties.hpp"
-#include "ArrayOfStrings.hpp"
+#include "BlockIODeviceThrottle.hpp"
+#include "BlockIODeviceThrottleAllOf.hpp"
+#include "BlockIODeviceWeight.hpp"
+#include "BlockIODeviceWeightAllOf.hpp"
+#include "BlockIOProperties.hpp"
+#include "CapabilitiesProperties.hpp"
+#include "CappedCPU.hpp"
+#include "CappedCPUProperties.hpp"
+#include "CappedMemory.hpp"
+#include "CappedMemoryProperties.hpp"
+#include "Cgroup.hpp"
+#include "CgroupProperties.hpp"
+#include "ConsoleSize.hpp"
+#include "ConsoleSizeProperties.hpp"
+#include "CunningProperties.hpp"
+#include "Definitions.hpp"
+#include "Device.hpp"
+#include "DeviceCgroup.hpp"
+#include "DeviceCgroupProperties.hpp"
+#include "DeviceProperties.hpp"
+#include "Env.hpp"
+#include "FileMode.hpp"
 #include "FilePath.hpp"
 #include "FilePathType.hpp"
-#include "ArrayOfGiDs.hpp"
-#include "ArrayOfGIDsType.hpp"
-#include "Env.hpp"
+#include "FileType.hpp"
+#include "FluffyCPU.hpp"
+#include "FluffyCapabilities.hpp"
+#include "FluffyMemory.hpp"
+#include "FluffyNetwork.hpp"
+#include "FluffyProperties.hpp"
+#include "FluffyResources.hpp"
+#include "FriskyProperties.hpp"
+#include "HilariousProperties.hpp"
+#include "Hook.hpp"
+#include "HookProperties.hpp"
+#include "Hooks.hpp"
+#include "HooksProperties.hpp"
+#include "HugepageLimits.hpp"
+#include "HugepageLimitsItems.hpp"
+#include "Hyperv.hpp"
+#include "HypervProperties.hpp"
+#include "Hypervisor.hpp"
+#include "HypervisorProperties.hpp"
+#include "IdMapping.hpp"
+#include "IdMappingProperties.hpp"
+#include "Image.hpp"
+#include "ImageProperties.hpp"
+#include "IndecentProperties.hpp"
+#include "IndigoProperties.hpp"
+#include "IntelRdt.hpp"
+#include "IntelRdtProperties.hpp"
+#include "IoPriority.hpp"
+#include "IoPriorityProperties.hpp"
+#include "Kernel.hpp"
+#include "KernelProperties.hpp"
+#include "LayerFolders.hpp"
+#include "Linux.hpp"
+#include "LinuxProperties.hpp"
+#include "MagentaProperties.hpp"
+#include "Major.hpp"
+#include "MapStringString.hpp"
+#include "MemBWSchemaClass.hpp"
+#include "MischievousProperties.hpp"
+#include "Mount.hpp"
+#include "MountProperties.hpp"
+#include "Names.hpp"
+#include "NamespaceReference.hpp"
+#include "NamespaceReferenceProperties.hpp"
+#include "NamespaceType.hpp"
+#include "Namespaces.hpp"
+#include "NamespacesItems.hpp"
+#include "NetworkInterfacePriority.hpp"
+#include "NetworkInterfacePriorityProperties.hpp"
+#include "OciVersion.hpp"
+#include "PatternProperties.hpp"
+#include "Personality.hpp"
+#include "PersonalityClass.hpp"
+#include "PersonalityProperties.hpp"
+#include "Pid.hpp"
+#include "Pids.hpp"
+#include "PidsProperties.hpp"
+#include "Process.hpp"
+#include "ProcessProperties.hpp"
+#include "PurpleCPU.hpp"
+#include "PurpleCapabilities.hpp"
+#include "PurpleMemory.hpp"
+#include "PurpleNetwork.hpp"
+#include "PurpleProperties.hpp"
+#include "PurpleResources.hpp"
+#include "Rdma.hpp"
+#include "RdmaClass.hpp"
+#include "RdmaProperties.hpp"
+#include "Rlimits.hpp"
+#include "RlimitsItems.hpp"
+#include "Root.hpp"
+#include "RootProperties.hpp"
+#include "Scheduler.hpp"
+#include "SchedulerProperties.hpp"
+#include "Schema.hpp"
+#include "SchemaProperties.hpp"
+#include "Seccomp.hpp"
+#include "SeccompProperties.hpp"
+#include "Solaris.hpp"
+#include "SolarisProperties.hpp"
+#include "StickyProperties.hpp"
+#include "Storage.hpp"
+#include "StorageProperties.hpp"
+#include "Syscall.hpp"
+#include "SyscallArg.hpp"
+#include "SyscallArgProperties.hpp"
+#include "SyscallProperties.hpp"
+#include "TentacledProperties.hpp"
+#include "TimeOffsets.hpp"
+#include "TimeOffsetsClass.hpp"
+#include "TimeOffsetsProperties.hpp"
+#include "TimeOffsetsPropertiesClass.hpp"
+#include "User.hpp"
+#include "UserProperties.hpp"
+#include "Vm.hpp"
+#include "VmProperties.hpp"
+#include "Windows.hpp"
+#include "WindowsProperties.hpp"
+#include "Zos.hpp"
+#include "ZosProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
-void from_json(const json & j, Env & x);
-void to_json(json & j, const Env & x);
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
+void from_json(const json &j, Env &x);
+void to_json(json &j, const Env &x);
 
-void from_json(const json & j, ArrayOfGiDs & x);
-void to_json(json & j, const ArrayOfGiDs & x);
+void from_json(const json &j, ArrayOfGiDs &x);
+void to_json(json &j, const ArrayOfGiDs &x);
 
-void from_json(const json & j, FilePath & x);
-void to_json(json & j, const FilePath & x);
+void from_json(const json &j, FilePath &x);
+void to_json(json &j, const FilePath &x);
 
-void from_json(const json & j, ArrayOfStrings & x);
-void to_json(json & j, const ArrayOfStrings & x);
+void from_json(const json &j, ArrayOfStrings &x);
+void to_json(json &j, const ArrayOfStrings &x);
 
-void from_json(const json & j, BlockIODeviceProperties & x);
-void to_json(json & j, const BlockIODeviceProperties & x);
+void from_json(const json &j, BlockIODeviceProperties &x);
+void to_json(json &j, const BlockIODeviceProperties &x);
 
-void from_json(const json & j, BlockIODevice & x);
-void to_json(json & j, const BlockIODevice & x);
+void from_json(const json &j, BlockIODevice &x);
+void to_json(json &j, const BlockIODevice &x);
 
-void from_json(const json & j, PurpleProperties & x);
-void to_json(json & j, const PurpleProperties & x);
+void from_json(const json &j, PurpleProperties &x);
+void to_json(json &j, const PurpleProperties &x);
 
-void from_json(const json & j, BlockIODeviceThrottleAllOf & x);
-void to_json(json & j, const BlockIODeviceThrottleAllOf & x);
+void from_json(const json &j, BlockIODeviceThrottleAllOf &x);
+void to_json(json &j, const BlockIODeviceThrottleAllOf &x);
 
-void from_json(const json & j, BlockIODeviceThrottle & x);
-void to_json(json & j, const BlockIODeviceThrottle & x);
+void from_json(const json &j, BlockIODeviceThrottle &x);
+void to_json(json &j, const BlockIODeviceThrottle &x);
 
-void from_json(const json & j, FluffyProperties & x);
-void to_json(json & j, const FluffyProperties & x);
+void from_json(const json &j, FluffyProperties &x);
+void to_json(json &j, const FluffyProperties &x);
 
-void from_json(const json & j, BlockIODeviceWeightAllOf & x);
-void to_json(json & j, const BlockIODeviceWeightAllOf & x);
+void from_json(const json &j, BlockIODeviceWeightAllOf &x);
+void to_json(json &j, const BlockIODeviceWeightAllOf &x);
 
-void from_json(const json & j, BlockIODeviceWeight & x);
-void to_json(json & j, const BlockIODeviceWeight & x);
+void from_json(const json &j, BlockIODeviceWeight &x);
+void to_json(json &j, const BlockIODeviceWeight &x);
 
-void from_json(const json & j, NamespaceType & x);
-void to_json(json & j, const NamespaceType & x);
+void from_json(const json &j, NamespaceType &x);
+void to_json(json &j, const NamespaceType &x);
 
-void from_json(const json & j, DeviceProperties & x);
-void to_json(json & j, const DeviceProperties & x);
+void from_json(const json &j, DeviceProperties &x);
+void to_json(json &j, const DeviceProperties &x);
 
-void from_json(const json & j, Device & x);
-void to_json(json & j, const Device & x);
+void from_json(const json &j, Device &x);
+void to_json(json &j, const Device &x);
 
-void from_json(const json & j, DeviceCgroupProperties & x);
-void to_json(json & j, const DeviceCgroupProperties & x);
+void from_json(const json &j, DeviceCgroupProperties &x);
+void to_json(json &j, const DeviceCgroupProperties &x);
 
-void from_json(const json & j, DeviceCgroup & x);
-void to_json(json & j, const DeviceCgroup & x);
+void from_json(const json &j, DeviceCgroup &x);
+void to_json(json &j, const DeviceCgroup &x);
 
-void from_json(const json & j, FileMode & x);
-void to_json(json & j, const FileMode & x);
+void from_json(const json &j, FileMode &x);
+void to_json(json &j, const FileMode &x);
 
-void from_json(const json & j, FileType & x);
-void to_json(json & j, const FileType & x);
+void from_json(const json &j, FileType &x);
+void to_json(json &j, const FileType &x);
 
-void from_json(const json & j, Pid & x);
-void to_json(json & j, const Pid & x);
+void from_json(const json &j, Pid &x);
+void to_json(json &j, const Pid &x);
 
-void from_json(const json & j, HookProperties & x);
-void to_json(json & j, const HookProperties & x);
+void from_json(const json &j, HookProperties &x);
+void to_json(json &j, const HookProperties &x);
 
-void from_json(const json & j, Hook & x);
-void to_json(json & j, const Hook & x);
+void from_json(const json &j, Hook &x);
+void to_json(json &j, const Hook &x);
 
-void from_json(const json & j, IdMappingProperties & x);
-void to_json(json & j, const IdMappingProperties & x);
+void from_json(const json &j, IdMappingProperties &x);
+void to_json(json &j, const IdMappingProperties &x);
 
-void from_json(const json & j, IdMapping & x);
-void to_json(json & j, const IdMapping & x);
+void from_json(const json &j, IdMapping &x);
+void to_json(json &j, const IdMapping &x);
 
-void from_json(const json & j, Major & x);
-void to_json(json & j, const Major & x);
+void from_json(const json &j, Major &x);
+void to_json(json &j, const Major &x);
 
-void from_json(const json & j, PatternProperties & x);
-void to_json(json & j, const PatternProperties & x);
+void from_json(const json &j, PatternProperties &x);
+void to_json(json &j, const PatternProperties &x);
 
-void from_json(const json & j, MapStringString & x);
-void to_json(json & j, const MapStringString & x);
+void from_json(const json &j, MapStringString &x);
+void to_json(json &j, const MapStringString &x);
 
-void from_json(const json & j, MountProperties & x);
-void to_json(json & j, const MountProperties & x);
+void from_json(const json &j, MountProperties &x);
+void to_json(json &j, const MountProperties &x);
 
-void from_json(const json & j, Mount & x);
-void to_json(json & j, const Mount & x);
+void from_json(const json &j, Mount &x);
+void to_json(json &j, const Mount &x);
 
-void from_json(const json & j, NamespaceReferenceProperties & x);
-void to_json(json & j, const NamespaceReferenceProperties & x);
+void from_json(const json &j, NamespaceReferenceProperties &x);
+void to_json(json &j, const NamespaceReferenceProperties &x);
 
-void from_json(const json & j, NamespaceReference & x);
-void to_json(json & j, const NamespaceReference & x);
+void from_json(const json &j, NamespaceReference &x);
+void to_json(json &j, const NamespaceReference &x);
 
-void from_json(const json & j, NetworkInterfacePriorityProperties & x);
-void to_json(json & j, const NetworkInterfacePriorityProperties & x);
+void from_json(const json &j, NetworkInterfacePriorityProperties &x);
+void to_json(json &j, const NetworkInterfacePriorityProperties &x);
 
-void from_json(const json & j, NetworkInterfacePriority & x);
-void to_json(json & j, const NetworkInterfacePriority & x);
+void from_json(const json &j, NetworkInterfacePriority &x);
+void to_json(json &j, const NetworkInterfacePriority &x);
 
-void from_json(const json & j, OciVersion & x);
-void to_json(json & j, const OciVersion & x);
+void from_json(const json &j, OciVersion &x);
+void to_json(json &j, const OciVersion &x);
 
-void from_json(const json & j, PersonalityProperties & x);
-void to_json(json & j, const PersonalityProperties & x);
+void from_json(const json &j, PersonalityProperties &x);
+void to_json(json &j, const PersonalityProperties &x);
 
-void from_json(const json & j, Personality & x);
-void to_json(json & j, const Personality & x);
+void from_json(const json &j, Personality &x);
+void to_json(json &j, const Personality &x);
 
-void from_json(const json & j, RdmaProperties & x);
-void to_json(json & j, const RdmaProperties & x);
+void from_json(const json &j, RdmaProperties &x);
+void to_json(json &j, const RdmaProperties &x);
 
-void from_json(const json & j, Rdma & x);
-void to_json(json & j, const Rdma & x);
+void from_json(const json &j, Rdma &x);
+void to_json(json &j, const Rdma &x);
 
-void from_json(const json & j, Names & x);
-void to_json(json & j, const Names & x);
+void from_json(const json &j, Names &x);
+void to_json(json &j, const Names &x);
 
-void from_json(const json & j, SyscallProperties & x);
-void to_json(json & j, const SyscallProperties & x);
+void from_json(const json &j, SyscallProperties &x);
+void to_json(json &j, const SyscallProperties &x);
 
-void from_json(const json & j, Syscall & x);
-void to_json(json & j, const Syscall & x);
+void from_json(const json &j, Syscall &x);
+void to_json(json &j, const Syscall &x);
 
-void from_json(const json & j, SyscallArgProperties & x);
-void to_json(json & j, const SyscallArgProperties & x);
+void from_json(const json &j, SyscallArgProperties &x);
+void to_json(json &j, const SyscallArgProperties &x);
 
-void from_json(const json & j, SyscallArg & x);
-void to_json(json & j, const SyscallArg & x);
+void from_json(const json &j, SyscallArg &x);
+void to_json(json &j, const SyscallArg &x);
 
-void from_json(const json & j, TimeOffsetsProperties & x);
-void to_json(json & j, const TimeOffsetsProperties & x);
+void from_json(const json &j, TimeOffsetsProperties &x);
+void to_json(json &j, const TimeOffsetsProperties &x);
 
-void from_json(const json & j, TimeOffsets & x);
-void to_json(json & j, const TimeOffsets & x);
+void from_json(const json &j, TimeOffsets &x);
+void to_json(json &j, const TimeOffsets &x);
 
-void from_json(const json & j, Definitions & x);
-void to_json(json & j, const Definitions & x);
+void from_json(const json &j, Definitions &x);
+void to_json(json &j, const Definitions &x);
 
-void from_json(const json & j, ApparmorProperties & x);
-void to_json(json & j, const ApparmorProperties & x);
+void from_json(const json &j, ApparmorProperties &x);
+void to_json(json &j, const ApparmorProperties &x);
 
-void from_json(const json & j, Apparmor & x);
-void to_json(json & j, const Apparmor & x);
+void from_json(const json &j, Apparmor &x);
+void to_json(json &j, const Apparmor &x);
 
-void from_json(const json & j, MemBWSchemaClass & x);
-void to_json(json & j, const MemBWSchemaClass & x);
+void from_json(const json &j, MemBWSchemaClass &x);
+void to_json(json &j, const MemBWSchemaClass &x);
 
-void from_json(const json & j, PurpleCapabilities & x);
-void to_json(json & j, const PurpleCapabilities & x);
+void from_json(const json &j, PurpleCapabilities &x);
+void to_json(json &j, const PurpleCapabilities &x);
 
-void from_json(const json & j, CgroupProperties & x);
-void to_json(json & j, const CgroupProperties & x);
+void from_json(const json &j, CgroupProperties &x);
+void to_json(json &j, const CgroupProperties &x);
 
-void from_json(const json & j, Cgroup & x);
-void to_json(json & j, const Cgroup & x);
+void from_json(const json &j, Cgroup &x);
+void to_json(json &j, const Cgroup &x);
 
-void from_json(const json & j, IntelRdtProperties & x);
-void to_json(json & j, const IntelRdtProperties & x);
+void from_json(const json &j, IntelRdtProperties &x);
+void to_json(json &j, const IntelRdtProperties &x);
 
-void from_json(const json & j, IntelRdt & x);
-void to_json(json & j, const IntelRdt & x);
+void from_json(const json &j, IntelRdt &x);
+void to_json(json &j, const IntelRdt &x);
 
-void from_json(const json & j, NamespacesItems & x);
-void to_json(json & j, const NamespacesItems & x);
+void from_json(const json &j, NamespacesItems &x);
+void to_json(json &j, const NamespacesItems &x);
 
-void from_json(const json & j, Namespaces & x);
-void to_json(json & j, const Namespaces & x);
+void from_json(const json &j, Namespaces &x);
+void to_json(json &j, const Namespaces &x);
 
-void from_json(const json & j, PersonalityClass & x);
-void to_json(json & j, const PersonalityClass & x);
+void from_json(const json &j, PersonalityClass &x);
+void to_json(json &j, const PersonalityClass &x);
 
-void from_json(const json & j, BlockIOProperties & x);
-void to_json(json & j, const BlockIOProperties & x);
+void from_json(const json &j, BlockIOProperties &x);
+void to_json(json &j, const BlockIOProperties &x);
 
-void from_json(const json & j, BlockIO & x);
-void to_json(json & j, const BlockIO & x);
+void from_json(const json &j, BlockIO &x);
+void to_json(json &j, const BlockIO &x);
 
-void from_json(const json & j, StickyProperties & x);
-void to_json(json & j, const StickyProperties & x);
+void from_json(const json &j, StickyProperties &x);
+void to_json(json &j, const StickyProperties &x);
 
-void from_json(const json & j, PurpleCPU & x);
-void to_json(json & j, const PurpleCPU & x);
+void from_json(const json &j, PurpleCPU &x);
+void to_json(json &j, const PurpleCPU &x);
 
-void from_json(const json & j, IndigoProperties & x);
-void to_json(json & j, const IndigoProperties & x);
+void from_json(const json &j, IndigoProperties &x);
+void to_json(json &j, const IndigoProperties &x);
 
-void from_json(const json & j, HugepageLimitsItems & x);
-void to_json(json & j, const HugepageLimitsItems & x);
+void from_json(const json &j, HugepageLimitsItems &x);
+void to_json(json &j, const HugepageLimitsItems &x);
 
-void from_json(const json & j, HugepageLimits & x);
-void to_json(json & j, const HugepageLimits & x);
+void from_json(const json &j, HugepageLimits &x);
+void to_json(json &j, const HugepageLimits &x);
 
-void from_json(const json & j, IndecentProperties & x);
-void to_json(json & j, const IndecentProperties & x);
+void from_json(const json &j, IndecentProperties &x);
+void to_json(json &j, const IndecentProperties &x);
 
-void from_json(const json & j, PurpleMemory & x);
-void to_json(json & j, const PurpleMemory & x);
+void from_json(const json &j, PurpleMemory &x);
+void to_json(json &j, const PurpleMemory &x);
 
-void from_json(const json & j, HilariousProperties & x);
-void to_json(json & j, const HilariousProperties & x);
+void from_json(const json &j, HilariousProperties &x);
+void to_json(json &j, const HilariousProperties &x);
 
-void from_json(const json & j, PurpleNetwork & x);
-void to_json(json & j, const PurpleNetwork & x);
+void from_json(const json &j, PurpleNetwork &x);
+void to_json(json &j, const PurpleNetwork &x);
 
-void from_json(const json & j, PidsProperties & x);
-void to_json(json & j, const PidsProperties & x);
+void from_json(const json &j, PidsProperties &x);
+void to_json(json &j, const PidsProperties &x);
 
-void from_json(const json & j, Pids & x);
-void to_json(json & j, const Pids & x);
+void from_json(const json &j, Pids &x);
+void to_json(json &j, const Pids &x);
 
-void from_json(const json & j, RdmaClass & x);
-void to_json(json & j, const RdmaClass & x);
+void from_json(const json &j, RdmaClass &x);
+void to_json(json &j, const RdmaClass &x);
 
-void from_json(const json & j, TentacledProperties & x);
-void to_json(json & j, const TentacledProperties & x);
+void from_json(const json &j, TentacledProperties &x);
+void to_json(json &j, const TentacledProperties &x);
 
-void from_json(const json & j, PurpleResources & x);
-void to_json(json & j, const PurpleResources & x);
+void from_json(const json &j, PurpleResources &x);
+void to_json(json &j, const PurpleResources &x);
 
-void from_json(const json & j, SeccompProperties & x);
-void to_json(json & j, const SeccompProperties & x);
+void from_json(const json &j, SeccompProperties &x);
+void to_json(json &j, const SeccompProperties &x);
 
-void from_json(const json & j, Seccomp & x);
-void to_json(json & j, const Seccomp & x);
+void from_json(const json &j, Seccomp &x);
+void to_json(json &j, const Seccomp &x);
 
-void from_json(const json & j, TimeOffsetsPropertiesClass & x);
-void to_json(json & j, const TimeOffsetsPropertiesClass & x);
+void from_json(const json &j, TimeOffsetsPropertiesClass &x);
+void to_json(json &j, const TimeOffsetsPropertiesClass &x);
 
-void from_json(const json & j, TimeOffsetsClass & x);
-void to_json(json & j, const TimeOffsetsClass & x);
+void from_json(const json &j, TimeOffsetsClass &x);
+void to_json(json &j, const TimeOffsetsClass &x);
 
-void from_json(const json & j, LinuxProperties & x);
-void to_json(json & j, const LinuxProperties & x);
+void from_json(const json &j, LinuxProperties &x);
+void to_json(json &j, const LinuxProperties &x);
 
-void from_json(const json & j, Linux & x);
-void to_json(json & j, const Linux & x);
+void from_json(const json &j, Linux &x);
+void to_json(json &j, const Linux &x);
 
-void from_json(const json & j, HooksProperties & x);
-void to_json(json & j, const HooksProperties & x);
+void from_json(const json &j, HooksProperties &x);
+void to_json(json &j, const HooksProperties &x);
 
-void from_json(const json & j, Hooks & x);
-void to_json(json & j, const Hooks & x);
+void from_json(const json &j, Hooks &x);
+void to_json(json &j, const Hooks &x);
 
-void from_json(const json & j, CapabilitiesProperties & x);
-void to_json(json & j, const CapabilitiesProperties & x);
+void from_json(const json &j, CapabilitiesProperties &x);
+void to_json(json &j, const CapabilitiesProperties &x);
 
-void from_json(const json & j, FluffyCapabilities & x);
-void to_json(json & j, const FluffyCapabilities & x);
+void from_json(const json &j, FluffyCapabilities &x);
+void to_json(json &j, const FluffyCapabilities &x);
 
-void from_json(const json & j, ConsoleSizeProperties & x);
-void to_json(json & j, const ConsoleSizeProperties & x);
+void from_json(const json &j, ConsoleSizeProperties &x);
+void to_json(json &j, const ConsoleSizeProperties &x);
 
-void from_json(const json & j, ConsoleSize & x);
-void to_json(json & j, const ConsoleSize & x);
+void from_json(const json &j, ConsoleSize &x);
+void to_json(json &j, const ConsoleSize &x);
 
-void from_json(const json & j, IoPriorityProperties & x);
-void to_json(json & j, const IoPriorityProperties & x);
+void from_json(const json &j, IoPriorityProperties &x);
+void to_json(json &j, const IoPriorityProperties &x);
 
-void from_json(const json & j, IoPriority & x);
-void to_json(json & j, const IoPriority & x);
+void from_json(const json &j, IoPriority &x);
+void to_json(json &j, const IoPriority &x);
 
-void from_json(const json & j, AmbitiousProperties & x);
-void to_json(json & j, const AmbitiousProperties & x);
+void from_json(const json &j, AmbitiousProperties &x);
+void to_json(json &j, const AmbitiousProperties &x);
 
-void from_json(const json & j, RlimitsItems & x);
-void to_json(json & j, const RlimitsItems & x);
+void from_json(const json &j, RlimitsItems &x);
+void to_json(json &j, const RlimitsItems &x);
 
-void from_json(const json & j, Rlimits & x);
-void to_json(json & j, const Rlimits & x);
+void from_json(const json &j, Rlimits &x);
+void to_json(json &j, const Rlimits &x);
 
-void from_json(const json & j, SchedulerProperties & x);
-void to_json(json & j, const SchedulerProperties & x);
+void from_json(const json &j, SchedulerProperties &x);
+void to_json(json &j, const SchedulerProperties &x);
 
-void from_json(const json & j, Scheduler & x);
-void to_json(json & j, const Scheduler & x);
+void from_json(const json &j, Scheduler &x);
+void to_json(json &j, const Scheduler &x);
 
-void from_json(const json & j, UserProperties & x);
-void to_json(json & j, const UserProperties & x);
+void from_json(const json &j, UserProperties &x);
+void to_json(json &j, const UserProperties &x);
 
-void from_json(const json & j, User & x);
-void to_json(json & j, const User & x);
+void from_json(const json &j, User &x);
+void to_json(json &j, const User &x);
 
-void from_json(const json & j, ProcessProperties & x);
-void to_json(json & j, const ProcessProperties & x);
+void from_json(const json &j, ProcessProperties &x);
+void to_json(json &j, const ProcessProperties &x);
 
-void from_json(const json & j, Process & x);
-void to_json(json & j, const Process & x);
+void from_json(const json &j, Process &x);
+void to_json(json &j, const Process &x);
 
-void from_json(const json & j, RootProperties & x);
-void to_json(json & j, const RootProperties & x);
+void from_json(const json &j, RootProperties &x);
+void to_json(json &j, const RootProperties &x);
 
-void from_json(const json & j, Root & x);
-void to_json(json & j, const Root & x);
+void from_json(const json &j, Root &x);
+void to_json(json &j, const Root &x);
 
-void from_json(const json & j, SchemaProperties & x);
-void to_json(json & j, const SchemaProperties & x);
+void from_json(const json &j, SchemaProperties &x);
+void to_json(json &j, const SchemaProperties &x);
 
-void from_json(const json & j, CunningProperties & x);
-void to_json(json & j, const CunningProperties & x);
+void from_json(const json &j, CunningProperties &x);
+void to_json(json &j, const CunningProperties &x);
 
-void from_json(const json & j, AnetItems & x);
-void to_json(json & j, const AnetItems & x);
+void from_json(const json &j, AnetItems &x);
+void to_json(json &j, const AnetItems &x);
 
-void from_json(const json & j, Anet & x);
-void to_json(json & j, const Anet & x);
+void from_json(const json &j, Anet &x);
+void to_json(json &j, const Anet &x);
 
-void from_json(const json & j, CappedCPUProperties & x);
-void to_json(json & j, const CappedCPUProperties & x);
+void from_json(const json &j, CappedCPUProperties &x);
+void to_json(json &j, const CappedCPUProperties &x);
 
-void from_json(const json & j, CappedCPU & x);
-void to_json(json & j, const CappedCPU & x);
+void from_json(const json &j, CappedCPU &x);
+void to_json(json &j, const CappedCPU &x);
 
-void from_json(const json & j, CappedMemoryProperties & x);
-void to_json(json & j, const CappedMemoryProperties & x);
+void from_json(const json &j, CappedMemoryProperties &x);
+void to_json(json &j, const CappedMemoryProperties &x);
 
-void from_json(const json & j, CappedMemory & x);
-void to_json(json & j, const CappedMemory & x);
+void from_json(const json &j, CappedMemory &x);
+void to_json(json &j, const CappedMemory &x);
 
-void from_json(const json & j, SolarisProperties & x);
-void to_json(json & j, const SolarisProperties & x);
+void from_json(const json &j, SolarisProperties &x);
+void to_json(json &j, const SolarisProperties &x);
 
-void from_json(const json & j, Solaris & x);
-void to_json(json & j, const Solaris & x);
+void from_json(const json &j, Solaris &x);
+void to_json(json &j, const Solaris &x);
 
-void from_json(const json & j, HypervisorProperties & x);
-void to_json(json & j, const HypervisorProperties & x);
+void from_json(const json &j, HypervisorProperties &x);
+void to_json(json &j, const HypervisorProperties &x);
 
-void from_json(const json & j, Hypervisor & x);
-void to_json(json & j, const Hypervisor & x);
+void from_json(const json &j, Hypervisor &x);
+void to_json(json &j, const Hypervisor &x);
 
-void from_json(const json & j, ImageProperties & x);
-void to_json(json & j, const ImageProperties & x);
+void from_json(const json &j, ImageProperties &x);
+void to_json(json &j, const ImageProperties &x);
 
-void from_json(const json & j, Image & x);
-void to_json(json & j, const Image & x);
+void from_json(const json &j, Image &x);
+void to_json(json &j, const Image &x);
 
-void from_json(const json & j, KernelProperties & x);
-void to_json(json & j, const KernelProperties & x);
+void from_json(const json &j, KernelProperties &x);
+void to_json(json &j, const KernelProperties &x);
 
-void from_json(const json & j, Kernel & x);
-void to_json(json & j, const Kernel & x);
+void from_json(const json &j, Kernel &x);
+void to_json(json &j, const Kernel &x);
 
-void from_json(const json & j, VmProperties & x);
-void to_json(json & j, const VmProperties & x);
+void from_json(const json &j, VmProperties &x);
+void to_json(json &j, const VmProperties &x);
 
-void from_json(const json & j, Vm & x);
-void to_json(json & j, const Vm & x);
+void from_json(const json &j, Vm &x);
+void to_json(json &j, const Vm &x);
 
-void from_json(const json & j, HypervProperties & x);
-void to_json(json & j, const HypervProperties & x);
+void from_json(const json &j, HypervProperties &x);
+void to_json(json &j, const HypervProperties &x);
 
-void from_json(const json & j, Hyperv & x);
-void to_json(json & j, const Hyperv & x);
+void from_json(const json &j, Hyperv &x);
+void to_json(json &j, const Hyperv &x);
 
-void from_json(const json & j, LayerFolders & x);
-void to_json(json & j, const LayerFolders & x);
+void from_json(const json &j, LayerFolders &x);
+void to_json(json &j, const LayerFolders &x);
 
-void from_json(const json & j, MagentaProperties & x);
-void to_json(json & j, const MagentaProperties & x);
+void from_json(const json &j, MagentaProperties &x);
+void to_json(json &j, const MagentaProperties &x);
 
-void from_json(const json & j, FluffyNetwork & x);
-void to_json(json & j, const FluffyNetwork & x);
+void from_json(const json &j, FluffyNetwork &x);
+void to_json(json &j, const FluffyNetwork &x);
 
-void from_json(const json & j, MischievousProperties & x);
-void to_json(json & j, const MischievousProperties & x);
+void from_json(const json &j, MischievousProperties &x);
+void to_json(json &j, const MischievousProperties &x);
 
-void from_json(const json & j, FluffyCPU & x);
-void to_json(json & j, const FluffyCPU & x);
+void from_json(const json &j, FluffyCPU &x);
+void to_json(json &j, const FluffyCPU &x);
 
-void from_json(const json & j, FluffyMemory & x);
-void to_json(json & j, const FluffyMemory & x);
+void from_json(const json &j, FluffyMemory &x);
+void to_json(json &j, const FluffyMemory &x);
 
-void from_json(const json & j, StorageProperties & x);
-void to_json(json & j, const StorageProperties & x);
+void from_json(const json &j, StorageProperties &x);
+void to_json(json &j, const StorageProperties &x);
 
-void from_json(const json & j, Storage & x);
-void to_json(json & j, const Storage & x);
+void from_json(const json &j, Storage &x);
+void to_json(json &j, const Storage &x);
 
-void from_json(const json & j, FriskyProperties & x);
-void to_json(json & j, const FriskyProperties & x);
+void from_json(const json &j, FriskyProperties &x);
+void to_json(json &j, const FriskyProperties &x);
 
-void from_json(const json & j, FluffyResources & x);
-void to_json(json & j, const FluffyResources & x);
+void from_json(const json &j, FluffyResources &x);
+void to_json(json &j, const FluffyResources &x);
 
-void from_json(const json & j, WindowsProperties & x);
-void to_json(json & j, const WindowsProperties & x);
+void from_json(const json &j, WindowsProperties &x);
+void to_json(json &j, const WindowsProperties &x);
 
-void from_json(const json & j, Windows & x);
-void to_json(json & j, const Windows & x);
+void from_json(const json &j, Windows &x);
+void to_json(json &j, const Windows &x);
 
-void from_json(const json & j, ZosProperties & x);
-void to_json(json & j, const ZosProperties & x);
+void from_json(const json &j, ZosProperties &x);
+void to_json(json &j, const ZosProperties &x);
 
-void from_json(const json & j, Zos & x);
-void to_json(json & j, const Zos & x);
+void from_json(const json &j, Zos &x);
+void to_json(json &j, const Zos &x);
 
-void from_json(const json & j, Schema & x);
-void to_json(json & j, const Schema & x);
+void from_json(const json &j, Schema &x);
+void to_json(json &j, const Schema &x);
 
-void from_json(const json & j, ArrayOfGIDsType & x);
-void to_json(json & j, const ArrayOfGIDsType & x);
+void from_json(const json &j, ArrayOfGIDsType &x);
+void to_json(json &j, const ArrayOfGIDsType &x);
 
-void from_json(const json & j, FilePathType & x);
-void to_json(json & j, const FilePathType & x);
+void from_json(const json &j, FilePathType &x);
+void to_json(json &j, const FilePathType &x);
 
-inline void from_json(const json & j, Env& x) {
-x.ref = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")).get<std::string>());
+inline void from_json(const json &j, Env &x)
+{
+        x.ref = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref"))
+                        .get<std::string>());
 }
 
-inline void to_json(json & j, const Env & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
+inline void to_json(json &j, const Env &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
 }
 
-inline void from_json(const json & j, ArrayOfGiDs& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<Env>();
+inline void from_json(const json &j, ArrayOfGiDs &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<Env>();
 }
 
-inline void to_json(json & j, const ArrayOfGiDs & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+inline void to_json(json &j, const ArrayOfGiDs &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
 }
 
-inline void from_json(const json & j, FilePath& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
+inline void from_json(const json &j, FilePath &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
 }
 
-inline void to_json(json & j, const FilePath & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+inline void to_json(json &j, const FilePath &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
 }
 
-inline void from_json(const json & j, ArrayOfStrings& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<FilePath>();
+inline void from_json(const json &j, ArrayOfStrings &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<FilePath>();
 }
 
-inline void to_json(json & j, const ArrayOfStrings & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+inline void to_json(json &j, const ArrayOfStrings &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
 }
 
-inline void from_json(const json & j, BlockIODeviceProperties& x) {
-x.major = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"major")).get<Env>();
-x.minor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minor")).get<Env>();
+inline void from_json(const json &j, BlockIODeviceProperties &x)
+{
+        x.major = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"major"))
+                          .get<Env>();
+        x.minor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minor"))
+                          .get<Env>();
 }
 
-inline void to_json(json & j, const BlockIODeviceProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] = x.major;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] = x.minor;
+inline void to_json(json &j, const BlockIODeviceProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] = x.major;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] = x.minor;
 }
 
-inline void from_json(const json & j, BlockIODevice& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<BlockIODeviceProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
+inline void from_json(const json &j, BlockIODevice &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<BlockIODeviceProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
 }
 
-inline void to_json(json & j, const BlockIODevice & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
+inline void to_json(json &j, const BlockIODevice &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
 }
 
-inline void from_json(const json & j, PurpleProperties& x) {
-x.rate = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rate")).get<Env>();
+inline void from_json(const json &j, PurpleProperties &x)
+{
+        x.rate = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rate"))
+                         .get<Env>();
 }
 
-inline void to_json(json & j, const PurpleProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"rate")] = x.rate;
+inline void to_json(json &j, const PurpleProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"rate")] = x.rate;
 }
 
-inline void from_json(const json & j, BlockIODeviceThrottleAllOf& x) {
-x.ref = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")));
-x.type = get_stack_optional<FilePathType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
-x.properties = get_stack_optional<PurpleProperties>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
+inline void from_json(const json &j, BlockIODeviceThrottleAllOf &x)
+{
+        x.ref = Utf16_Utf8<std::optional<std::string>,
+                           std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"$ref")));
+        x.type = get_stack_optional<FilePathType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
+        x.properties = get_stack_optional<PurpleProperties>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
 }
 
-inline void to_json(json & j, const BlockIODeviceThrottleAllOf & x) {
-j = json::object();
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref);
+inline void to_json(json &j, const BlockIODeviceThrottleAllOf &x)
+{
+        j = json::object();
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.ref)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::convert(x.ref);
+        }
+        if (x.type) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] =
+                        x.type;
+        }
+        if (x.properties) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                        x.properties;
+        }
 }
-if (x.type) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-if (x.properties) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-}
-
-inline void from_json(const json & j, BlockIODeviceThrottle& x) {
-x.allOf = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")).get<std::vector<BlockIODeviceThrottleAllOf>>();
-}
-
-inline void to_json(json & j, const BlockIODeviceThrottle & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")] = x.allOf;
-}
-
-inline void from_json(const json & j, FluffyProperties& x) {
-x.weight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"weight")).get<Env>();
-x.leafWeight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")).get<Env>();
-}
-
-inline void to_json(json & j, const FluffyProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] = x.weight;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")] = x.leafWeight;
-}
-
-inline void from_json(const json & j, BlockIODeviceWeightAllOf& x) {
-x.ref = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")));
-x.type = get_stack_optional<FilePathType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
-x.properties = get_stack_optional<FluffyProperties>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
-}
-
-inline void to_json(json & j, const BlockIODeviceWeightAllOf & x) {
-j = json::object();
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref);
-}
-if (x.type) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-if (x.properties) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-}
-
-inline void from_json(const json & j, BlockIODeviceWeight& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.allOf = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")).get<std::vector<BlockIODeviceWeightAllOf>>();
-}
-
-inline void to_json(json & j, const BlockIODeviceWeight & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")] = x.allOf;
-}
-
-inline void from_json(const json & j, NamespaceType& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.namespaceTypeEnum = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"enum")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const NamespaceType & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enum")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.namespaceTypeEnum);
-}
-
-inline void from_json(const json & j, DeviceProperties& x) {
-x.type = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
-x.path = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"path"));
-x.fileMode = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"fileMode"));
-x.major = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"major"));
-x.minor = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"minor"));
-x.uid = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uid"));
-x.gid = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"gid"));
-x.id = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"id"));
-x.idType = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"idType"));
-}
-
-inline void to_json(json & j, const DeviceProperties & x) {
-j = json::object();
-if (x.type) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-if (x.path) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-}
-if (x.fileMode) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"fileMode")] = x.fileMode;
-}
-if (x.major) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] = x.major;
-}
-if (x.minor) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] = x.minor;
-}
-if (x.uid) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uid")] = x.uid;
-}
-if (x.gid) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"gid")] = x.gid;
-}
-if (x.id) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"id")] = x.id;
-}
-if (x.idType) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"idType")] = x.idType;
-}
-}
-
-inline void from_json(const json & j, Device& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<DeviceProperties>();
-}
-
-inline void to_json(json & j, const Device & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, DeviceCgroupProperties& x) {
-x.allow = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allow")).get<FilePath>();
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePath>();
-x.major = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"major")).get<Env>();
-x.minor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minor")).get<Env>();
-x.access = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"access")).get<FilePath>();
-}
-
-inline void to_json(json & j, const DeviceCgroupProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"allow")] = x.allow;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] = x.major;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] = x.minor;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"access")] = x.access;
-}
-
-inline void from_json(const json & j, DeviceCgroup& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<DeviceCgroupProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const DeviceCgroup & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, FileMode& x) {
-x.description = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"description")));
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.minimum = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")).get<int64_t>();
-x.maximum = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")).get<int64_t>();
-}
-
-inline void to_json(json & j, const FileMode & x) {
-j = json::object();
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.description)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.description);
-}
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")] = x.minimum;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")] = x.maximum;
-}
-
-inline void from_json(const json & j, FileType& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.pattern = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")).get<std::string>());
-}
-
-inline void to_json(json & j, const FileType & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")] = Utf16_Utf8<std::wstring, std::string>::convert(x.pattern);
-}
-
-inline void from_json(const json & j, Pid& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.minimum = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")).get<int64_t>();
-}
-
-inline void to_json(json & j, const Pid & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")] = x.minimum;
-}
-
-inline void from_json(const json & j, HookProperties& x) {
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args")).get<Env>();
-x.env = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"env")).get<Env>();
-x.timeout = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"timeout")).get<Pid>();
-}
-
-inline void to_json(json & j, const HookProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"env")] = x.env;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"timeout")] = x.timeout;
-}
-
-inline void from_json(const json & j, Hook& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<HookProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const Hook & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, IdMappingProperties& x) {
-x.containerID = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"containerID")).get<Env>();
-x.hostID = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hostID")).get<Env>();
-x.size = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"size")).get<Env>();
-}
-
-inline void to_json(json & j, const IdMappingProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"containerID")] = x.containerID;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hostID")] = x.hostID;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"size")] = x.size;
-}
-
-inline void from_json(const json & j, IdMapping& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<IdMappingProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const IdMapping & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, Major& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.ref = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")).get<std::string>());
-}
-
-inline void to_json(json & j, const Major & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
-}
-
-inline void from_json(const json & j, PatternProperties& x) {
-x.the1 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L".{1,}")).get<FilePath>();
-}
-
-inline void to_json(json & j, const PatternProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L".{1,}")] = x.the1;
-}
-
-inline void from_json(const json & j, MapStringString& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.patternProperties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"patternProperties")).get<PatternProperties>();
-}
-
-inline void to_json(json & j, const MapStringString & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"patternProperties")] = x.patternProperties;
-}
-
-inline void from_json(const json & j, MountProperties& x) {
-x.source = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"source")).get<Env>();
-x.destination = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"destination")).get<Env>();
-x.options = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"options")).get<Env>();
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePath>();
-x.uidMappings = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings")).get<ArrayOfGiDs>();
-x.gidMappings = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings")).get<ArrayOfGiDs>();
-}
-
-inline void to_json(json & j, const MountProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"source")] = x.source;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"destination")] = x.destination;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"options")] = x.options;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings")] = x.uidMappings;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings")] = x.gidMappings;
-}
-
-inline void from_json(const json & j, Mount& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<MountProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const Mount & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, NamespaceReferenceProperties& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<Env>();
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-}
-
-inline void to_json(json & j, const NamespaceReferenceProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-}
-
-inline void from_json(const json & j, NamespaceReference& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<NamespaceReferenceProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const NamespaceReference & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, NetworkInterfacePriorityProperties& x) {
-x.name = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"name")).get<FilePath>();
-x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"priority")).get<Env>();
-}
-
-inline void to_json(json & j, const NetworkInterfacePriorityProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"name")] = x.name;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] = x.priority;
-}
-
-inline void from_json(const json & j, NetworkInterfacePriority& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<NetworkInterfacePriorityProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const NetworkInterfacePriority & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, OciVersion& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-}
-
-inline void to_json(json & j, const OciVersion & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-
-inline void from_json(const json & j, PersonalityProperties& x) {
-x.domain = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"domain")).get<Env>();
-x.flags = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"flags")).get<Env>();
-}
-
-inline void to_json(json & j, const PersonalityProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"domain")] = x.domain;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] = x.flags;
-}
-
-inline void from_json(const json & j, Personality& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<PersonalityProperties>();
-}
-
-inline void to_json(json & j, const Personality & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, RdmaProperties& x) {
-x.hcaHandles = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hcaHandles")).get<Env>();
-x.hcaObjects = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hcaObjects")).get<Env>();
-}
-
-inline void to_json(json & j, const RdmaProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hcaHandles")] = x.hcaHandles;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hcaObjects")] = x.hcaObjects;
-}
-
-inline void from_json(const json & j, Rdma& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<RdmaProperties>();
-}
-
-inline void to_json(json & j, const Rdma & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, Names& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<FilePath>();
-x.minItems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")).get<int64_t>();
-}
-
-inline void to_json(json & j, const Names & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")] = x.minItems;
-}
-
-inline void from_json(const json & j, SyscallProperties& x) {
-x.names = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"names")).get<Names>();
-x.action = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"action")).get<Env>();
-x.errnoRet = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"errnoRet")).get<Env>();
-x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args")).get<ArrayOfGiDs>();
-}
-
-inline void to_json(json & j, const SyscallProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"names")] = x.names;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"action")] = x.action;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"errnoRet")] = x.errnoRet;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
-}
-
-inline void from_json(const json & j, Syscall& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<SyscallProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const Syscall & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, SyscallArgProperties& x) {
-x.index = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"index")).get<Env>();
-x.value = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"value")).get<Env>();
-x.valueTwo = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"valueTwo")).get<Env>();
-x.op = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"op")).get<Env>();
-}
-
-inline void to_json(json & j, const SyscallArgProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"index")] = x.index;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"value")] = x.value;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"valueTwo")] = x.valueTwo;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"op")] = x.op;
-}
-
-inline void from_json(const json & j, SyscallArg& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<SyscallArgProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const SyscallArg & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, TimeOffsetsProperties& x) {
-x.secs = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"secs")).get<Env>();
-x.nanosecs = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"nanosecs")).get<Env>();
-}
-
-inline void to_json(json & j, const TimeOffsetsProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"secs")] = x.secs;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"nanosecs")] = x.nanosecs;
-}
-
-inline void from_json(const json & j, TimeOffsets& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<TimeOffsetsProperties>();
-}
-
-inline void to_json(json & j, const TimeOffsets & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, Definitions& x) {
-x.personalityDomain = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"PersonalityDomain"));
-x.personality = get_stack_optional<Personality>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Personality"));
-x.rootfsPropagation = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"RootfsPropagation"));
-x.seccompArch = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompArch"));
-x.seccompAction = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompAction"));
-x.seccompFlag = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompFlag"));
-x.seccompOperators = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompOperators"));
-x.syscallArg = get_stack_optional<SyscallArg>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SyscallArg"));
-x.syscall = get_stack_optional<Syscall>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Syscall"));
-x.major = get_stack_optional<Major>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Major"));
-x.minor = get_stack_optional<Major>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Minor"));
-x.fileMode = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"FileMode"));
-x.fileType = get_stack_optional<FileType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"FileType"));
-x.device = get_stack_optional<Device>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Device"));
-x.weight = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"weight"));
-x.blockIODevice = get_stack_optional<BlockIODevice>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODevice"));
-x.blockIODeviceWeight = get_stack_optional<BlockIODeviceWeight>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODeviceWeight"));
-x.blockIODeviceThrottle = get_stack_optional<BlockIODeviceThrottle>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODeviceThrottle"));
-x.deviceCgroup = get_stack_optional<DeviceCgroup>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"DeviceCgroup"));
-x.networkInterfacePriority = get_stack_optional<NetworkInterfacePriority>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"NetworkInterfacePriority"));
-x.rdma = get_stack_optional<Rdma>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Rdma"));
-x.namespaceType = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"NamespaceType"));
-x.namespaceReference = get_stack_optional<NamespaceReference>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"NamespaceReference"));
-x.timeOffsets = get_stack_optional<TimeOffsets>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"TimeOffsets"));
-x.schedulerPolicy = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SchedulerPolicy"));
-x.schedulerFlag = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"SchedulerFlag"));
-x.rootImageFormat = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"RootImageFormat"));
-x.int8 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"int8"));
-x.int16 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"int16"));
-x.int32 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"int32"));
-x.int64 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"int64"));
-x.uint8 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint8"));
-x.uint16 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint16"));
-x.uint32 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint32"));
-x.uint64 = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint64"));
-x.percent = get_stack_optional<FileMode>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"percent"));
-x.mapStringString = get_stack_optional<MapStringString>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"mapStringString"));
-x.uid = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"UID"));
-x.gid = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"GID"));
-x.umask = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Umask"));
-x.arrayOfGIDs = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfGIDs"));
-x.arrayOfStrings = get_stack_optional<ArrayOfStrings>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfStrings"));
-x.filePath = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"FilePath"));
-x.env = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Env"));
-x.hook = get_stack_optional<Hook>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Hook"));
-x.arrayOfHooks = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfHooks"));
-x.idMapping = get_stack_optional<IdMapping>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"IDMapping"));
-x.mount = get_stack_optional<Mount>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"Mount"));
-x.ociVersion = get_stack_optional<OciVersion>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion"));
-x.annotations = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"annotations"));
-}
-
-inline void to_json(json & j, const Definitions & x) {
-j = json::object();
-if (x.personalityDomain) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"PersonalityDomain")] = x.personalityDomain;
-}
-if (x.personality) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Personality")] = x.personality;
-}
-if (x.rootfsPropagation) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"RootfsPropagation")] = x.rootfsPropagation;
-}
-if (x.seccompArch) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompArch")] = x.seccompArch;
-}
-if (x.seccompAction) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompAction")] = x.seccompAction;
-}
-if (x.seccompFlag) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompFlag")] = x.seccompFlag;
-}
-if (x.seccompOperators) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompOperators")] = x.seccompOperators;
-}
-if (x.syscallArg) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SyscallArg")] = x.syscallArg;
-}
-if (x.syscall) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Syscall")] = x.syscall;
-}
-if (x.major) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Major")] = x.major;
-}
-if (x.minor) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Minor")] = x.minor;
-}
-if (x.fileMode) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"FileMode")] = x.fileMode;
-}
-if (x.fileType) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"FileType")] = x.fileType;
-}
-if (x.device) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Device")] = x.device;
-}
-if (x.weight) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] = x.weight;
-}
-if (x.blockIODevice) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODevice")] = x.blockIODevice;
-}
-if (x.blockIODeviceWeight) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODeviceWeight")] = x.blockIODeviceWeight;
-}
-if (x.blockIODeviceThrottle) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"blockIODeviceThrottle")] = x.blockIODeviceThrottle;
-}
-if (x.deviceCgroup) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"DeviceCgroup")] = x.deviceCgroup;
-}
-if (x.networkInterfacePriority) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"NetworkInterfacePriority")] = x.networkInterfacePriority;
-}
-if (x.rdma) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Rdma")] = x.rdma;
-}
-if (x.namespaceType) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"NamespaceType")] = x.namespaceType;
-}
-if (x.namespaceReference) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"NamespaceReference")] = x.namespaceReference;
-}
-if (x.timeOffsets) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"TimeOffsets")] = x.timeOffsets;
-}
-if (x.schedulerPolicy) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SchedulerPolicy")] = x.schedulerPolicy;
-}
-if (x.schedulerFlag) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"SchedulerFlag")] = x.schedulerFlag;
-}
-if (x.rootImageFormat) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"RootImageFormat")] = x.rootImageFormat;
-}
-if (x.int8) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"int8")] = x.int8;
-}
-if (x.int16) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"int16")] = x.int16;
-}
-if (x.int32) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"int32")] = x.int32;
-}
-if (x.int64) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"int64")] = x.int64;
-}
-if (x.uint8) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint8")] = x.uint8;
-}
-if (x.uint16) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint16")] = x.uint16;
-}
-if (x.uint32) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint32")] = x.uint32;
-}
-if (x.uint64) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint64")] = x.uint64;
-}
-if (x.percent) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"percent")] = x.percent;
-}
-if (x.mapStringString) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"mapStringString")] = x.mapStringString;
-}
-if (x.uid) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"UID")] = x.uid;
-}
-if (x.gid) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"GID")] = x.gid;
-}
-if (x.umask) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Umask")] = x.umask;
-}
-if (x.arrayOfGIDs) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfGIDs")] = x.arrayOfGIDs;
-}
-if (x.arrayOfStrings) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfStrings")] = x.arrayOfStrings;
-}
-if (x.filePath) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"FilePath")] = x.filePath;
-}
-if (x.env) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Env")] = x.env;
-}
-if (x.hook) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Hook")] = x.hook;
-}
-if (x.arrayOfHooks) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfHooks")] = x.arrayOfHooks;
-}
-if (x.idMapping) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"IDMapping")] = x.idMapping;
-}
-if (x.mount) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"Mount")] = x.mount;
-}
-if (x.ociVersion) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion")] = x.ociVersion;
-}
-if (x.annotations) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"annotations")] = x.annotations;
-}
-}
-
-inline void from_json(const json & j, ApparmorProperties& x) {
-x.enabled = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")).get<FilePath>();
-}
-
-inline void to_json(json & j, const ApparmorProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] = x.enabled;
-}
-
-inline void from_json(const json & j, Apparmor& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<ApparmorProperties>();
-}
-
-inline void to_json(json & j, const Apparmor & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, MemBWSchemaClass& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.pattern = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")).get<std::string>());
-}
-
-inline void to_json(json & j, const MemBWSchemaClass & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")] = Utf16_Utf8<std::wstring, std::string>::convert(x.pattern);
-}
-
-inline void from_json(const json & j, PurpleCapabilities& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<MemBWSchemaClass>();
-}
-
-inline void to_json(json & j, const PurpleCapabilities & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-}
-
-inline void from_json(const json & j, CgroupProperties& x) {
-x.v1 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"v1")).get<FilePath>();
-x.v2 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"v2")).get<FilePath>();
-x.systemd = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"systemd")).get<FilePath>();
-x.systemdUser = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"systemdUser")).get<FilePath>();
-x.rdma = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")).get<FilePath>();
-}
-
-inline void to_json(json & j, const CgroupProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"v1")] = x.v1;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"v2")] = x.v2;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"systemd")] = x.systemd;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"systemdUser")] = x.systemdUser;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")] = x.rdma;
-}
-
-inline void from_json(const json & j, Cgroup& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<CgroupProperties>();
-}
-
-inline void to_json(json & j, const Cgroup & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, IntelRdtProperties& x) {
-x.closID = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"closID"));
-x.l3CacheSchema = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"l3CacheSchema"));
-x.memBWSchema = get_stack_optional<MemBWSchemaClass>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"memBwSchema"));
-x.enableCMT = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"enableCMT"));
-x.enableMBM = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"enableMBM"));
-x.enabled = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"enabled"));
-}
-
-inline void to_json(json & j, const IntelRdtProperties & x) {
-j = json::object();
-if (x.closID) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"closID")] = x.closID;
-}
-if (x.l3CacheSchema) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"l3CacheSchema")] = x.l3CacheSchema;
-}
-if (x.memBWSchema) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"memBwSchema")] = x.memBWSchema;
-}
-if (x.enableCMT) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enableCMT")] = x.enableCMT;
-}
-if (x.enableMBM) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enableMBM")] = x.enableMBM;
-}
-if (x.enabled) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] = x.enabled;
-}
-}
-
-inline void from_json(const json & j, IntelRdt& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<IntelRdtProperties>();
-}
-
-inline void to_json(json & j, const IntelRdt & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, NamespacesItems& x) {
-x.anyOf = get_stack_optional<std::vector<Env>>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"anyOf"));
-x.ref = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")));
-}
-
-inline void to_json(json & j, const NamespacesItems & x) {
-j = json::object();
-if (x.anyOf) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"anyOf")] = x.anyOf;
-}
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref);
-}
-}
-
-inline void from_json(const json & j, Namespaces& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<NamespacesItems>();
-}
-
-inline void to_json(json & j, const Namespaces & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-}
-
-inline void from_json(const json & j, PersonalityClass& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.ref = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")).get<std::string>());
-}
-
-inline void to_json(json & j, const PersonalityClass & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
-}
-
-inline void from_json(const json & j, BlockIOProperties& x) {
-x.weight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"weight")).get<Env>();
-x.leafWeight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")).get<Env>();
-x.throttleReadBpsDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"throttleReadBpsDevice")).get<ArrayOfGiDs>();
-x.throttleWriteBpsDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"throttleWriteBpsDevice")).get<ArrayOfGiDs>();
-x.throttleReadIOPSDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"throttleReadIOPSDevice")).get<ArrayOfGiDs>();
-x.throttleWriteIOPSDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"throttleWriteIOPSDevice")).get<ArrayOfGiDs>();
-x.weightDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"weightDevice")).get<ArrayOfGiDs>();
-}
-
-inline void to_json(json & j, const BlockIOProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] = x.weight;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")] = x.leafWeight;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"throttleReadBpsDevice")] = x.throttleReadBpsDevice;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"throttleWriteBpsDevice")] = x.throttleWriteBpsDevice;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"throttleReadIOPSDevice")] = x.throttleReadIOPSDevice;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"throttleWriteIOPSDevice")] = x.throttleWriteIOPSDevice;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"weightDevice")] = x.weightDevice;
-}
-
-inline void from_json(const json & j, BlockIO& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<BlockIOProperties>();
-}
-
-inline void to_json(json & j, const BlockIO & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, StickyProperties& x) {
-x.cpus = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpus")).get<FilePath>();
-x.mems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"mems")).get<FilePath>();
-x.period = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"period")).get<Env>();
-x.quota = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"quota")).get<Env>();
-x.burst = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"burst")).get<Env>();
-x.realtimePeriod = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"realtimePeriod")).get<Env>();
-x.realtimeRuntime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"realtimeRuntime")).get<Env>();
-x.shares = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"shares")).get<Env>();
-x.idle = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"idle")).get<Env>();
-}
-
-inline void to_json(json & j, const StickyProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpus")] = x.cpus;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"mems")] = x.mems;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"period")] = x.period;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"quota")] = x.quota;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"burst")] = x.burst;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"realtimePeriod")] = x.realtimePeriod;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"realtimeRuntime")] = x.realtimeRuntime;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"shares")] = x.shares;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"idle")] = x.idle;
-}
-
-inline void from_json(const json & j, PurpleCPU& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<StickyProperties>();
-}
-
-inline void to_json(json & j, const PurpleCPU & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, IndigoProperties& x) {
-x.pageSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pageSize")).get<MemBWSchemaClass>();
-x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit")).get<Env>();
-}
-
-inline void to_json(json & j, const IndigoProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"pageSize")] = x.pageSize;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
-}
-
-inline void from_json(const json & j, HugepageLimitsItems& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<IndigoProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const HugepageLimitsItems & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, HugepageLimits& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<HugepageLimitsItems>();
-}
-
-inline void to_json(json & j, const HugepageLimits & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-}
-
-inline void from_json(const json & j, IndecentProperties& x) {
-x.kernel = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")).get<Env>();
-x.kernelTCP = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"kernelTCP")).get<Env>();
-x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit")).get<Env>();
-x.reservation = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"reservation")).get<Env>();
-x.swap = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"swap")).get<Env>();
-x.swappiness = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"swappiness")).get<Env>();
-x.disableOOMKiller = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"disableOOMKiller")).get<FilePath>();
-x.useHierarchy = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"useHierarchy")).get<FilePath>();
-x.checkBeforeUpdate = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"checkBeforeUpdate")).get<FilePath>();
-}
-
-inline void to_json(json & j, const IndecentProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")] = x.kernel;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernelTCP")] = x.kernelTCP;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"reservation")] = x.reservation;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"swap")] = x.swap;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"swappiness")] = x.swappiness;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"disableOOMKiller")] = x.disableOOMKiller;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"useHierarchy")] = x.useHierarchy;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"checkBeforeUpdate")] = x.checkBeforeUpdate;
-}
-
-inline void from_json(const json & j, PurpleMemory& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<IndecentProperties>();
-}
-
-inline void to_json(json & j, const PurpleMemory & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, HilariousProperties& x) {
-x.classID = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"classID")).get<Env>();
-x.priorities = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"priorities")).get<ArrayOfGiDs>();
-}
-
-inline void to_json(json & j, const HilariousProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"classID")] = x.classID;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"priorities")] = x.priorities;
-}
-
-inline void from_json(const json & j, PurpleNetwork& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<HilariousProperties>();
-}
-
-inline void to_json(json & j, const PurpleNetwork & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, PidsProperties& x) {
-x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit")).get<Env>();
-}
-
-inline void to_json(json & j, const PidsProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
-}
-
-inline void from_json(const json & j, Pids& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<PidsProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-}
-
-inline void to_json(json & j, const Pids & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-}
-
-inline void from_json(const json & j, RdmaClass& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.additionalProperties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"additionalProperties")).get<Env>();
-}
-
-inline void to_json(json & j, const RdmaClass & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"additionalProperties")] = x.additionalProperties;
-}
-
-inline void from_json(const json & j, TentacledProperties& x) {
-x.unified = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"unified")).get<Env>();
-x.devices = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices")).get<ArrayOfGiDs>();
-x.pids = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pids")).get<Pids>();
-x.blockIO = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"blockIO")).get<BlockIO>();
-x.cpu = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")).get<PurpleCPU>();
-x.hugepageLimits = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hugepageLimits")).get<HugepageLimits>();
-x.memory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"memory")).get<PurpleMemory>();
-x.network = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"network")).get<PurpleNetwork>();
-x.rdma = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")).get<RdmaClass>();
-}
-
-inline void to_json(json & j, const TentacledProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"unified")] = x.unified;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] = x.devices;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"pids")] = x.pids;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"blockIO")] = x.blockIO;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")] = x.cpu;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hugepageLimits")] = x.hugepageLimits;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"memory")] = x.memory;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"network")] = x.network;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")] = x.rdma;
-}
-
-inline void from_json(const json & j, PurpleResources& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<TentacledProperties>();
-}
-
-inline void to_json(json & j, const PurpleResources & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, SeccompProperties& x) {
-x.defaultAction = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"defaultAction"));
-x.defaultErrnoRet = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"defaultErrnoRet"));
-x.flags = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"flags"));
-x.listenerPath = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"listenerPath"));
-x.listenerMetadata = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"listenerMetadata"));
-x.architectures = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"architectures"));
-x.syscalls = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"syscalls"));
-x.enabled = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"enabled"));
-x.actions = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"actions"));
-x.operators = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"operators"));
-x.archs = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"archs"));
-x.knownFlags = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"knownFlags"));
-x.supportedFlags = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"supportedFlags"));
-}
-
-inline void to_json(json & j, const SeccompProperties & x) {
-j = json::object();
-if (x.defaultAction) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"defaultAction")] = x.defaultAction;
-}
-if (x.defaultErrnoRet) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"defaultErrnoRet")] = x.defaultErrnoRet;
-}
-if (x.flags) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] = x.flags;
-}
-if (x.listenerPath) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"listenerPath")] = x.listenerPath;
-}
-if (x.listenerMetadata) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"listenerMetadata")] = x.listenerMetadata;
-}
-if (x.architectures) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"architectures")] = x.architectures;
-}
-if (x.syscalls) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"syscalls")] = x.syscalls;
-}
-if (x.enabled) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] = x.enabled;
-}
-if (x.actions) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"actions")] = x.actions;
-}
-if (x.operators) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"operators")] = x.operators;
-}
-if (x.archs) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"archs")] = x.archs;
-}
-if (x.knownFlags) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"knownFlags")] = x.knownFlags;
-}
-if (x.supportedFlags) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"supportedFlags")] = x.supportedFlags;
-}
-}
-
-inline void from_json(const json & j, Seccomp& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<SeccompProperties>();
-x.required = Utf16_Utf8<std::optional<std::vector<std::string>>, std::optional<std::vector<std::wstring>>>::convert(get_stack_optional<std::vector<std::string>>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"required")));
-}
-
-inline void to_json(json & j, const Seccomp & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-if (Utf16_Utf8<std::optional<std::vector<std::wstring>>, std::optional<std::vector<std::string>>>::convert(x.required)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::optional<std::vector<std::wstring>>, std::optional<std::vector<std::string>>>::convert(x.required);
-}
-}
-
-inline void from_json(const json & j, TimeOffsetsPropertiesClass& x) {
-x.boottime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"boottime")).get<Env>();
-x.monotonic = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"monotonic")).get<Env>();
-}
-
-inline void to_json(json & j, const TimeOffsetsPropertiesClass & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"boottime")] = x.boottime;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"monotonic")] = x.monotonic;
-}
-
-inline void from_json(const json & j, TimeOffsetsClass& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<TimeOffsetsPropertiesClass>();
-}
-
-inline void to_json(json & j, const TimeOffsetsClass & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, LinuxProperties& x) {
-x.devices = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"devices"));
-x.uidMappings = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings"));
-x.gidMappings = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings"));
-x.namespaces = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"namespaces")).get<Namespaces>();
-x.resources = get_stack_optional<PurpleResources>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"resources"));
-x.cgroupsPath = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"cgroupsPath"));
-x.rootfsPropagation = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"rootfsPropagation"));
-x.seccomp = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"seccomp")).get<Seccomp>();
-x.sysctl = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"sysctl"));
-x.maskedPaths = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"maskedPaths"));
-x.readonlyPaths = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"readonlyPaths"));
-x.mountLabel = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"mountLabel"));
-x.intelRdt = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"intelRdt")).get<IntelRdt>();
-x.personality = get_stack_optional<PersonalityClass>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"personality"));
-x.timeOffsets = get_stack_optional<TimeOffsetsClass>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"timeOffsets"));
-x.capabilities = get_stack_optional<PurpleCapabilities>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"capabilities"));
-x.cgroup = get_stack_optional<Cgroup>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"cgroup"));
-x.apparmor = get_stack_optional<Apparmor>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"apparmor"));
-x.selinux = get_stack_optional<Apparmor>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"selinux"));
-}
-
-inline void to_json(json & j, const LinuxProperties & x) {
-j = json::object();
-if (x.devices) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] = x.devices;
-}
-if (x.uidMappings) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings")] = x.uidMappings;
-}
-if (x.gidMappings) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings")] = x.gidMappings;
-}
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"namespaces")] = x.namespaces;
-if (x.resources) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"resources")] = x.resources;
-}
-if (x.cgroupsPath) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cgroupsPath")] = x.cgroupsPath;
-}
-if (x.rootfsPropagation) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"rootfsPropagation")] = x.rootfsPropagation;
-}
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"seccomp")] = x.seccomp;
-if (x.sysctl) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"sysctl")] = x.sysctl;
-}
-if (x.maskedPaths) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"maskedPaths")] = x.maskedPaths;
-}
-if (x.readonlyPaths) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"readonlyPaths")] = x.readonlyPaths;
-}
-if (x.mountLabel) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"mountLabel")] = x.mountLabel;
-}
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"intelRdt")] = x.intelRdt;
-if (x.personality) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"personality")] = x.personality;
-}
-if (x.timeOffsets) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"timeOffsets")] = x.timeOffsets;
-}
-if (x.capabilities) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"capabilities")] = x.capabilities;
-}
-if (x.cgroup) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cgroup")] = x.cgroup;
-}
-if (x.apparmor) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"apparmor")] = x.apparmor;
-}
-if (x.selinux) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"selinux")] = x.selinux;
-}
-}
-
-inline void from_json(const json & j, Linux& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<LinuxProperties>();
-}
-
-inline void to_json(json & j, const Linux & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, HooksProperties& x) {
-x.prestart = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"prestart")).get<Env>();
-x.createRuntime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"createRuntime")).get<Env>();
-x.createContainer = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"createContainer")).get<Env>();
-x.startContainer = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"startContainer")).get<Env>();
-x.poststart = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"poststart")).get<Env>();
-x.poststop = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"poststop")).get<Env>();
-}
-
-inline void to_json(json & j, const HooksProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"prestart")] = x.prestart;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"createRuntime")] = x.createRuntime;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"createContainer")] = x.createContainer;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"startContainer")] = x.startContainer;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"poststart")] = x.poststart;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"poststop")] = x.poststop;
-}
-
-inline void from_json(const json & j, Hooks& x) {
-x.type = get_stack_optional<FilePathType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
-x.properties = get_stack_optional<HooksProperties>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
-x.ref = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")));
-}
-
-inline void to_json(json & j, const Hooks & x) {
-j = json::object();
-if (x.type) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-if (x.properties) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.ref);
-}
-}
-
-inline void from_json(const json & j, CapabilitiesProperties& x) {
-x.bounding = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"bounding")).get<Env>();
-x.permitted = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"permitted")).get<Env>();
-x.effective = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"effective")).get<Env>();
-x.inheritable = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"inheritable")).get<Env>();
-x.ambient = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ambient")).get<Env>();
-}
-
-inline void to_json(json & j, const CapabilitiesProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"bounding")] = x.bounding;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"permitted")] = x.permitted;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"effective")] = x.effective;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"inheritable")] = x.inheritable;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ambient")] = x.ambient;
-}
-
-inline void from_json(const json & j, FluffyCapabilities& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<CapabilitiesProperties>();
-}
-
-inline void to_json(json & j, const FluffyCapabilities & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, ConsoleSizeProperties& x) {
-x.height = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"height")).get<Env>();
-x.width = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"width")).get<Env>();
-}
-
-inline void to_json(json & j, const ConsoleSizeProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"height")] = x.height;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"width")] = x.width;
-}
-
-inline void from_json(const json & j, ConsoleSize& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<ConsoleSizeProperties>();
-}
-
-inline void to_json(json & j, const ConsoleSize & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, IoPriorityProperties& x) {
-x.propertiesClass = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"class")).get<NamespaceType>();
-x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"priority")).get<Env>();
-}
-
-inline void to_json(json & j, const IoPriorityProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"class")] = x.propertiesClass;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] = x.priority;
-}
-
-inline void from_json(const json & j, IoPriority& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<IoPriorityProperties>();
-}
-
-inline void to_json(json & j, const IoPriority & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, AmbitiousProperties& x) {
-x.hard = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hard")).get<Env>();
-x.soft = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"soft")).get<Env>();
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<MemBWSchemaClass>();
-}
-
-inline void to_json(json & j, const AmbitiousProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hard")] = x.hard;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"soft")] = x.soft;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-
-inline void from_json(const json & j, RlimitsItems& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<AmbitiousProperties>();
-}
-
-inline void to_json(json & j, const RlimitsItems & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, Rlimits& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<RlimitsItems>();
-}
-
-inline void to_json(json & j, const Rlimits & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-}
-
-inline void from_json(const json & j, SchedulerProperties& x) {
-x.policy = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"policy")).get<Env>();
-x.nice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"nice")).get<Env>();
-x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"priority")).get<Env>();
-x.flags = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"flags")).get<ArrayOfGiDs>();
-x.runtime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"runtime")).get<Env>();
-x.deadline = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"deadline")).get<Env>();
-x.period = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"period")).get<Env>();
-}
-
-inline void to_json(json & j, const SchedulerProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"policy")] = x.policy;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"nice")] = x.nice;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] = x.priority;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] = x.flags;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"runtime")] = x.runtime;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"deadline")] = x.deadline;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"period")] = x.period;
-}
-
-inline void from_json(const json & j, Scheduler& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<SchedulerProperties>();
-}
-
-inline void to_json(json & j, const Scheduler & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, UserProperties& x) {
-x.uid = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"uid")).get<Env>();
-x.gid = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"gid")).get<Env>();
-x.umask = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"umask")).get<Env>();
-x.additionalGids = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"additionalGids")).get<Env>();
-x.username = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"username")).get<FilePath>();
-}
-
-inline void to_json(json & j, const UserProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"uid")] = x.uid;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"gid")] = x.gid;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"umask")] = x.umask;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"additionalGids")] = x.additionalGids;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"username")] = x.username;
-}
-
-inline void from_json(const json & j, User& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<UserProperties>();
-}
-
-inline void to_json(json & j, const User & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, ProcessProperties& x) {
-x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args")).get<Env>();
-x.commandLine = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"commandLine")).get<FilePath>();
-x.consoleSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"consoleSize")).get<ConsoleSize>();
-x.cwd = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cwd")).get<FilePath>();
-x.env = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"env")).get<Env>();
-x.terminal = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"terminal")).get<FilePath>();
-x.user = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"user")).get<User>();
-x.capabilities = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"capabilities")).get<FluffyCapabilities>();
-x.apparmorProfile = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"apparmorProfile")).get<FilePath>();
-x.oomScoreAdj = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"oomScoreAdj")).get<FilePath>();
-x.selinuxLabel = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"selinuxLabel")).get<FilePath>();
-x.ioPriority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ioPriority")).get<IoPriority>();
-x.noNewPrivileges = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"noNewPrivileges")).get<FilePath>();
-x.scheduler = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"scheduler")).get<Scheduler>();
-x.rlimits = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rlimits")).get<Rlimits>();
-}
-
-inline void to_json(json & j, const ProcessProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"commandLine")] = x.commandLine;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"consoleSize")] = x.consoleSize;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cwd")] = x.cwd;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"env")] = x.env;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"terminal")] = x.terminal;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"user")] = x.user;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"capabilities")] = x.capabilities;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"apparmorProfile")] = x.apparmorProfile;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"oomScoreAdj")] = x.oomScoreAdj;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"selinuxLabel")] = x.selinuxLabel;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ioPriority")] = x.ioPriority;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"noNewPrivileges")] = x.noNewPrivileges;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"scheduler")] = x.scheduler;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"rlimits")] = x.rlimits;
-}
-
-inline void from_json(const json & j, Process& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<ProcessProperties>();
-}
-
-inline void to_json(json & j, const Process & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, RootProperties& x) {
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-x.readonly = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"readonly")).get<FilePath>();
-}
-
-inline void to_json(json & j, const RootProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"readonly")] = x.readonly;
-}
-
-inline void from_json(const json & j, Root& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<RootProperties>();
-}
-
-inline void to_json(json & j, const Root & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, SchemaProperties& x) {
-x.ociVersion = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion"));
-x.hooks = get_stack_optional<Hooks>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"hooks"));
-x.annotations = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"annotations")).get<Env>();
-x.hostname = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"hostname"));
-x.domainname = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"domainname"));
-x.mounts = get_stack_optional<ArrayOfGiDs>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"mounts"));
-x.root = get_stack_optional<Root>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"root"));
-x.process = get_stack_optional<Process>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"process"));
-x.linux = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"linux"));
-x.solaris = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"solaris"));
-x.windows = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"windows"));
-x.vm = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"vm"));
-x.zos = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"zos"));
-x.ociVersionMin = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersionMin"));
-x.ociVersionMax = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersionMax"));
-x.mountOptions = get_stack_optional<Env>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"mountOptions"));
-x.id = get_stack_optional<OciVersion>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"id"));
-x.status = get_stack_optional<NamespaceType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"status"));
-x.pid = get_stack_optional<Pid>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"pid"));
-x.bundle = get_stack_optional<FilePath>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"bundle"));
-}
-
-inline void to_json(json & j, const SchemaProperties & x) {
-j = json::object();
-if (x.ociVersion) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion")] = x.ociVersion;
-}
-if (x.hooks) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hooks")] = x.hooks;
-}
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"annotations")] = x.annotations;
-if (x.hostname) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hostname")] = x.hostname;
-}
-if (x.domainname) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"domainname")] = x.domainname;
-}
-if (x.mounts) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"mounts")] = x.mounts;
-}
-if (x.root) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"root")] = x.root;
-}
-if (x.process) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"process")] = x.process;
-}
-if (x.linux) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"linux")] = x.linux;
-}
-if (x.solaris) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"solaris")] = x.solaris;
-}
-if (x.windows) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"windows")] = x.windows;
-}
-if (x.vm) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"vm")] = x.vm;
-}
-if (x.zos) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"zos")] = x.zos;
-}
-if (x.ociVersionMin) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersionMin")] = x.ociVersionMin;
-}
-if (x.ociVersionMax) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersionMax")] = x.ociVersionMax;
-}
-if (x.mountOptions) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"mountOptions")] = x.mountOptions;
-}
-if (x.id) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"id")] = x.id;
-}
-if (x.status) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"status")] = x.status;
-}
-if (x.pid) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"pid")] = x.pid;
-}
-if (x.bundle) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"bundle")] = x.bundle;
-}
-}
-
-inline void from_json(const json & j, CunningProperties& x) {
-x.linkname = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"linkname")).get<FilePath>();
-x.lowerLink = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"lowerLink")).get<FilePath>();
-x.allowedAddress = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allowedAddress")).get<FilePath>();
-x.configureAllowedAddress = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"configureAllowedAddress")).get<FilePath>();
-x.defrouter = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"defrouter")).get<FilePath>();
-x.macAddress = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"macAddress")).get<FilePath>();
-x.linkProtection = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"linkProtection")).get<FilePath>();
-}
-
-inline void to_json(json & j, const CunningProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"linkname")] = x.linkname;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"lowerLink")] = x.lowerLink;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"allowedAddress")] = x.allowedAddress;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"configureAllowedAddress")] = x.configureAllowedAddress;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"defrouter")] = x.defrouter;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"macAddress")] = x.macAddress;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"linkProtection")] = x.linkProtection;
-}
-
-inline void from_json(const json & j, AnetItems& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<CunningProperties>();
-}
-
-inline void to_json(json & j, const AnetItems & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, Anet& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<AnetItems>();
-}
-
-inline void to_json(json & j, const Anet & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-}
-
-inline void from_json(const json & j, CappedCPUProperties& x) {
-x.ncpus = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ncpus")).get<FilePath>();
-}
-
-inline void to_json(json & j, const CappedCPUProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ncpus")] = x.ncpus;
-}
-
-inline void from_json(const json & j, CappedCPU& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<CappedCPUProperties>();
-}
-
-inline void to_json(json & j, const CappedCPU & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, CappedMemoryProperties& x) {
-x.physical = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"physical")).get<FilePath>();
-x.swap = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"swap")).get<FilePath>();
-}
-
-inline void to_json(json & j, const CappedMemoryProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"physical")] = x.physical;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"swap")] = x.swap;
-}
-
-inline void from_json(const json & j, CappedMemory& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<CappedMemoryProperties>();
-}
-
-inline void to_json(json & j, const CappedMemory & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, SolarisProperties& x) {
-x.milestone = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"milestone")).get<FilePath>();
-x.limitpriv = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limitpriv")).get<FilePath>();
-x.maxShmMemory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"maxShmMemory")).get<FilePath>();
-x.cappedCPU = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cappedCPU")).get<CappedCPU>();
-x.cappedMemory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cappedMemory")).get<CappedMemory>();
-x.anet = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"anet")).get<Anet>();
-}
-
-inline void to_json(json & j, const SolarisProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"milestone")] = x.milestone;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"limitpriv")] = x.limitpriv;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"maxShmMemory")] = x.maxShmMemory;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cappedCPU")] = x.cappedCPU;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cappedMemory")] = x.cappedMemory;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"anet")] = x.anet;
-}
-
-inline void from_json(const json & j, Solaris& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<SolarisProperties>();
-}
-
-inline void to_json(json & j, const Solaris & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, HypervisorProperties& x) {
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-x.parameters = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")).get<Env>();
-}
-
-inline void to_json(json & j, const HypervisorProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")] = x.parameters;
-}
-
-inline void from_json(const json & j, Hypervisor& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<HypervisorProperties>();
-}
-
-inline void to_json(json & j, const Hypervisor & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, ImageProperties& x) {
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-x.format = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"format")).get<Env>();
-}
-
-inline void to_json(json & j, const ImageProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"format")] = x.format;
-}
-
-inline void from_json(const json & j, Image& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<ImageProperties>();
-}
-
-inline void to_json(json & j, const Image & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, KernelProperties& x) {
-x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path")).get<Env>();
-x.parameters = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")).get<Env>();
-x.initrd = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"initrd")).get<Env>();
-}
-
-inline void to_json(json & j, const KernelProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")] = x.parameters;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"initrd")] = x.initrd;
-}
-
-inline void from_json(const json & j, Kernel& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<KernelProperties>();
-}
-
-inline void to_json(json & j, const Kernel & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, VmProperties& x) {
-x.hypervisor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hypervisor")).get<Hypervisor>();
-x.kernel = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")).get<Kernel>();
-x.image = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"image")).get<Image>();
-}
-
-inline void to_json(json & j, const VmProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hypervisor")] = x.hypervisor;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")] = x.kernel;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"image")] = x.image;
-}
-
-inline void from_json(const json & j, Vm& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<VmProperties>();
-}
-
-inline void to_json(json & j, const Vm & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, HypervProperties& x) {
-x.utilityVMPath = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"utilityVMPath")).get<FilePath>();
-}
-
-inline void to_json(json & j, const HypervProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"utilityVMPath")] = x.utilityVMPath;
-}
-
-inline void from_json(const json & j, Hyperv& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<HypervProperties>();
-}
-
-inline void to_json(json & j, const Hyperv & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, LayerFolders& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<ArrayOfGIDsType>();
-x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items")).get<Env>();
-x.minItems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")).get<int64_t>();
-}
-
-inline void to_json(json & j, const LayerFolders & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")] = x.minItems;
-}
-
-inline void from_json(const json & j, MagentaProperties& x) {
-x.endpointList = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"endpointList")).get<Env>();
-x.allowUnqualifiedDNSQuery = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allowUnqualifiedDNSQuery")).get<FilePath>();
-x.dnsSearchList = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"DNSSearchList")).get<Env>();
-x.networkSharedContainerName = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"networkSharedContainerName")).get<FilePath>();
-x.networkNamespace = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"networkNamespace")).get<FilePath>();
-}
-
-inline void to_json(json & j, const MagentaProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"endpointList")] = x.endpointList;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"allowUnqualifiedDNSQuery")] = x.allowUnqualifiedDNSQuery;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"DNSSearchList")] = x.dnsSearchList;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"networkSharedContainerName")] = x.networkSharedContainerName;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"networkNamespace")] = x.networkNamespace;
-}
-
-inline void from_json(const json & j, FluffyNetwork& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<MagentaProperties>();
-}
-
-inline void to_json(json & j, const FluffyNetwork & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, MischievousProperties& x) {
-x.count = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"count")).get<Env>();
-x.shares = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"shares")).get<Env>();
-x.maximum = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")).get<Env>();
-}
-
-inline void to_json(json & j, const MischievousProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"count")] = x.count;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"shares")] = x.shares;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")] = x.maximum;
-}
-
-inline void from_json(const json & j, FluffyCPU& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<MischievousProperties>();
-}
-
-inline void to_json(json & j, const FluffyCPU & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, FluffyMemory& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<PidsProperties>();
-}
-
-inline void to_json(json & j, const FluffyMemory & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, StorageProperties& x) {
-x.iops = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"iops")).get<Env>();
-x.bps = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"bps")).get<Env>();
-x.sandboxSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"sandboxSize")).get<Env>();
-}
-
-inline void to_json(json & j, const StorageProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"iops")] = x.iops;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"bps")] = x.bps;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"sandboxSize")] = x.sandboxSize;
-}
-
-inline void from_json(const json & j, Storage& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<StorageProperties>();
-}
-
-inline void to_json(json & j, const Storage & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-
-inline void from_json(const json & j, FriskyProperties& x) {
-x.memory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"memory")).get<FluffyMemory>();
-x.cpu = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")).get<FluffyCPU>();
-x.storage = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"storage")).get<Storage>();
-}
-
-inline void to_json(json & j, const FriskyProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"memory")] = x.memory;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")] = x.cpu;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"storage")] = x.storage;
-}
-
-inline void from_json(const json & j, FluffyResources& x) {
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<FriskyProperties>();
-}
 
-inline void to_json(json & j, const FluffyResources & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
+inline void from_json(const json &j, BlockIODeviceThrottle &x)
+{
+        x.allOf = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allOf"))
+                          .get<std::vector<BlockIODeviceThrottleAllOf>>();
 }
 
-inline void from_json(const json & j, WindowsProperties& x) {
-x.layerFolders = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"layerFolders")).get<LayerFolders>();
-x.devices = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices")).get<ArrayOfGiDs>();
-x.resources = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"resources")).get<FluffyResources>();
-x.network = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"network")).get<FluffyNetwork>();
-x.credentialSpec = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"credentialSpec")).get<FilePath>();
-x.servicing = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"servicing")).get<FilePath>();
-x.ignoreFlushesDuringBoot = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ignoreFlushesDuringBoot")).get<FilePath>();
-x.hyperv = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hyperv")).get<Hyperv>();
+inline void to_json(json &j, const BlockIODeviceThrottle &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")] = x.allOf;
 }
 
-inline void to_json(json & j, const WindowsProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"layerFolders")] = x.layerFolders;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] = x.devices;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"resources")] = x.resources;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"network")] = x.network;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"credentialSpec")] = x.credentialSpec;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"servicing")] = x.servicing;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"ignoreFlushesDuringBoot")] = x.ignoreFlushesDuringBoot;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"hyperv")] = x.hyperv;
+inline void from_json(const json &j, FluffyProperties &x)
+{
+        x.weight =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"weight"))
+                        .get<Env>();
+        x.leafWeight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"leafWeight"))
+                               .get<Env>();
 }
 
-inline void from_json(const json & j, Windows& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<WindowsProperties>();
-x.required = Utf16_Utf8<std::vector<std::string>, std::vector<std::wstring>>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"required")).get<std::vector<std::string>>());
+inline void to_json(json &j, const FluffyProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] = x.weight;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")] =
+                x.leafWeight;
 }
 
-inline void to_json(json & j, const Windows & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::vector<std::wstring>, std::vector<std::string>>::convert(x.required);
+inline void from_json(const json &j, BlockIODeviceWeightAllOf &x)
+{
+        x.ref = Utf16_Utf8<std::optional<std::string>,
+                           std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"$ref")));
+        x.type = get_stack_optional<FilePathType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
+        x.properties = get_stack_optional<FluffyProperties>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
 }
 
-inline void from_json(const json & j, ZosProperties& x) {
-x.devices = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices")).get<ArrayOfGiDs>();
+inline void to_json(json &j, const BlockIODeviceWeightAllOf &x)
+{
+        j = json::object();
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.ref)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::convert(x.ref);
+        }
+        if (x.type) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] =
+                        x.type;
+        }
+        if (x.properties) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                        x.properties;
+        }
 }
 
-inline void to_json(json & j, const ZosProperties & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] = x.devices;
+inline void from_json(const json &j, BlockIODeviceWeight &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.allOf = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allOf"))
+                          .get<std::vector<BlockIODeviceWeightAllOf>>();
 }
 
-inline void from_json(const json & j, Zos& x) {
-x.description = Utf16_Utf8<std::string, std::wstring>::convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"description")).get<std::string>());
-x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type")).get<FilePathType>();
-x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"properties")).get<ZosProperties>();
+inline void to_json(json &j, const BlockIODeviceWeight &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"allOf")] = x.allOf;
 }
 
-inline void to_json(json & j, const Zos & x) {
-j = json::object();
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::wstring, std::string>::convert(x.description);
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
+inline void from_json(const json &j, NamespaceType &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.namespaceTypeEnum = Utf16_Utf8<std::vector<std::string>,
+                                         std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"enum"))
+                                .get<std::vector<std::string>>());
 }
 
-inline void from_json(const json & j, Schema& x) {
-x.linux = get_stack_optional<Linux>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"linux"));
-x.description = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"description")));
-x.schema = Utf16_Utf8<std::optional<std::string>, std::optional<std::wstring>>::convert(get_stack_optional<std::string>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"$schema")));
-x.type = get_stack_optional<FilePathType>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
-x.properties = get_stack_optional<SchemaProperties>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
-x.required = Utf16_Utf8<std::optional<std::vector<std::string>>, std::optional<std::vector<std::wstring>>>::convert(get_stack_optional<std::vector<std::string>>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"required")));
-x.solaris = get_stack_optional<Solaris>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"solaris"));
-x.vm = get_stack_optional<Vm>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"vm"));
-x.windows = get_stack_optional<Windows>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"windows"));
-x.zos = get_stack_optional<Zos>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"zos"));
-x.definitions = get_stack_optional<Definitions>(j, Utf16_Utf8<std::wstring, std::string>::convert(L"definitions"));
+inline void to_json(json &j, const NamespaceType &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"enum")] = Utf16_Utf8<
+                std::vector<std::wstring>,
+                std::vector<std::string>>::convert(x.namespaceTypeEnum);
 }
 
-inline void to_json(json & j, const Schema & x) {
-j = json::object();
-if (x.linux) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"linux")] = x.linux;
-}
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.description)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.description);
-}
-if (Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.schema)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"$schema")] = Utf16_Utf8<std::optional<std::wstring>, std::optional<std::string>>::convert(x.schema);
-}
-if (x.type) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
-}
-if (x.properties) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] = x.properties;
-}
-if (Utf16_Utf8<std::optional<std::vector<std::wstring>>, std::optional<std::vector<std::string>>>::convert(x.required)) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] = Utf16_Utf8<std::optional<std::vector<std::wstring>>, std::optional<std::vector<std::string>>>::convert(x.required);
+inline void from_json(const json &j, DeviceProperties &x)
+{
+        x.type = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
+        x.path = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"path"));
+        x.fileMode = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"fileMode"));
+        x.major = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"major"));
+        x.minor = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"minor"));
+        x.uid = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"uid"));
+        x.gid = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"gid"));
+        x.id = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"id"));
+        x.idType = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"idType"));
 }
-if (x.solaris) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"solaris")] = x.solaris;
-}
-if (x.vm) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"vm")] = x.vm;
-}
-if (x.windows) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"windows")] = x.windows;
-}
-if (x.zos) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"zos")] = x.zos;
-}
-if (x.definitions) {
-j[Utf16_Utf8<std::wstring, std::string>::convert(L"definitions")] = x.definitions;
-}
-}
 
-inline void from_json(const json & j, ArrayOfGIDsType & x) {
-if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"array")) x = ArrayOfGIDsType::Array;
-else { throw std::runtime_error("Input JSON does not conform to schema!"); }
+inline void to_json(json &j, const DeviceProperties &x)
+{
+        j = json::object();
+        if (x.type) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] =
+                        x.type;
+        }
+        if (x.path) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] =
+                        x.path;
+        }
+        if (x.fileMode) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"fileMode")] =
+                        x.fileMode;
+        }
+        if (x.major) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] =
+                        x.major;
+        }
+        if (x.minor) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] =
+                        x.minor;
+        }
+        if (x.uid) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"uid")] =
+                        x.uid;
+        }
+        if (x.gid) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"gid")] =
+                        x.gid;
+        }
+        if (x.id) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"id")] = x.id;
+        }
+        if (x.idType) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"idType")] =
+                        x.idType;
+        }
 }
 
-inline void to_json(json & j, const ArrayOfGIDsType & x) {
-switch (x) {
-case ArrayOfGIDsType::Array: j = Utf16_Utf8<std::wstring, std::string>::convert(L"array"); break;
-default: throw std::runtime_error("This should not happen");
+inline void from_json(const json &j, Device &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<DeviceProperties>();
 }
-}
 
-inline void from_json(const json & j, FilePathType & x) {
-if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"boolean")) x = FilePathType::Boolean;
-else if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"integer")) x = FilePathType::Integer;
-else if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"object")) x = FilePathType::Object;
-else if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"string")) x = FilePathType::String;
-else { throw std::runtime_error("Input JSON does not conform to schema!"); }
+inline void to_json(json &j, const Device &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
 }
 
-inline void to_json(json & j, const FilePathType & x) {
-switch (x) {
-case FilePathType::Boolean: j = Utf16_Utf8<std::wstring, std::string>::convert(L"boolean"); break;
-case FilePathType::Integer: j = Utf16_Utf8<std::wstring, std::string>::convert(L"integer"); break;
-case FilePathType::Object: j = Utf16_Utf8<std::wstring, std::string>::convert(L"object"); break;
-case FilePathType::String: j = Utf16_Utf8<std::wstring, std::string>::convert(L"string"); break;
-default: throw std::runtime_error("This should not happen");
+inline void from_json(const json &j, DeviceCgroupProperties &x)
+{
+        x.allow = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"allow"))
+                          .get<FilePath>();
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePath>();
+        x.major = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"major"))
+                          .get<Env>();
+        x.minor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minor"))
+                          .get<Env>();
+        x.access =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"access"))
+                        .get<FilePath>();
+}
+
+inline void to_json(json &j, const DeviceCgroupProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"allow")] = x.allow;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"major")] = x.major;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minor")] = x.minor;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"access")] = x.access;
+}
+
+inline void from_json(const json &j, DeviceCgroup &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<DeviceCgroupProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const DeviceCgroup &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, FileMode &x)
+{
+        x.description = Utf16_Utf8<std::optional<std::string>,
+                                   std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"description")));
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.minimum =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minimum"))
+                        .get<int64_t>();
+        x.maximum =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"maximum"))
+                        .get<int64_t>();
+}
+
+inline void to_json(json &j, const FileMode &x)
+{
+        j = json::object();
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.description)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"description")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::
+                                convert(x.description);
+        }
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")] =
+                x.minimum;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")] =
+                x.maximum;
+}
+
+inline void from_json(const json &j, FileType &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.pattern = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pattern"))
+                        .get<std::string>());
+}
+
+inline void to_json(json &j, const FileType &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.pattern);
+}
+
+inline void from_json(const json &j, Pid &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.minimum =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"minimum"))
+                        .get<int64_t>();
+}
+
+inline void to_json(json &j, const Pid &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minimum")] =
+                x.minimum;
+}
+
+inline void from_json(const json &j, HookProperties &x)
+{
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+        x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args"))
+                         .get<Env>();
+        x.env = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"env"))
+                        .get<Env>();
+        x.timeout =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"timeout"))
+                        .get<Pid>();
+}
+
+inline void to_json(json &j, const HookProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"env")] = x.env;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"timeout")] =
+                x.timeout;
+}
+
+inline void from_json(const json &j, Hook &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<HookProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const Hook &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, IdMappingProperties &x)
+{
+        x.containerID = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"containerID"))
+                                .get<Env>();
+        x.hostID =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hostID"))
+                        .get<Env>();
+        x.size = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"size"))
+                         .get<Env>();
+}
+
+inline void to_json(json &j, const IdMappingProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"containerID")] =
+                x.containerID;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hostID")] = x.hostID;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"size")] = x.size;
+}
+
+inline void from_json(const json &j, IdMapping &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<IdMappingProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const IdMapping &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, Major &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.ref = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref"))
+                        .get<std::string>());
+}
+
+inline void to_json(json &j, const Major &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
+}
+
+inline void from_json(const json &j, PatternProperties &x)
+{
+        x.the1 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L".{1,}"))
+                         .get<FilePath>();
+}
+
+inline void to_json(json &j, const PatternProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L".{1,}")] = x.the1;
+}
+
+inline void from_json(const json &j, MapStringString &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.patternProperties =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"patternProperties"))
+                        .get<PatternProperties>();
+}
+
+inline void to_json(json &j, const MapStringString &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"patternProperties")] =
+                x.patternProperties;
+}
+
+inline void from_json(const json &j, MountProperties &x)
+{
+        x.source =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"source"))
+                        .get<Env>();
+        x.destination = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"destination"))
+                                .get<Env>();
+        x.options =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"options"))
+                        .get<Env>();
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePath>();
+        x.uidMappings = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"uidMappings"))
+                                .get<ArrayOfGiDs>();
+        x.gidMappings = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"gidMappings"))
+                                .get<ArrayOfGiDs>();
+}
+
+inline void to_json(json &j, const MountProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"source")] = x.source;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"destination")] =
+                x.destination;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"options")] =
+                x.options;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings")] =
+                x.uidMappings;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings")] =
+                x.gidMappings;
+}
+
+inline void from_json(const json &j, Mount &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<MountProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const Mount &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, NamespaceReferenceProperties &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<Env>();
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+}
+
+inline void to_json(json &j, const NamespaceReferenceProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+}
+
+inline void from_json(const json &j, NamespaceReference &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<NamespaceReferenceProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const NamespaceReference &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, NetworkInterfacePriorityProperties &x)
+{
+        x.name = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"name"))
+                         .get<FilePath>();
+        x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"priority"))
+                             .get<Env>();
+}
+
+inline void to_json(json &j, const NetworkInterfacePriorityProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"name")] = x.name;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] =
+                x.priority;
+}
+
+inline void from_json(const json &j, NetworkInterfacePriority &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<NetworkInterfacePriorityProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const NetworkInterfacePriority &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, OciVersion &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+}
+
+inline void to_json(json &j, const OciVersion &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+}
+
+inline void from_json(const json &j, PersonalityProperties &x)
+{
+        x.domain =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"domain"))
+                        .get<Env>();
+        x.flags = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"flags"))
+                          .get<Env>();
+}
+
+inline void to_json(json &j, const PersonalityProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"domain")] = x.domain;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] = x.flags;
+}
+
+inline void from_json(const json &j, Personality &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<PersonalityProperties>();
+}
+
+inline void to_json(json &j, const Personality &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, RdmaProperties &x)
+{
+        x.hcaHandles = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"hcaHandles"))
+                               .get<Env>();
+        x.hcaObjects = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"hcaObjects"))
+                               .get<Env>();
+}
+
+inline void to_json(json &j, const RdmaProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hcaHandles")] =
+                x.hcaHandles;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hcaObjects")] =
+                x.hcaObjects;
+}
+
+inline void from_json(const json &j, Rdma &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<RdmaProperties>();
+}
+
+inline void to_json(json &j, const Rdma &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, Names &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<FilePath>();
+        x.minItems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"minItems"))
+                             .get<int64_t>();
+}
+
+inline void to_json(json &j, const Names &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")] =
+                x.minItems;
+}
+
+inline void from_json(const json &j, SyscallProperties &x)
+{
+        x.names = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"names"))
+                          .get<Names>();
+        x.action =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"action"))
+                        .get<Env>();
+        x.errnoRet = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"errnoRet"))
+                             .get<Env>();
+        x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args"))
+                         .get<ArrayOfGiDs>();
+}
+
+inline void to_json(json &j, const SyscallProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"names")] = x.names;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"action")] = x.action;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"errnoRet")] =
+                x.errnoRet;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
+}
+
+inline void from_json(const json &j, Syscall &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<SyscallProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const Syscall &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, SyscallArgProperties &x)
+{
+        x.index = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"index"))
+                          .get<Env>();
+        x.value = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"value"))
+                          .get<Env>();
+        x.valueTwo = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"valueTwo"))
+                             .get<Env>();
+        x.op = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"op"))
+                       .get<Env>();
+}
+
+inline void to_json(json &j, const SyscallArgProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"index")] = x.index;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"value")] = x.value;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"valueTwo")] =
+                x.valueTwo;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"op")] = x.op;
+}
+
+inline void from_json(const json &j, SyscallArg &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<SyscallArgProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const SyscallArg &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, TimeOffsetsProperties &x)
+{
+        x.secs = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"secs"))
+                         .get<Env>();
+        x.nanosecs = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"nanosecs"))
+                             .get<Env>();
+}
+
+inline void to_json(json &j, const TimeOffsetsProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"secs")] = x.secs;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"nanosecs")] =
+                x.nanosecs;
+}
+
+inline void from_json(const json &j, TimeOffsets &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<TimeOffsetsProperties>();
+}
+
+inline void to_json(json &j, const TimeOffsets &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, Definitions &x)
+{
+        x.personalityDomain = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"PersonalityDomain"));
+        x.personality = get_stack_optional<Personality>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"Personality"));
+        x.rootfsPropagation = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"RootfsPropagation"));
+        x.seccompArch = get_stack_optional<NamespaceType>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompArch"));
+        x.seccompAction = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"SeccompAction"));
+        x.seccompFlag = get_stack_optional<NamespaceType>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"SeccompFlag"));
+        x.seccompOperators = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"SeccompOperators"));
+        x.syscallArg = get_stack_optional<SyscallArg>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"SyscallArg"));
+        x.syscall = get_stack_optional<Syscall>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Syscall"));
+        x.major = get_stack_optional<Major>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Major"));
+        x.minor = get_stack_optional<Major>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Minor"));
+        x.fileMode = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"FileMode"));
+        x.fileType = get_stack_optional<FileType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"FileType"));
+        x.device = get_stack_optional<Device>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Device"));
+        x.weight = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"weight"));
+        x.blockIODevice = get_stack_optional<BlockIODevice>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"blockIODevice"));
+        x.blockIODeviceWeight = get_stack_optional<BlockIODeviceWeight>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"blockIODeviceWeight"));
+        x.blockIODeviceThrottle = get_stack_optional<BlockIODeviceThrottle>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"blockIODeviceThrottle"));
+        x.deviceCgroup = get_stack_optional<DeviceCgroup>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"DeviceCgroup"));
+        x.networkInterfacePriority =
+                get_stack_optional<NetworkInterfacePriority>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"NetworkInterfacePriority"));
+        x.rdma = get_stack_optional<Rdma>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Rdma"));
+        x.namespaceType = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"NamespaceType"));
+        x.namespaceReference = get_stack_optional<NamespaceReference>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"NamespaceReference"));
+        x.timeOffsets = get_stack_optional<TimeOffsets>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"TimeOffsets"));
+        x.schedulerPolicy = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"SchedulerPolicy"));
+        x.schedulerFlag = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"SchedulerFlag"));
+        x.rootImageFormat = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"RootImageFormat"));
+        x.int8 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"int8"));
+        x.int16 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"int16"));
+        x.int32 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"int32"));
+        x.int64 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"int64"));
+        x.uint8 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint8"));
+        x.uint16 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint16"));
+        x.uint32 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint32"));
+        x.uint64 = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"uint64"));
+        x.percent = get_stack_optional<FileMode>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"percent"));
+        x.mapStringString = get_stack_optional<MapStringString>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"mapStringString"));
+        x.uid = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"UID"));
+        x.gid = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"GID"));
+        x.umask = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Umask"));
+        x.arrayOfGIDs = get_stack_optional<ArrayOfGiDs>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"ArrayOfGIDs"));
+        x.arrayOfStrings = get_stack_optional<ArrayOfStrings>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"ArrayOfStrings"));
+        x.filePath = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"FilePath"));
+        x.env = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Env"));
+        x.hook = get_stack_optional<Hook>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Hook"));
+        x.arrayOfHooks = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"ArrayOfHooks"));
+        x.idMapping = get_stack_optional<IdMapping>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"IDMapping"));
+        x.mount = get_stack_optional<Mount>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"Mount"));
+        x.ociVersion = get_stack_optional<OciVersion>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion"));
+        x.annotations = get_stack_optional<Env>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"annotations"));
+}
+
+inline void to_json(json &j, const Definitions &x)
+{
+        j = json::object();
+        if (x.personalityDomain) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"PersonalityDomain")] = x.personalityDomain;
+        }
+        if (x.personality) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"Personality")] = x.personality;
+        }
+        if (x.rootfsPropagation) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"RootfsPropagation")] = x.rootfsPropagation;
+        }
+        if (x.seccompArch) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SeccompArch")] = x.seccompArch;
+        }
+        if (x.seccompAction) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SeccompAction")] = x.seccompAction;
+        }
+        if (x.seccompFlag) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SeccompFlag")] = x.seccompFlag;
+        }
+        if (x.seccompOperators) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SeccompOperators")] = x.seccompOperators;
+        }
+        if (x.syscallArg) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"SyscallArg")] =
+                        x.syscallArg;
+        }
+        if (x.syscall) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Syscall")] =
+                        x.syscall;
+        }
+        if (x.major) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Major")] =
+                        x.major;
+        }
+        if (x.minor) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Minor")] =
+                        x.minor;
+        }
+        if (x.fileMode) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"FileMode")] =
+                        x.fileMode;
+        }
+        if (x.fileType) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"FileType")] =
+                        x.fileType;
+        }
+        if (x.device) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Device")] =
+                        x.device;
+        }
+        if (x.weight) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] =
+                        x.weight;
+        }
+        if (x.blockIODevice) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"blockIODevice")] = x.blockIODevice;
+        }
+        if (x.blockIODeviceWeight) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"blockIODeviceWeight")] = x.blockIODeviceWeight;
+        }
+        if (x.blockIODeviceThrottle) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"blockIODeviceThrottle")] = x.blockIODeviceThrottle;
+        }
+        if (x.deviceCgroup) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"DeviceCgroup")] = x.deviceCgroup;
+        }
+        if (x.networkInterfacePriority) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"NetworkInterfacePriority")] =
+                        x.networkInterfacePriority;
+        }
+        if (x.rdma) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Rdma")] =
+                        x.rdma;
+        }
+        if (x.namespaceType) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"NamespaceType")] = x.namespaceType;
+        }
+        if (x.namespaceReference) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"NamespaceReference")] = x.namespaceReference;
+        }
+        if (x.timeOffsets) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"TimeOffsets")] = x.timeOffsets;
+        }
+        if (x.schedulerPolicy) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SchedulerPolicy")] = x.schedulerPolicy;
+        }
+        if (x.schedulerFlag) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"SchedulerFlag")] = x.schedulerFlag;
+        }
+        if (x.rootImageFormat) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"RootImageFormat")] = x.rootImageFormat;
+        }
+        if (x.int8) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"int8")] =
+                        x.int8;
+        }
+        if (x.int16) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"int16")] =
+                        x.int16;
+        }
+        if (x.int32) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"int32")] =
+                        x.int32;
+        }
+        if (x.int64) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"int64")] =
+                        x.int64;
+        }
+        if (x.uint8) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint8")] =
+                        x.uint8;
+        }
+        if (x.uint16) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint16")] =
+                        x.uint16;
+        }
+        if (x.uint32) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint32")] =
+                        x.uint32;
+        }
+        if (x.uint64) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"uint64")] =
+                        x.uint64;
+        }
+        if (x.percent) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"percent")] =
+                        x.percent;
+        }
+        if (x.mapStringString) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"mapStringString")] = x.mapStringString;
+        }
+        if (x.uid) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"UID")] =
+                        x.uid;
+        }
+        if (x.gid) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"GID")] =
+                        x.gid;
+        }
+        if (x.umask) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Umask")] =
+                        x.umask;
+        }
+        if (x.arrayOfGIDs) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"ArrayOfGIDs")] = x.arrayOfGIDs;
+        }
+        if (x.arrayOfStrings) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"ArrayOfStrings")] = x.arrayOfStrings;
+        }
+        if (x.filePath) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"FilePath")] =
+                        x.filePath;
+        }
+        if (x.env) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Env")] =
+                        x.env;
+        }
+        if (x.hook) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Hook")] =
+                        x.hook;
+        }
+        if (x.arrayOfHooks) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"ArrayOfHooks")] = x.arrayOfHooks;
+        }
+        if (x.idMapping) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"IDMapping")] =
+                        x.idMapping;
+        }
+        if (x.mount) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"Mount")] =
+                        x.mount;
+        }
+        if (x.ociVersion) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion")] =
+                        x.ociVersion;
+        }
+        if (x.annotations) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"annotations")] = x.annotations;
+        }
+}
+
+inline void from_json(const json &j, ApparmorProperties &x)
+{
+        x.enabled =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"enabled"))
+                        .get<FilePath>();
+}
+
+inline void to_json(json &j, const ApparmorProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] =
+                x.enabled;
+}
+
+inline void from_json(const json &j, Apparmor &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<ApparmorProperties>();
+}
+
+inline void to_json(json &j, const Apparmor &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, MemBWSchemaClass &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.pattern = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pattern"))
+                        .get<std::string>());
+}
+
+inline void to_json(json &j, const MemBWSchemaClass &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"pattern")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.pattern);
+}
+
+inline void from_json(const json &j, PurpleCapabilities &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<MemBWSchemaClass>();
+}
+
+inline void to_json(json &j, const PurpleCapabilities &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+}
+
+inline void from_json(const json &j, CgroupProperties &x)
+{
+        x.v1 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"v1"))
+                       .get<FilePath>();
+        x.v2 = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"v2"))
+                       .get<FilePath>();
+        x.systemd =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"systemd"))
+                        .get<FilePath>();
+        x.systemdUser = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"systemdUser"))
+                                .get<FilePath>();
+        x.rdma = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rdma"))
+                         .get<FilePath>();
+}
+
+inline void to_json(json &j, const CgroupProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"v1")] = x.v1;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"v2")] = x.v2;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"systemd")] =
+                x.systemd;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"systemdUser")] =
+                x.systemdUser;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")] = x.rdma;
+}
+
+inline void from_json(const json &j, Cgroup &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<CgroupProperties>();
+}
+
+inline void to_json(json &j, const Cgroup &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, IntelRdtProperties &x)
+{
+        x.closID = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"closID"));
+        x.l3CacheSchema = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"l3CacheSchema"));
+        x.memBWSchema = get_stack_optional<MemBWSchemaClass>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"memBwSchema"));
+        x.enableCMT = get_stack_optional<FilePath>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"enableCMT"));
+        x.enableMBM = get_stack_optional<FilePath>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"enableMBM"));
+        x.enabled = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"enabled"));
+}
+
+inline void to_json(json &j, const IntelRdtProperties &x)
+{
+        j = json::object();
+        if (x.closID) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"closID")] =
+                        x.closID;
+        }
+        if (x.l3CacheSchema) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"l3CacheSchema")] = x.l3CacheSchema;
+        }
+        if (x.memBWSchema) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"memBwSchema")] = x.memBWSchema;
+        }
+        if (x.enableCMT) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"enableCMT")] =
+                        x.enableCMT;
+        }
+        if (x.enableMBM) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"enableMBM")] =
+                        x.enableMBM;
+        }
+        if (x.enabled) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] =
+                        x.enabled;
+        }
+}
+
+inline void from_json(const json &j, IntelRdt &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<IntelRdtProperties>();
+}
+
+inline void to_json(json &j, const IntelRdt &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, NamespacesItems &x)
+{
+        x.anyOf = get_stack_optional<std::vector<Env>>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"anyOf"));
+        x.ref = Utf16_Utf8<std::optional<std::string>,
+                           std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"$ref")));
+}
+
+inline void to_json(json &j, const NamespacesItems &x)
+{
+        j = json::object();
+        if (x.anyOf) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"anyOf")] =
+                        x.anyOf;
+        }
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.ref)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::convert(x.ref);
+        }
+}
+
+inline void from_json(const json &j, Namespaces &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<NamespacesItems>();
+}
+
+inline void to_json(json &j, const Namespaces &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+}
+
+inline void from_json(const json &j, PersonalityClass &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.ref = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"$ref"))
+                        .get<std::string>());
+}
+
+inline void to_json(json &j, const PersonalityClass &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.ref);
+}
+
+inline void from_json(const json &j, BlockIOProperties &x)
+{
+        x.weight =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"weight"))
+                        .get<Env>();
+        x.leafWeight = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"leafWeight"))
+                               .get<Env>();
+        x.throttleReadBpsDevice =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"throttleReadBpsDevice"))
+                        .get<ArrayOfGiDs>();
+        x.throttleWriteBpsDevice =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"throttleWriteBpsDevice"))
+                        .get<ArrayOfGiDs>();
+        x.throttleReadIOPSDevice =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"throttleReadIOPSDevice"))
+                        .get<ArrayOfGiDs>();
+        x.throttleWriteIOPSDevice =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"throttleWriteIOPSDevice"))
+                        .get<ArrayOfGiDs>();
+        x.weightDevice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"weightDevice"))
+                                 .get<ArrayOfGiDs>();
+}
+
+inline void to_json(json &j, const BlockIOProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"weight")] = x.weight;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"leafWeight")] =
+                x.leafWeight;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"throttleReadBpsDevice")] = x.throttleReadBpsDevice;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"throttleWriteBpsDevice")] = x.throttleWriteBpsDevice;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"throttleReadIOPSDevice")] = x.throttleReadIOPSDevice;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"throttleWriteIOPSDevice")] = x.throttleWriteIOPSDevice;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"weightDevice")] =
+                x.weightDevice;
+}
+
+inline void from_json(const json &j, BlockIO &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<BlockIOProperties>();
+}
+
+inline void to_json(json &j, const BlockIO &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, StickyProperties &x)
+{
+        x.cpus = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpus"))
+                         .get<FilePath>();
+        x.mems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"mems"))
+                         .get<FilePath>();
+        x.period =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"period"))
+                        .get<Env>();
+        x.quota = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"quota"))
+                          .get<Env>();
+        x.burst = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"burst"))
+                          .get<Env>();
+        x.realtimePeriod = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"realtimePeriod"))
+                                   .get<Env>();
+        x.realtimeRuntime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                         L"realtimeRuntime"))
+                                    .get<Env>();
+        x.shares =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"shares"))
+                        .get<Env>();
+        x.idle = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"idle"))
+                         .get<Env>();
+}
+
+inline void to_json(json &j, const StickyProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpus")] = x.cpus;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"mems")] = x.mems;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"period")] = x.period;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"quota")] = x.quota;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"burst")] = x.burst;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"realtimePeriod")] =
+                x.realtimePeriod;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"realtimeRuntime")] =
+                x.realtimeRuntime;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"shares")] = x.shares;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"idle")] = x.idle;
+}
+
+inline void from_json(const json &j, PurpleCPU &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<StickyProperties>();
+}
+
+inline void to_json(json &j, const PurpleCPU &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, IndigoProperties &x)
+{
+        x.pageSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"pageSize"))
+                             .get<MemBWSchemaClass>();
+        x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit"))
+                          .get<Env>();
+}
+
+inline void to_json(json &j, const IndigoProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"pageSize")] =
+                x.pageSize;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
+}
+
+inline void from_json(const json &j, HugepageLimitsItems &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<IndigoProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const HugepageLimitsItems &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, HugepageLimits &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<HugepageLimitsItems>();
+}
+
+inline void to_json(json &j, const HugepageLimits &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+}
+
+inline void from_json(const json &j, IndecentProperties &x)
+{
+        x.kernel =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"kernel"))
+                        .get<Env>();
+        x.kernelTCP = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"kernelTCP"))
+                              .get<Env>();
+        x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit"))
+                          .get<Env>();
+        x.reservation = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"reservation"))
+                                .get<Env>();
+        x.swap = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"swap"))
+                         .get<Env>();
+        x.swappiness = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"swappiness"))
+                               .get<Env>();
+        x.disableOOMKiller =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"disableOOMKiller"))
+                        .get<FilePath>();
+        x.useHierarchy = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"useHierarchy"))
+                                 .get<FilePath>();
+        x.checkBeforeUpdate =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"checkBeforeUpdate"))
+                        .get<FilePath>();
+}
+
+inline void to_json(json &j, const IndecentProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")] = x.kernel;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernelTCP")] =
+                x.kernelTCP;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"reservation")] =
+                x.reservation;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"swap")] = x.swap;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"swappiness")] =
+                x.swappiness;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"disableOOMKiller")] =
+                x.disableOOMKiller;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"useHierarchy")] =
+                x.useHierarchy;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"checkBeforeUpdate")] =
+                x.checkBeforeUpdate;
+}
+
+inline void from_json(const json &j, PurpleMemory &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<IndecentProperties>();
+}
+
+inline void to_json(json &j, const PurpleMemory &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, HilariousProperties &x)
+{
+        x.classID =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"classID"))
+                        .get<Env>();
+        x.priorities = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"priorities"))
+                               .get<ArrayOfGiDs>();
+}
+
+inline void to_json(json &j, const HilariousProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"classID")] =
+                x.classID;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"priorities")] =
+                x.priorities;
+}
+
+inline void from_json(const json &j, PurpleNetwork &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<HilariousProperties>();
+}
+
+inline void to_json(json &j, const PurpleNetwork &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, PidsProperties &x)
+{
+        x.limit = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"limit"))
+                          .get<Env>();
+}
+
+inline void to_json(json &j, const PidsProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"limit")] = x.limit;
+}
+
+inline void from_json(const json &j, Pids &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<PidsProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const Pids &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, RdmaClass &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.additionalProperties =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"additionalProperties"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const RdmaClass &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"additionalProperties")] = x.additionalProperties;
+}
+
+inline void from_json(const json &j, TentacledProperties &x)
+{
+        x.unified =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"unified"))
+                        .get<Env>();
+        x.devices =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices"))
+                        .get<ArrayOfGiDs>();
+        x.pids = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"pids"))
+                         .get<Pids>();
+        x.blockIO =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"blockIO"))
+                        .get<BlockIO>();
+        x.cpu = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpu"))
+                        .get<PurpleCPU>();
+        x.hugepageLimits = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"hugepageLimits"))
+                                   .get<HugepageLimits>();
+        x.memory =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"memory"))
+                        .get<PurpleMemory>();
+        x.network =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"network"))
+                        .get<PurpleNetwork>();
+        x.rdma = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rdma"))
+                         .get<RdmaClass>();
+}
+
+inline void to_json(json &j, const TentacledProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"unified")] =
+                x.unified;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] =
+                x.devices;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"pids")] = x.pids;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"blockIO")] =
+                x.blockIO;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")] = x.cpu;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hugepageLimits")] =
+                x.hugepageLimits;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"memory")] = x.memory;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"network")] =
+                x.network;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"rdma")] = x.rdma;
+}
+
+inline void from_json(const json &j, PurpleResources &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<TentacledProperties>();
+}
+
+inline void to_json(json &j, const PurpleResources &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, SeccompProperties &x)
+{
+        x.defaultAction = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"defaultAction"));
+        x.defaultErrnoRet = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"defaultErrnoRet"));
+        x.flags = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"flags"));
+        x.listenerPath = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"listenerPath"));
+        x.listenerMetadata = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"listenerMetadata"));
+        x.architectures = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"architectures"));
+        x.syscalls = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"syscalls"));
+        x.enabled = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"enabled"));
+        x.actions = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"actions"));
+        x.operators = get_stack_optional<ArrayOfGiDs>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"operators"));
+        x.archs = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"archs"));
+        x.knownFlags = get_stack_optional<ArrayOfGiDs>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"knownFlags"));
+        x.supportedFlags = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"supportedFlags"));
+}
+
+inline void to_json(json &j, const SeccompProperties &x)
+{
+        j = json::object();
+        if (x.defaultAction) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"defaultAction")] = x.defaultAction;
+        }
+        if (x.defaultErrnoRet) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"defaultErrnoRet")] = x.defaultErrnoRet;
+        }
+        if (x.flags) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] =
+                        x.flags;
+        }
+        if (x.listenerPath) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"listenerPath")] = x.listenerPath;
+        }
+        if (x.listenerMetadata) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"listenerMetadata")] = x.listenerMetadata;
+        }
+        if (x.architectures) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"architectures")] = x.architectures;
+        }
+        if (x.syscalls) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"syscalls")] =
+                        x.syscalls;
+        }
+        if (x.enabled) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"enabled")] =
+                        x.enabled;
+        }
+        if (x.actions) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"actions")] =
+                        x.actions;
+        }
+        if (x.operators) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"operators")] =
+                        x.operators;
+        }
+        if (x.archs) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"archs")] =
+                        x.archs;
+        }
+        if (x.knownFlags) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"knownFlags")] =
+                        x.knownFlags;
+        }
+        if (x.supportedFlags) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"supportedFlags")] = x.supportedFlags;
+        }
+}
+
+inline void from_json(const json &j, Seccomp &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<SeccompProperties>();
+        x.required = Utf16_Utf8<std::optional<std::vector<std::string>>,
+                                std::optional<std::vector<std::wstring>>>::
+                convert(get_stack_optional<std::vector<std::string>>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"required")));
+}
+
+inline void to_json(json &j, const Seccomp &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        if (Utf16_Utf8<std::optional<std::vector<std::wstring>>,
+                       std::optional<std::vector<std::string>>>::
+                    convert(x.required)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                        Utf16_Utf8<std::optional<std::vector<std::wstring>>,
+                                   std::optional<std::vector<std::string>>>::
+                                convert(x.required);
+        }
+}
+
+inline void from_json(const json &j, TimeOffsetsPropertiesClass &x)
+{
+        x.boottime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"boottime"))
+                             .get<Env>();
+        x.monotonic = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"monotonic"))
+                              .get<Env>();
+}
+
+inline void to_json(json &j, const TimeOffsetsPropertiesClass &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"boottime")] =
+                x.boottime;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"monotonic")] =
+                x.monotonic;
+}
+
+inline void from_json(const json &j, TimeOffsetsClass &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<TimeOffsetsPropertiesClass>();
+}
+
+inline void to_json(json &j, const TimeOffsetsClass &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, LinuxProperties &x)
+{
+        x.devices = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"devices"));
+        x.uidMappings = get_stack_optional<ArrayOfGiDs>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"uidMappings"));
+        x.gidMappings = get_stack_optional<ArrayOfGiDs>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"gidMappings"));
+        x.namespaces = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"namespaces"))
+                               .get<Namespaces>();
+        x.resources = get_stack_optional<PurpleResources>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"resources"));
+        x.cgroupsPath = get_stack_optional<FilePath>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"cgroupsPath"));
+        x.rootfsPropagation = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"rootfsPropagation"));
+        x.seccomp =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"seccomp"))
+                        .get<Seccomp>();
+        x.sysctl = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"sysctl"));
+        x.maskedPaths = get_stack_optional<Env>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"maskedPaths"));
+        x.readonlyPaths = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"readonlyPaths"));
+        x.mountLabel = get_stack_optional<FilePath>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"mountLabel"));
+        x.intelRdt = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"intelRdt"))
+                             .get<IntelRdt>();
+        x.personality = get_stack_optional<PersonalityClass>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"personality"));
+        x.timeOffsets = get_stack_optional<TimeOffsetsClass>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"timeOffsets"));
+        x.capabilities = get_stack_optional<PurpleCapabilities>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"capabilities"));
+        x.cgroup = get_stack_optional<Cgroup>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"cgroup"));
+        x.apparmor = get_stack_optional<Apparmor>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"apparmor"));
+        x.selinux = get_stack_optional<Apparmor>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"selinux"));
+}
+
+inline void to_json(json &j, const LinuxProperties &x)
+{
+        j = json::object();
+        if (x.devices) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] =
+                        x.devices;
+        }
+        if (x.uidMappings) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"uidMappings")] = x.uidMappings;
+        }
+        if (x.gidMappings) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"gidMappings")] = x.gidMappings;
+        }
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"namespaces")] =
+                x.namespaces;
+        if (x.resources) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"resources")] =
+                        x.resources;
+        }
+        if (x.cgroupsPath) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"cgroupsPath")] = x.cgroupsPath;
+        }
+        if (x.rootfsPropagation) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"rootfsPropagation")] = x.rootfsPropagation;
+        }
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"seccomp")] =
+                x.seccomp;
+        if (x.sysctl) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"sysctl")] =
+                        x.sysctl;
+        }
+        if (x.maskedPaths) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"maskedPaths")] = x.maskedPaths;
+        }
+        if (x.readonlyPaths) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"readonlyPaths")] = x.readonlyPaths;
+        }
+        if (x.mountLabel) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"mountLabel")] =
+                        x.mountLabel;
+        }
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"intelRdt")] =
+                x.intelRdt;
+        if (x.personality) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"personality")] = x.personality;
+        }
+        if (x.timeOffsets) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"timeOffsets")] = x.timeOffsets;
+        }
+        if (x.capabilities) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"capabilities")] = x.capabilities;
+        }
+        if (x.cgroup) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"cgroup")] =
+                        x.cgroup;
+        }
+        if (x.apparmor) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"apparmor")] =
+                        x.apparmor;
+        }
+        if (x.selinux) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"selinux")] =
+                        x.selinux;
+        }
+}
+
+inline void from_json(const json &j, Linux &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<LinuxProperties>();
+}
+
+inline void to_json(json &j, const Linux &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, HooksProperties &x)
+{
+        x.prestart = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"prestart"))
+                             .get<Env>();
+        x.createRuntime = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                       L"createRuntime"))
+                                  .get<Env>();
+        x.createContainer = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                         L"createContainer"))
+                                    .get<Env>();
+        x.startContainer = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"startContainer"))
+                                   .get<Env>();
+        x.poststart = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"poststart"))
+                              .get<Env>();
+        x.poststop = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"poststop"))
+                             .get<Env>();
+}
+
+inline void to_json(json &j, const HooksProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"prestart")] =
+                x.prestart;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"createRuntime")] =
+                x.createRuntime;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"createContainer")] =
+                x.createContainer;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"startContainer")] =
+                x.startContainer;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"poststart")] =
+                x.poststart;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"poststop")] =
+                x.poststop;
+}
+
+inline void from_json(const json &j, Hooks &x)
+{
+        x.type = get_stack_optional<FilePathType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
+        x.properties = get_stack_optional<HooksProperties>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
+        x.ref = Utf16_Utf8<std::optional<std::string>,
+                           std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"$ref")));
+}
+
+inline void to_json(json &j, const Hooks &x)
+{
+        j = json::object();
+        if (x.type) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] =
+                        x.type;
+        }
+        if (x.properties) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                        x.properties;
+        }
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.ref)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"$ref")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::convert(x.ref);
+        }
+}
+
+inline void from_json(const json &j, CapabilitiesProperties &x)
+{
+        x.bounding = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"bounding"))
+                             .get<Env>();
+        x.permitted = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"permitted"))
+                              .get<Env>();
+        x.effective = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"effective"))
+                              .get<Env>();
+        x.inheritable = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"inheritable"))
+                                .get<Env>();
+        x.ambient =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ambient"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const CapabilitiesProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"bounding")] =
+                x.bounding;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"permitted")] =
+                x.permitted;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"effective")] =
+                x.effective;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"inheritable")] =
+                x.inheritable;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"ambient")] =
+                x.ambient;
+}
+
+inline void from_json(const json &j, FluffyCapabilities &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<CapabilitiesProperties>();
+}
+
+inline void to_json(json &j, const FluffyCapabilities &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, ConsoleSizeProperties &x)
+{
+        x.height =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"height"))
+                        .get<Env>();
+        x.width = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"width"))
+                          .get<Env>();
+}
+
+inline void to_json(json &j, const ConsoleSizeProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"height")] = x.height;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"width")] = x.width;
+}
+
+inline void from_json(const json &j, ConsoleSize &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<ConsoleSizeProperties>();
+}
+
+inline void to_json(json &j, const ConsoleSize &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, IoPriorityProperties &x)
+{
+        x.propertiesClass =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"class"))
+                        .get<NamespaceType>();
+        x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"priority"))
+                             .get<Env>();
+}
+
+inline void to_json(json &j, const IoPriorityProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"class")] =
+                x.propertiesClass;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] =
+                x.priority;
+}
+
+inline void from_json(const json &j, IoPriority &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<IoPriorityProperties>();
+}
+
+inline void to_json(json &j, const IoPriority &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, AmbitiousProperties &x)
+{
+        x.hard = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hard"))
+                         .get<Env>();
+        x.soft = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"soft"))
+                         .get<Env>();
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<MemBWSchemaClass>();
+}
+
+inline void to_json(json &j, const AmbitiousProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hard")] = x.hard;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"soft")] = x.soft;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+}
+
+inline void from_json(const json &j, RlimitsItems &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<AmbitiousProperties>();
+}
+
+inline void to_json(json &j, const RlimitsItems &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, Rlimits &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<RlimitsItems>();
+}
+
+inline void to_json(json &j, const Rlimits &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+}
+
+inline void from_json(const json &j, SchedulerProperties &x)
+{
+        x.policy =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"policy"))
+                        .get<Env>();
+        x.nice = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"nice"))
+                         .get<Env>();
+        x.priority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"priority"))
+                             .get<Env>();
+        x.flags = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"flags"))
+                          .get<ArrayOfGiDs>();
+        x.runtime =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"runtime"))
+                        .get<Env>();
+        x.deadline = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"deadline"))
+                             .get<Env>();
+        x.period =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"period"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const SchedulerProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"policy")] = x.policy;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"nice")] = x.nice;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"priority")] =
+                x.priority;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"flags")] = x.flags;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"runtime")] =
+                x.runtime;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"deadline")] =
+                x.deadline;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"period")] = x.period;
+}
+
+inline void from_json(const json &j, Scheduler &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<SchedulerProperties>();
+}
+
+inline void to_json(json &j, const Scheduler &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, UserProperties &x)
+{
+        x.uid = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"uid"))
+                        .get<Env>();
+        x.gid = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"gid"))
+                        .get<Env>();
+        x.umask = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"umask"))
+                          .get<Env>();
+        x.additionalGids = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"additionalGids"))
+                                   .get<Env>();
+        x.username = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"username"))
+                             .get<FilePath>();
+}
+
+inline void to_json(json &j, const UserProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"uid")] = x.uid;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"gid")] = x.gid;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"umask")] = x.umask;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"additionalGids")] =
+                x.additionalGids;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"username")] =
+                x.username;
+}
+
+inline void from_json(const json &j, User &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<UserProperties>();
+}
+
+inline void to_json(json &j, const User &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, ProcessProperties &x)
+{
+        x.args = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"args"))
+                         .get<Env>();
+        x.commandLine = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"commandLine"))
+                                .get<FilePath>();
+        x.consoleSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"consoleSize"))
+                                .get<ConsoleSize>();
+        x.cwd = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cwd"))
+                        .get<FilePath>();
+        x.env = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"env"))
+                        .get<Env>();
+        x.terminal = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"terminal"))
+                             .get<FilePath>();
+        x.user = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"user"))
+                         .get<User>();
+        x.capabilities = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"capabilities"))
+                                 .get<FluffyCapabilities>();
+        x.apparmorProfile = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                         L"apparmorProfile"))
+                                    .get<FilePath>();
+        x.oomScoreAdj = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"oomScoreAdj"))
+                                .get<FilePath>();
+        x.selinuxLabel = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"selinuxLabel"))
+                                 .get<FilePath>();
+        x.ioPriority = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"ioPriority"))
+                               .get<IoPriority>();
+        x.noNewPrivileges = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                         L"noNewPrivileges"))
+                                    .get<FilePath>();
+        x.scheduler = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"scheduler"))
+                              .get<Scheduler>();
+        x.rlimits =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"rlimits"))
+                        .get<Rlimits>();
+}
+
+inline void to_json(json &j, const ProcessProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"args")] = x.args;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"commandLine")] =
+                x.commandLine;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"consoleSize")] =
+                x.consoleSize;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cwd")] = x.cwd;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"env")] = x.env;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"terminal")] =
+                x.terminal;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"user")] = x.user;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"capabilities")] =
+                x.capabilities;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"apparmorProfile")] =
+                x.apparmorProfile;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"oomScoreAdj")] =
+                x.oomScoreAdj;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"selinuxLabel")] =
+                x.selinuxLabel;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"ioPriority")] =
+                x.ioPriority;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"noNewPrivileges")] =
+                x.noNewPrivileges;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"scheduler")] =
+                x.scheduler;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"rlimits")] =
+                x.rlimits;
+}
+
+inline void from_json(const json &j, Process &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<ProcessProperties>();
+}
+
+inline void to_json(json &j, const Process &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, RootProperties &x)
+{
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+        x.readonly = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"readonly"))
+                             .get<FilePath>();
+}
+
+inline void to_json(json &j, const RootProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"readonly")] =
+                x.readonly;
+}
+
+inline void from_json(const json &j, Root &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<RootProperties>();
+}
+
+inline void to_json(json &j, const Root &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, SchemaProperties &x)
+{
+        x.ociVersion = get_stack_optional<Env>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion"));
+        x.hooks = get_stack_optional<Hooks>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"hooks"));
+        x.annotations = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"annotations"))
+                                .get<Env>();
+        x.hostname = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"hostname"));
+        x.domainname = get_stack_optional<FilePath>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"domainname"));
+        x.mounts = get_stack_optional<ArrayOfGiDs>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"mounts"));
+        x.root = get_stack_optional<Root>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"root"));
+        x.process = get_stack_optional<Process>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"process"));
+        x.linux = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"linux"));
+        x.solaris = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"solaris"));
+        x.windows = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"windows"));
+        x.vm = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"vm"));
+        x.zos = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"zos"));
+        x.ociVersionMin = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"ociVersionMin"));
+        x.ociVersionMax = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"ociVersionMax"));
+        x.mountOptions = get_stack_optional<Env>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(
+                           L"mountOptions"));
+        x.id = get_stack_optional<OciVersion>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"id"));
+        x.status = get_stack_optional<NamespaceType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"status"));
+        x.pid = get_stack_optional<Pid>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"pid"));
+        x.bundle = get_stack_optional<FilePath>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"bundle"));
+}
+
+inline void to_json(json &j, const SchemaProperties &x)
+{
+        j = json::object();
+        if (x.ociVersion) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"ociVersion")] =
+                        x.ociVersion;
+        }
+        if (x.hooks) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"hooks")] =
+                        x.hooks;
+        }
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"annotations")] =
+                x.annotations;
+        if (x.hostname) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"hostname")] =
+                        x.hostname;
+        }
+        if (x.domainname) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"domainname")] =
+                        x.domainname;
+        }
+        if (x.mounts) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"mounts")] =
+                        x.mounts;
+        }
+        if (x.root) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"root")] =
+                        x.root;
+        }
+        if (x.process) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"process")] =
+                        x.process;
+        }
+        if (x.linux) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"linux")] =
+                        x.linux;
+        }
+        if (x.solaris) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"solaris")] =
+                        x.solaris;
+        }
+        if (x.windows) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"windows")] =
+                        x.windows;
+        }
+        if (x.vm) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"vm")] = x.vm;
+        }
+        if (x.zos) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"zos")] =
+                        x.zos;
+        }
+        if (x.ociVersionMin) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"ociVersionMin")] = x.ociVersionMin;
+        }
+        if (x.ociVersionMax) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"ociVersionMax")] = x.ociVersionMax;
+        }
+        if (x.mountOptions) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"mountOptions")] = x.mountOptions;
+        }
+        if (x.id) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"id")] = x.id;
+        }
+        if (x.status) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"status")] =
+                        x.status;
+        }
+        if (x.pid) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"pid")] =
+                        x.pid;
+        }
+        if (x.bundle) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"bundle")] =
+                        x.bundle;
+        }
+}
+
+inline void from_json(const json &j, CunningProperties &x)
+{
+        x.linkname = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"linkname"))
+                             .get<FilePath>();
+        x.lowerLink = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"lowerLink"))
+                              .get<FilePath>();
+        x.allowedAddress = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"allowedAddress"))
+                                   .get<FilePath>();
+        x.configureAllowedAddress =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"configureAllowedAddress"))
+                        .get<FilePath>();
+        x.defrouter = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"defrouter"))
+                              .get<FilePath>();
+        x.macAddress = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"macAddress"))
+                               .get<FilePath>();
+        x.linkProtection = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"linkProtection"))
+                                   .get<FilePath>();
+}
+
+inline void to_json(json &j, const CunningProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"linkname")] =
+                x.linkname;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"lowerLink")] =
+                x.lowerLink;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"allowedAddress")] =
+                x.allowedAddress;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"configureAllowedAddress")] = x.configureAllowedAddress;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"defrouter")] =
+                x.defrouter;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"macAddress")] =
+                x.macAddress;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"linkProtection")] =
+                x.linkProtection;
+}
+
+inline void from_json(const json &j, AnetItems &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<CunningProperties>();
+}
+
+inline void to_json(json &j, const AnetItems &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, Anet &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<AnetItems>();
+}
+
+inline void to_json(json &j, const Anet &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+}
+
+inline void from_json(const json &j, CappedCPUProperties &x)
+{
+        x.ncpus = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"ncpus"))
+                          .get<FilePath>();
+}
+
+inline void to_json(json &j, const CappedCPUProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"ncpus")] = x.ncpus;
+}
+
+inline void from_json(const json &j, CappedCPU &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<CappedCPUProperties>();
+}
+
+inline void to_json(json &j, const CappedCPU &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, CappedMemoryProperties &x)
+{
+        x.physical = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"physical"))
+                             .get<FilePath>();
+        x.swap = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"swap"))
+                         .get<FilePath>();
+}
+
+inline void to_json(json &j, const CappedMemoryProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"physical")] =
+                x.physical;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"swap")] = x.swap;
+}
+
+inline void from_json(const json &j, CappedMemory &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<CappedMemoryProperties>();
+}
+
+inline void to_json(json &j, const CappedMemory &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, SolarisProperties &x)
+{
+        x.milestone = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"milestone"))
+                              .get<FilePath>();
+        x.limitpriv = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"limitpriv"))
+                              .get<FilePath>();
+        x.maxShmMemory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"maxShmMemory"))
+                                 .get<FilePath>();
+        x.cappedCPU = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"cappedCPU"))
+                              .get<CappedCPU>();
+        x.cappedMemory = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"cappedMemory"))
+                                 .get<CappedMemory>();
+        x.anet = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"anet"))
+                         .get<Anet>();
+}
+
+inline void to_json(json &j, const SolarisProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"milestone")] =
+                x.milestone;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"limitpriv")] =
+                x.limitpriv;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"maxShmMemory")] =
+                x.maxShmMemory;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cappedCPU")] =
+                x.cappedCPU;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cappedMemory")] =
+                x.cappedMemory;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"anet")] = x.anet;
+}
+
+inline void from_json(const json &j, Solaris &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<SolarisProperties>();
+}
+
+inline void to_json(json &j, const Solaris &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, HypervisorProperties &x)
+{
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+        x.parameters = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"parameters"))
+                               .get<Env>();
+}
+
+inline void to_json(json &j, const HypervisorProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")] =
+                x.parameters;
+}
+
+inline void from_json(const json &j, Hypervisor &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<HypervisorProperties>();
+}
+
+inline void to_json(json &j, const Hypervisor &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, ImageProperties &x)
+{
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+        x.format =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"format"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const ImageProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"format")] = x.format;
+}
+
+inline void from_json(const json &j, Image &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<ImageProperties>();
+}
+
+inline void to_json(json &j, const Image &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, KernelProperties &x)
+{
+        x.path = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"path"))
+                         .get<Env>();
+        x.parameters = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"parameters"))
+                               .get<Env>();
+        x.initrd =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"initrd"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const KernelProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"path")] = x.path;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"parameters")] =
+                x.parameters;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"initrd")] = x.initrd;
+}
+
+inline void from_json(const json &j, Kernel &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<KernelProperties>();
+}
+
+inline void to_json(json &j, const Kernel &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, VmProperties &x)
+{
+        x.hypervisor = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"hypervisor"))
+                               .get<Hypervisor>();
+        x.kernel =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"kernel"))
+                        .get<Kernel>();
+        x.image = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"image"))
+                          .get<Image>();
+}
+
+inline void to_json(json &j, const VmProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hypervisor")] =
+                x.hypervisor;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"kernel")] = x.kernel;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"image")] = x.image;
+}
+
+inline void from_json(const json &j, Vm &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<VmProperties>();
+}
+
+inline void to_json(json &j, const Vm &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, HypervProperties &x)
+{
+        x.utilityVMPath = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                       L"utilityVMPath"))
+                                  .get<FilePath>();
+}
+
+inline void to_json(json &j, const HypervProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"utilityVMPath")] =
+                x.utilityVMPath;
+}
+
+inline void from_json(const json &j, Hyperv &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<HypervProperties>();
+}
+
+inline void to_json(json &j, const Hyperv &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, LayerFolders &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<ArrayOfGIDsType>();
+        x.items = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"items"))
+                          .get<Env>();
+        x.minItems = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                  L"minItems"))
+                             .get<int64_t>();
+}
+
+inline void to_json(json &j, const LayerFolders &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"items")] = x.items;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"minItems")] =
+                x.minItems;
+}
+
+inline void from_json(const json &j, MagentaProperties &x)
+{
+        x.endpointList = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"endpointList"))
+                                 .get<Env>();
+        x.allowUnqualifiedDNSQuery =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"allowUnqualifiedDNSQuery"))
+                        .get<FilePath>();
+        x.dnsSearchList = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                       L"DNSSearchList"))
+                                  .get<Env>();
+        x.networkSharedContainerName =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"networkSharedContainerName"))
+                        .get<FilePath>();
+        x.networkNamespace =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"networkNamespace"))
+                        .get<FilePath>();
+}
+
+inline void to_json(json &j, const MagentaProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"endpointList")] =
+                x.endpointList;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"allowUnqualifiedDNSQuery")] = x.allowUnqualifiedDNSQuery;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"DNSSearchList")] =
+                x.dnsSearchList;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"networkSharedContainerName")] = x.networkSharedContainerName;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"networkNamespace")] =
+                x.networkNamespace;
+}
+
+inline void from_json(const json &j, FluffyNetwork &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<MagentaProperties>();
+}
+
+inline void to_json(json &j, const FluffyNetwork &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, MischievousProperties &x)
+{
+        x.count = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"count"))
+                          .get<Env>();
+        x.shares =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"shares"))
+                        .get<Env>();
+        x.maximum =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"maximum"))
+                        .get<Env>();
+}
+
+inline void to_json(json &j, const MischievousProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"count")] = x.count;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"shares")] = x.shares;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"maximum")] =
+                x.maximum;
+}
+
+inline void from_json(const json &j, FluffyCPU &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<MischievousProperties>();
+}
+
+inline void to_json(json &j, const FluffyCPU &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, FluffyMemory &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<PidsProperties>();
+}
+
+inline void to_json(json &j, const FluffyMemory &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, StorageProperties &x)
+{
+        x.iops = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"iops"))
+                         .get<Env>();
+        x.bps = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"bps"))
+                        .get<Env>();
+        x.sandboxSize = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"sandboxSize"))
+                                .get<Env>();
+}
+
+inline void to_json(json &j, const StorageProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"iops")] = x.iops;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"bps")] = x.bps;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"sandboxSize")] =
+                x.sandboxSize;
+}
+
+inline void from_json(const json &j, Storage &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<StorageProperties>();
+}
+
+inline void to_json(json &j, const Storage &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, FriskyProperties &x)
+{
+        x.memory =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"memory"))
+                        .get<FluffyMemory>();
+        x.cpu = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"cpu"))
+                        .get<FluffyCPU>();
+        x.storage =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"storage"))
+                        .get<Storage>();
+}
+
+inline void to_json(json &j, const FriskyProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"memory")] = x.memory;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"cpu")] = x.cpu;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"storage")] =
+                x.storage;
+}
+
+inline void from_json(const json &j, FluffyResources &x)
+{
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<FriskyProperties>();
+}
+
+inline void to_json(json &j, const FluffyResources &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, WindowsProperties &x)
+{
+        x.layerFolders = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                      L"layerFolders"))
+                                 .get<LayerFolders>();
+        x.devices =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices"))
+                        .get<ArrayOfGiDs>();
+        x.resources = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"resources"))
+                              .get<FluffyResources>();
+        x.network =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"network"))
+                        .get<FluffyNetwork>();
+        x.credentialSpec = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                        L"credentialSpec"))
+                                   .get<FilePath>();
+        x.servicing = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"servicing"))
+                              .get<FilePath>();
+        x.ignoreFlushesDuringBoot =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"ignoreFlushesDuringBoot"))
+                        .get<FilePath>();
+        x.hyperv =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"hyperv"))
+                        .get<Hyperv>();
+}
+
+inline void to_json(json &j, const WindowsProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"layerFolders")] =
+                x.layerFolders;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] =
+                x.devices;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"resources")] =
+                x.resources;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"network")] =
+                x.network;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"credentialSpec")] =
+                x.credentialSpec;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"servicing")] =
+                x.servicing;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(
+                L"ignoreFlushesDuringBoot")] = x.ignoreFlushesDuringBoot;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"hyperv")] = x.hyperv;
+}
+
+inline void from_json(const json &j, Windows &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<WindowsProperties>();
+        x.required = Utf16_Utf8<std::vector<std::string>,
+                                std::vector<std::wstring>>::
+                convert(j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                     L"required"))
+                                .get<std::vector<std::string>>());
+}
+
+inline void to_json(json &j, const Windows &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                Utf16_Utf8<std::vector<std::wstring>,
+                           std::vector<std::string>>::convert(x.required);
+}
+
+inline void from_json(const json &j, ZosProperties &x)
+{
+        x.devices =
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"devices"))
+                        .get<ArrayOfGiDs>();
+}
+
+inline void to_json(json &j, const ZosProperties &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"devices")] =
+                x.devices;
+}
+
+inline void from_json(const json &j, Zos &x)
+{
+        x.description = Utf16_Utf8<std::string, std::wstring>::convert(
+                j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                             L"description"))
+                        .get<std::string>());
+        x.type = j.at(Utf16_Utf8<std::wstring, std::string>::convert(L"type"))
+                         .get<FilePathType>();
+        x.properties = j.at(Utf16_Utf8<std::wstring, std::string>::convert(
+                                    L"properties"))
+                               .get<ZosProperties>();
+}
+
+inline void to_json(json &j, const Zos &x)
+{
+        j = json::object();
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"description")] =
+                Utf16_Utf8<std::wstring, std::string>::convert(x.description);
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] = x.type;
+        j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                x.properties;
+}
+
+inline void from_json(const json &j, Schema &x)
+{
+        x.linux = get_stack_optional<Linux>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"linux"));
+        x.description = Utf16_Utf8<std::optional<std::string>,
+                                   std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"description")));
+        x.schema = Utf16_Utf8<std::optional<std::string>,
+                              std::optional<std::wstring>>::
+                convert(get_stack_optional<std::string>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"$schema")));
+        x.type = get_stack_optional<FilePathType>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"type"));
+        x.properties = get_stack_optional<SchemaProperties>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"properties"));
+        x.required = Utf16_Utf8<std::optional<std::vector<std::string>>,
+                                std::optional<std::vector<std::wstring>>>::
+                convert(get_stack_optional<std::vector<std::string>>(
+                        j, Utf16_Utf8<std::wstring, std::string>::convert(
+                                   L"required")));
+        x.solaris = get_stack_optional<Solaris>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"solaris"));
+        x.vm = get_stack_optional<Vm>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"vm"));
+        x.windows = get_stack_optional<Windows>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"windows"));
+        x.zos = get_stack_optional<Zos>(
+                j, Utf16_Utf8<std::wstring, std::string>::convert(L"zos"));
+        x.definitions = get_stack_optional<Definitions>(
+                j,
+                Utf16_Utf8<std::wstring, std::string>::convert(L"definitions"));
+}
+
+inline void to_json(json &j, const Schema &x)
+{
+        j = json::object();
+        if (x.linux) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"linux")] =
+                        x.linux;
+        }
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.description)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"description")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::
+                                convert(x.description);
+        }
+        if (Utf16_Utf8<std::optional<std::wstring>,
+                       std::optional<std::string>>::convert(x.schema)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"$schema")] =
+                        Utf16_Utf8<std::optional<std::wstring>,
+                                   std::optional<std::string>>::convert(x.schema);
+        }
+        if (x.type) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"type")] =
+                        x.type;
+        }
+        if (x.properties) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"properties")] =
+                        x.properties;
+        }
+        if (Utf16_Utf8<std::optional<std::vector<std::wstring>>,
+                       std::optional<std::vector<std::string>>>::
+                    convert(x.required)) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"required")] =
+                        Utf16_Utf8<std::optional<std::vector<std::wstring>>,
+                                   std::optional<std::vector<std::string>>>::
+                                convert(x.required);
+        }
+        if (x.solaris) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"solaris")] =
+                        x.solaris;
+        }
+        if (x.vm) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"vm")] = x.vm;
+        }
+        if (x.windows) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"windows")] =
+                        x.windows;
+        }
+        if (x.zos) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(L"zos")] =
+                        x.zos;
+        }
+        if (x.definitions) {
+                j[Utf16_Utf8<std::wstring, std::string>::convert(
+                        L"definitions")] = x.definitions;
+        }
+}
+
+inline void from_json(const json &j, ArrayOfGIDsType &x)
+{
+        if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"array"))
+                x = ArrayOfGIDsType::Array;
+        else {
+                throw std::runtime_error(
+                        "Input JSON does not conform to schema!");
+        }
+}
+
+inline void to_json(json &j, const ArrayOfGIDsType &x)
+{
+        switch (x) {
+        case ArrayOfGIDsType::Array:
+                j = Utf16_Utf8<std::wstring, std::string>::convert(L"array");
+                break;
+        default:
+                throw std::runtime_error("This should not happen");
+        }
+}
+
+inline void from_json(const json &j, FilePathType &x)
+{
+        if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"boolean"))
+                x = FilePathType::Boolean;
+        else if (j ==
+                 Utf16_Utf8<std::wstring, std::string>::convert(L"integer"))
+                x = FilePathType::Integer;
+        else if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"object"))
+                x = FilePathType::Object;
+        else if (j == Utf16_Utf8<std::wstring, std::string>::convert(L"string"))
+                x = FilePathType::String;
+        else {
+                throw std::runtime_error(
+                        "Input JSON does not conform to schema!");
+        }
+}
+
+inline void to_json(json &j, const FilePathType &x)
+{
+        switch (x) {
+        case FilePathType::Boolean:
+                j = Utf16_Utf8<std::wstring, std::string>::convert(L"boolean");
+                break;
+        case FilePathType::Integer:
+                j = Utf16_Utf8<std::wstring, std::string>::convert(L"integer");
+                break;
+        case FilePathType::Object:
+                j = Utf16_Utf8<std::wstring, std::string>::convert(L"object");
+                break;
+        case FilePathType::String:
+                j = Utf16_Utf8<std::wstring, std::string>::convert(L"string");
+                break;
+        default:
+                throw std::runtime_error("This should not happen");
+        }
 }
 }
 }
 }
-}
-

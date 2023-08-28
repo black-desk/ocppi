@@ -17,27 +17,34 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
 #include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 struct Env;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct NamespacesItems {
-std::optional<std::vector<Env>> anyOf;
-std::optional<std::wstring> ref;
+        std::optional<std::vector<Env>> anyOf;
+        std::optional<std::wstring> ref;
 };
 }
 }
 }
-

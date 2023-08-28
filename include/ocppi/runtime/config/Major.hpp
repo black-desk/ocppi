@@ -17,19 +17,23 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
 #include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Major {
-std::wstring description;
-std::wstring ref;
+        std::wstring description;
+        std::wstring ref;
 };
 }
 }
 }
-

@@ -17,26 +17,33 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
 #include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 struct BlockIODeviceThrottleAllOf;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct BlockIODeviceThrottle {
-std::vector<BlockIODeviceThrottleAllOf> allOf;
+        std::vector<BlockIODeviceThrottleAllOf> allOf;
 };
 }
 }
 }
-

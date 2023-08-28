@@ -17,28 +17,31 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
-#include "FilePath.hpp"
+#include <nlohmann/json.hpp>
+
+#include "Anet.hpp"
 #include "CappedCPU.hpp"
 #include "CappedMemory.hpp"
-#include "Anet.hpp"
+#include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct SolarisProperties {
-FilePath milestone;
-FilePath limitpriv;
-FilePath maxShmMemory;
-CappedCPU cappedCPU;
-CappedMemory cappedMemory;
-Anet anet;
+        FilePath milestone;
+        FilePath limitpriv;
+        FilePath maxShmMemory;
+        CappedCPU cappedCPU;
+        CappedMemory cappedMemory;
+        Anet anet;
 };
 }
 }
 }
-

@@ -17,30 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "NetworkInterfacePriorityProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct NetworkInterfacePriority {
-FilePathType type;
-NetworkInterfacePriorityProperties properties;
-std::vector<std::wstring> required;
+        FilePathType type;
+        NetworkInterfacePriorityProperties properties;
+        std::vector<std::wstring> required;
 };
 }
 }
 }
-

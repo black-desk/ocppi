@@ -17,27 +17,30 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "Env.hpp"
 #include "helper.hpp"
 
-#include "Env.hpp"
-#include "ArrayOfGiDs.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct SchedulerProperties {
-Env policy;
-Env nice;
-Env priority;
-ArrayOfGiDs flags;
-Env runtime;
-Env deadline;
-Env period;
+        Env policy;
+        Env nice;
+        Env priority;
+        ArrayOfGiDs flags;
+        Env runtime;
+        Env deadline;
+        Env period;
 };
 }
 }
 }
-

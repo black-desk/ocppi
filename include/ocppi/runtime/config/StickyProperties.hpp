@@ -17,29 +17,32 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "Env.hpp"
+#include "FilePath.hpp"
 #include "helper.hpp"
 
-#include "FilePath.hpp"
-#include "Env.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct StickyProperties {
-FilePath cpus;
-FilePath mems;
-Env period;
-Env quota;
-Env burst;
-Env realtimePeriod;
-Env realtimeRuntime;
-Env shares;
-Env idle;
+        FilePath cpus;
+        FilePath mems;
+        Env period;
+        Env quota;
+        Env burst;
+        Env realtimePeriod;
+        Env realtimeRuntime;
+        Env shares;
+        Env idle;
 };
 }
 }
 }
-

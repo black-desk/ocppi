@@ -17,27 +17,30 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "Env.hpp"
 #include "helper.hpp"
 
-#include "Env.hpp"
-#include "ArrayOfGiDs.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct BlockIOProperties {
-Env weight;
-Env leafWeight;
-ArrayOfGiDs throttleReadBpsDevice;
-ArrayOfGiDs throttleWriteBpsDevice;
-ArrayOfGiDs throttleReadIOPSDevice;
-ArrayOfGiDs throttleWriteIOPSDevice;
-ArrayOfGiDs weightDevice;
+        Env weight;
+        Env leafWeight;
+        ArrayOfGiDs throttleReadBpsDevice;
+        ArrayOfGiDs throttleWriteBpsDevice;
+        ArrayOfGiDs throttleReadIOPSDevice;
+        ArrayOfGiDs throttleWriteIOPSDevice;
+        ArrayOfGiDs weightDevice;
 };
 }
 }
 }
-

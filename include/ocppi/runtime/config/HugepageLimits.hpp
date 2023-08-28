@@ -17,29 +17,35 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "HugepageLimitsItems.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class ArrayOfGIDsType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct HugepageLimits {
-ArrayOfGIDsType type;
-HugepageLimitsItems items;
+        ArrayOfGIDsType type;
+        HugepageLimitsItems items;
 };
 }
 }
 }
-

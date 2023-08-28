@@ -17,26 +17,29 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct CunningProperties {
-FilePath linkname;
-FilePath lowerLink;
-FilePath allowedAddress;
-FilePath configureAllowedAddress;
-FilePath defrouter;
-FilePath macAddress;
-FilePath linkProtection;
+        FilePath linkname;
+        FilePath lowerLink;
+        FilePath allowedAddress;
+        FilePath configureAllowedAddress;
+        FilePath defrouter;
+        FilePath macAddress;
+        FilePath linkProtection;
 };
 }
 }
 }
-

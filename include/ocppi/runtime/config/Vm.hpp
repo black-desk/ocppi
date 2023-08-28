@@ -17,31 +17,37 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "VmProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Vm {
-std::wstring description;
-FilePathType type;
-std::vector<std::wstring> required;
-VmProperties properties;
+        std::wstring description;
+        FilePathType type;
+        std::vector<std::wstring> required;
+        VmProperties properties;
 };
 }
 }
 }
-

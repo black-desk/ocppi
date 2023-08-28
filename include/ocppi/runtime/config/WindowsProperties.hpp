@@ -17,32 +17,35 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "FilePath.hpp"
+#include "FluffyNetwork.hpp"
+#include "FluffyResources.hpp"
+#include "Hyperv.hpp"
+#include "LayerFolders.hpp"
 #include "helper.hpp"
 
-#include "LayerFolders.hpp"
-#include "ArrayOfGiDs.hpp"
-#include "FluffyResources.hpp"
-#include "FluffyNetwork.hpp"
-#include "FilePath.hpp"
-#include "Hyperv.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct WindowsProperties {
-LayerFolders layerFolders;
-ArrayOfGiDs devices;
-FluffyResources resources;
-FluffyNetwork network;
-FilePath credentialSpec;
-FilePath servicing;
-FilePath ignoreFlushesDuringBoot;
-Hyperv hyperv;
+        LayerFolders layerFolders;
+        ArrayOfGiDs devices;
+        FluffyResources resources;
+        FluffyNetwork network;
+        FilePath credentialSpec;
+        FilePath servicing;
+        FilePath ignoreFlushesDuringBoot;
+        Hyperv hyperv;
 };
 }
 }
 }
-

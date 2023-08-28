@@ -17,24 +17,27 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "FilePath.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct CgroupProperties {
-FilePath v1;
-FilePath v2;
-FilePath systemd;
-FilePath systemdUser;
-FilePath rdma;
+        FilePath v1;
+        FilePath v2;
+        FilePath systemd;
+        FilePath systemdUser;
+        FilePath rdma;
 };
 }
 }
 }
-

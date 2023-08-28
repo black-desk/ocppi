@@ -17,23 +17,26 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
 #include "MemBWSchemaClass.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct AmbitiousProperties {
-Env hard;
-Env soft;
-MemBWSchemaClass type;
+        Env hard;
+        Env soft;
+        MemBWSchemaClass type;
 };
 }
 }
 }
-

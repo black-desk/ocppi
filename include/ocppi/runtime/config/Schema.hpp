@@ -17,42 +17,49 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
+#include <nlohmann/json.hpp>
+
+#include "Definitions.hpp"
 #include "Linux.hpp"
 #include "SchemaProperties.hpp"
 #include "Solaris.hpp"
 #include "Vm.hpp"
 #include "Windows.hpp"
 #include "Zos.hpp"
-#include "Definitions.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Schema {
-std::optional<Linux> linux;
-std::optional<std::wstring> description;
-std::optional<std::wstring> schema;
-std::optional<FilePathType> type;
-std::optional<SchemaProperties> properties;
-std::optional<std::vector<std::wstring>> required;
-std::optional<Solaris> solaris;
-std::optional<Vm> vm;
-std::optional<Windows> windows;
-std::optional<Zos> zos;
-std::optional<Definitions> definitions;
+        std::optional<Linux> linux;
+        std::optional<std::wstring> description;
+        std::optional<std::wstring> schema;
+        std::optional<FilePathType> type;
+        std::optional<SchemaProperties> properties;
+        std::optional<std::vector<std::wstring>> required;
+        std::optional<Solaris> solaris;
+        std::optional<Vm> vm;
+        std::optional<Windows> windows;
+        std::optional<Zos> zos;
+        std::optional<Definitions> definitions;
 };
 }
 }
@@ -75,147 +82,151 @@ std::optional<Definitions> definitions;
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
-#include "Env.hpp"
+#include <nlohmann/json.hpp>
+
+#include "AmbitiousProperties.hpp"
+#include "Anet.hpp"
+#include "AnetItems.hpp"
+#include "Apparmor.hpp"
+#include "ApparmorProperties.hpp"
 #include "ArrayOfGIDsType.hpp"
 #include "ArrayOfGiDs.hpp"
-#include "FilePathType.hpp"
-#include "FilePath.hpp"
 #include "ArrayOfStrings.hpp"
-#include "BlockIODeviceProperties.hpp"
-#include "BlockIODevice.hpp"
-#include "PurpleProperties.hpp"
-#include "BlockIODeviceThrottleAllOf.hpp"
-#include "BlockIODeviceThrottle.hpp"
-#include "FluffyProperties.hpp"
-#include "BlockIODeviceWeightAllOf.hpp"
-#include "BlockIODeviceWeight.hpp"
-#include "NamespaceType.hpp"
-#include "DeviceProperties.hpp"
-#include "Device.hpp"
-#include "DeviceCgroupProperties.hpp"
-#include "DeviceCgroup.hpp"
-#include "FileMode.hpp"
-#include "FileType.hpp"
-#include "Pid.hpp"
-#include "HookProperties.hpp"
-#include "Hook.hpp"
-#include "IdMappingProperties.hpp"
-#include "IdMapping.hpp"
-#include "Major.hpp"
-#include "PatternProperties.hpp"
-#include "MapStringString.hpp"
-#include "MountProperties.hpp"
-#include "Mount.hpp"
-#include "NamespaceReferenceProperties.hpp"
-#include "NamespaceReference.hpp"
-#include "NetworkInterfacePriorityProperties.hpp"
-#include "NetworkInterfacePriority.hpp"
-#include "OciVersion.hpp"
-#include "PersonalityProperties.hpp"
-#include "Personality.hpp"
-#include "RdmaProperties.hpp"
-#include "Rdma.hpp"
-#include "Names.hpp"
-#include "SyscallProperties.hpp"
-#include "Syscall.hpp"
-#include "SyscallArgProperties.hpp"
-#include "SyscallArg.hpp"
-#include "TimeOffsetsProperties.hpp"
-#include "TimeOffsets.hpp"
-#include "Definitions.hpp"
-#include "ApparmorProperties.hpp"
-#include "Apparmor.hpp"
-#include "MemBWSchemaClass.hpp"
-#include "PurpleCapabilities.hpp"
-#include "CgroupProperties.hpp"
-#include "Cgroup.hpp"
-#include "IntelRdtProperties.hpp"
-#include "IntelRdt.hpp"
-#include "NamespacesItems.hpp"
-#include "Namespaces.hpp"
-#include "PersonalityClass.hpp"
-#include "BlockIOProperties.hpp"
 #include "BlockIO.hpp"
-#include "StickyProperties.hpp"
-#include "PurpleCPU.hpp"
-#include "IndigoProperties.hpp"
-#include "HugepageLimitsItems.hpp"
-#include "HugepageLimits.hpp"
-#include "IndecentProperties.hpp"
-#include "PurpleMemory.hpp"
-#include "HilariousProperties.hpp"
-#include "PurpleNetwork.hpp"
-#include "PidsProperties.hpp"
-#include "Pids.hpp"
-#include "RdmaClass.hpp"
-#include "TentacledProperties.hpp"
-#include "PurpleResources.hpp"
-#include "SeccompProperties.hpp"
-#include "Seccomp.hpp"
-#include "TimeOffsetsPropertiesClass.hpp"
-#include "TimeOffsetsClass.hpp"
-#include "LinuxProperties.hpp"
-#include "Linux.hpp"
-#include "HooksProperties.hpp"
-#include "Hooks.hpp"
+#include "BlockIODevice.hpp"
+#include "BlockIODeviceProperties.hpp"
+#include "BlockIODeviceThrottle.hpp"
+#include "BlockIODeviceThrottleAllOf.hpp"
+#include "BlockIODeviceWeight.hpp"
+#include "BlockIODeviceWeightAllOf.hpp"
+#include "BlockIOProperties.hpp"
 #include "CapabilitiesProperties.hpp"
-#include "FluffyCapabilities.hpp"
-#include "ConsoleSizeProperties.hpp"
-#include "ConsoleSize.hpp"
-#include "IoPriorityProperties.hpp"
-#include "IoPriority.hpp"
-#include "AmbitiousProperties.hpp"
-#include "RlimitsItems.hpp"
-#include "Rlimits.hpp"
-#include "SchedulerProperties.hpp"
-#include "Scheduler.hpp"
-#include "UserProperties.hpp"
-#include "User.hpp"
-#include "ProcessProperties.hpp"
-#include "Process.hpp"
-#include "RootProperties.hpp"
-#include "Root.hpp"
-#include "SchemaProperties.hpp"
-#include "CunningProperties.hpp"
-#include "AnetItems.hpp"
-#include "Anet.hpp"
-#include "CappedCPUProperties.hpp"
 #include "CappedCPU.hpp"
-#include "CappedMemoryProperties.hpp"
+#include "CappedCPUProperties.hpp"
 #include "CappedMemory.hpp"
-#include "SolarisProperties.hpp"
-#include "Solaris.hpp"
-#include "HypervisorProperties.hpp"
-#include "Hypervisor.hpp"
-#include "ImageProperties.hpp"
-#include "Image.hpp"
-#include "KernelProperties.hpp"
-#include "Kernel.hpp"
-#include "VmProperties.hpp"
-#include "Vm.hpp"
-#include "HypervProperties.hpp"
-#include "Hyperv.hpp"
-#include "LayerFolders.hpp"
-#include "MagentaProperties.hpp"
-#include "FluffyNetwork.hpp"
-#include "MischievousProperties.hpp"
+#include "CappedMemoryProperties.hpp"
+#include "Cgroup.hpp"
+#include "CgroupProperties.hpp"
+#include "ConsoleSize.hpp"
+#include "ConsoleSizeProperties.hpp"
+#include "CunningProperties.hpp"
+#include "Definitions.hpp"
+#include "Device.hpp"
+#include "DeviceCgroup.hpp"
+#include "DeviceCgroupProperties.hpp"
+#include "DeviceProperties.hpp"
+#include "Env.hpp"
+#include "FileMode.hpp"
+#include "FilePath.hpp"
+#include "FilePathType.hpp"
+#include "FileType.hpp"
 #include "FluffyCPU.hpp"
+#include "FluffyCapabilities.hpp"
 #include "FluffyMemory.hpp"
-#include "StorageProperties.hpp"
-#include "Storage.hpp"
-#include "FriskyProperties.hpp"
+#include "FluffyNetwork.hpp"
+#include "FluffyProperties.hpp"
 #include "FluffyResources.hpp"
-#include "WindowsProperties.hpp"
-#include "Windows.hpp"
-#include "ZosProperties.hpp"
-#include "Zos.hpp"
+#include "FriskyProperties.hpp"
+#include "HilariousProperties.hpp"
+#include "Hook.hpp"
+#include "HookProperties.hpp"
+#include "Hooks.hpp"
+#include "HooksProperties.hpp"
+#include "HugepageLimits.hpp"
+#include "HugepageLimitsItems.hpp"
+#include "Hyperv.hpp"
+#include "HypervProperties.hpp"
+#include "Hypervisor.hpp"
+#include "HypervisorProperties.hpp"
+#include "IdMapping.hpp"
+#include "IdMappingProperties.hpp"
+#include "Image.hpp"
+#include "ImageProperties.hpp"
+#include "IndecentProperties.hpp"
+#include "IndigoProperties.hpp"
+#include "IntelRdt.hpp"
+#include "IntelRdtProperties.hpp"
+#include "IoPriority.hpp"
+#include "IoPriorityProperties.hpp"
+#include "Kernel.hpp"
+#include "KernelProperties.hpp"
+#include "LayerFolders.hpp"
+#include "Linux.hpp"
+#include "LinuxProperties.hpp"
+#include "MagentaProperties.hpp"
+#include "Major.hpp"
+#include "MapStringString.hpp"
+#include "MemBWSchemaClass.hpp"
+#include "MischievousProperties.hpp"
+#include "Mount.hpp"
+#include "MountProperties.hpp"
+#include "Names.hpp"
+#include "NamespaceReference.hpp"
+#include "NamespaceReferenceProperties.hpp"
+#include "NamespaceType.hpp"
+#include "Namespaces.hpp"
+#include "NamespacesItems.hpp"
+#include "NetworkInterfacePriority.hpp"
+#include "NetworkInterfacePriorityProperties.hpp"
+#include "OciVersion.hpp"
+#include "PatternProperties.hpp"
+#include "Personality.hpp"
+#include "PersonalityClass.hpp"
+#include "PersonalityProperties.hpp"
+#include "Pid.hpp"
+#include "Pids.hpp"
+#include "PidsProperties.hpp"
+#include "Process.hpp"
+#include "ProcessProperties.hpp"
+#include "PurpleCPU.hpp"
+#include "PurpleCapabilities.hpp"
+#include "PurpleMemory.hpp"
+#include "PurpleNetwork.hpp"
+#include "PurpleProperties.hpp"
+#include "PurpleResources.hpp"
+#include "Rdma.hpp"
+#include "RdmaClass.hpp"
+#include "RdmaProperties.hpp"
+#include "Rlimits.hpp"
+#include "RlimitsItems.hpp"
+#include "Root.hpp"
+#include "RootProperties.hpp"
+#include "Scheduler.hpp"
+#include "SchedulerProperties.hpp"
 #include "Schema.hpp"
-namespace ocppi {
-namespace runtime {
-namespace config {
+#include "SchemaProperties.hpp"
+#include "Seccomp.hpp"
+#include "SeccompProperties.hpp"
+#include "Solaris.hpp"
+#include "SolarisProperties.hpp"
+#include "StickyProperties.hpp"
+#include "Storage.hpp"
+#include "StorageProperties.hpp"
+#include "Syscall.hpp"
+#include "SyscallArg.hpp"
+#include "SyscallArgProperties.hpp"
+#include "SyscallProperties.hpp"
+#include "TentacledProperties.hpp"
+#include "TimeOffsets.hpp"
+#include "TimeOffsetsClass.hpp"
+#include "TimeOffsetsProperties.hpp"
+#include "TimeOffsetsPropertiesClass.hpp"
+#include "User.hpp"
+#include "UserProperties.hpp"
+#include "Vm.hpp"
+#include "VmProperties.hpp"
+#include "Windows.hpp"
+#include "WindowsProperties.hpp"
+#include "Zos.hpp"
+#include "ZosProperties.hpp"
+#include "helper.hpp"
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 }
 }
 }

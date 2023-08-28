@@ -17,25 +17,28 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct HooksProperties {
-Env prestart;
-Env createRuntime;
-Env createContainer;
-Env startContainer;
-Env poststart;
-Env poststop;
+        Env prestart;
+        Env createRuntime;
+        Env createContainer;
+        Env startContainer;
+        Env poststart;
+        Env poststop;
 };
 }
 }
 }
-

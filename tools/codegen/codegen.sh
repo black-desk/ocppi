@@ -41,3 +41,5 @@ npx quicktype "$repoRoot/runtime-spec" \
 		} >"$filename"
 	done
 }
+
+find "$repoRoot/include/ocppi/runtime/config" -name *.hpp -exec clang-format -i \{\} \;

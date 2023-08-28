@@ -17,30 +17,36 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "FluffyProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct BlockIODeviceWeightAllOf {
-std::optional<std::wstring> ref;
-std::optional<FilePathType> type;
-std::optional<FluffyProperties> properties;
+        std::optional<std::wstring> ref;
+        std::optional<FilePathType> type;
+        std::optional<FluffyProperties> properties;
 };
 }
 }
 }
-

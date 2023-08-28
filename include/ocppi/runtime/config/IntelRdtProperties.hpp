@@ -17,26 +17,29 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "FilePath.hpp"
 #include "MemBWSchemaClass.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct IntelRdtProperties {
-std::optional<FilePath> closID;
-std::optional<FilePath> l3CacheSchema;
-std::optional<MemBWSchemaClass> memBWSchema;
-std::optional<FilePath> enableCMT;
-std::optional<FilePath> enableMBM;
-std::optional<FilePath> enabled;
+        std::optional<FilePath> closID;
+        std::optional<FilePath> l3CacheSchema;
+        std::optional<MemBWSchemaClass> memBWSchema;
+        std::optional<FilePath> enableCMT;
+        std::optional<FilePath> enableMBM;
+        std::optional<FilePath> enabled;
 };
 }
 }
 }
-

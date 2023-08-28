@@ -17,22 +17,25 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "Env.hpp"
+#include "NamespaceType.hpp"
 #include "helper.hpp"
 
-#include "NamespaceType.hpp"
-#include "Env.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct IoPriorityProperties {
-NamespaceType propertiesClass;
-Env priority;
+        NamespaceType propertiesClass;
+        Env priority;
 };
 }
 }
 }
-

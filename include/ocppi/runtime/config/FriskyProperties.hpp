@@ -17,24 +17,27 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "FluffyCPU.hpp"
+#include "FluffyMemory.hpp"
+#include "Storage.hpp"
 #include "helper.hpp"
 
-#include "FluffyMemory.hpp"
-#include "FluffyCPU.hpp"
-#include "Storage.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct FriskyProperties {
-FluffyMemory memory;
-FluffyCPU cpu;
-Storage storage;
+        FluffyMemory memory;
+        FluffyCPU cpu;
+        Storage storage;
 };
 }
 }
 }
-

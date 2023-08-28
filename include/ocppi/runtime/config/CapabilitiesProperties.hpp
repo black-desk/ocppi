@@ -17,24 +17,27 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "Env.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct CapabilitiesProperties {
-Env bounding;
-Env permitted;
-Env effective;
-Env inheritable;
-Env ambient;
+        Env bounding;
+        Env permitted;
+        Env effective;
+        Env inheritable;
+        Env ambient;
 };
 }
 }
 }
-

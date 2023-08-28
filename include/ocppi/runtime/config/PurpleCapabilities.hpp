@@ -17,29 +17,35 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "MemBWSchemaClass.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class ArrayOfGIDsType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct PurpleCapabilities {
-ArrayOfGIDsType type;
-MemBWSchemaClass items;
+        ArrayOfGIDsType type;
+        MemBWSchemaClass items;
 };
 }
 }
 }
-

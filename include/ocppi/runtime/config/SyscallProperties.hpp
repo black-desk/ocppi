@@ -17,25 +17,28 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "Env.hpp"
+#include "Names.hpp"
 #include "helper.hpp"
 
-#include "Names.hpp"
-#include "Env.hpp"
-#include "ArrayOfGiDs.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct SyscallProperties {
-Names names;
-Env action;
-Env errnoRet;
-ArrayOfGiDs args;
+        Names names;
+        Env action;
+        Env errnoRet;
+        ArrayOfGiDs args;
 };
 }
 }
 }
-

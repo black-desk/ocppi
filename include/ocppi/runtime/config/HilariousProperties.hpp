@@ -17,22 +17,25 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "Env.hpp"
 #include "helper.hpp"
 
-#include "Env.hpp"
-#include "ArrayOfGiDs.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct HilariousProperties {
-Env classID;
-ArrayOfGiDs priorities;
+        Env classID;
+        ArrayOfGiDs priorities;
 };
 }
 }
 }
-

@@ -17,34 +17,37 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
+#include "Env.hpp"
+#include "FilePath.hpp"
 #include "helper.hpp"
 
-#include "Env.hpp"
-#include "ArrayOfGiDs.hpp"
-#include "FilePath.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct SeccompProperties {
-std::optional<Env> defaultAction;
-std::optional<Env> defaultErrnoRet;
-std::optional<ArrayOfGiDs> flags;
-std::optional<FilePath> listenerPath;
-std::optional<FilePath> listenerMetadata;
-std::optional<ArrayOfGiDs> architectures;
-std::optional<ArrayOfGiDs> syscalls;
-std::optional<FilePath> enabled;
-std::optional<ArrayOfGiDs> actions;
-std::optional<ArrayOfGiDs> operators;
-std::optional<ArrayOfGiDs> archs;
-std::optional<ArrayOfGiDs> knownFlags;
-std::optional<ArrayOfGiDs> supportedFlags;
+        std::optional<Env> defaultAction;
+        std::optional<Env> defaultErrnoRet;
+        std::optional<ArrayOfGiDs> flags;
+        std::optional<FilePath> listenerPath;
+        std::optional<FilePath> listenerMetadata;
+        std::optional<ArrayOfGiDs> architectures;
+        std::optional<ArrayOfGiDs> syscalls;
+        std::optional<FilePath> enabled;
+        std::optional<ArrayOfGiDs> actions;
+        std::optional<ArrayOfGiDs> operators;
+        std::optional<ArrayOfGiDs> archs;
+        std::optional<ArrayOfGiDs> knownFlags;
+        std::optional<ArrayOfGiDs> supportedFlags;
 };
 }
 }
 }
-

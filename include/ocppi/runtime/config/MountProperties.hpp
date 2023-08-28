@@ -17,27 +17,30 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
+#include <nlohmann/json.hpp>
+
+#include "ArrayOfGiDs.hpp"
 #include "Env.hpp"
 #include "FilePath.hpp"
-#include "ArrayOfGiDs.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct MountProperties {
-Env source;
-Env destination;
-Env options;
-FilePath type;
-ArrayOfGiDs uidMappings;
-ArrayOfGiDs gidMappings;
+        Env source;
+        Env destination;
+        Env options;
+        FilePath type;
+        ArrayOfGiDs uidMappings;
+        ArrayOfGiDs gidMappings;
 };
 }
 }
 }
-

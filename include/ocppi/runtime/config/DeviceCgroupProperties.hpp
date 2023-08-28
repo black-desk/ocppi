@@ -17,25 +17,28 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
+
+#include "Env.hpp"
+#include "FilePath.hpp"
 #include "helper.hpp"
 
-#include "FilePath.hpp"
-#include "Env.hpp"
-
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct DeviceCgroupProperties {
-FilePath allow;
-FilePath type;
-Env major;
-Env minor;
-FilePath access;
+        FilePath allow;
+        FilePath type;
+        Env major;
+        Env minor;
+        FilePath access;
 };
 }
 }
 }
-

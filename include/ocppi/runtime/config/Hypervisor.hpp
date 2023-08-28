@@ -17,31 +17,37 @@
 #pragma once
 
 #include <optional>
+
 #include <nlohmann/json.hpp>
-#include "helper.hpp"
 
 #include "HypervisorProperties.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 enum class FilePathType : int;
 }
 }
 }
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct Hypervisor {
-std::wstring description;
-FilePathType type;
-std::vector<std::wstring> required;
-HypervisorProperties properties;
+        std::wstring description;
+        FilePathType type;
+        std::vector<std::wstring> required;
+        HypervisorProperties properties;
 };
 }
 }
 }
-

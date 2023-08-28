@@ -17,41 +17,44 @@
 #pragma once
 
 #include <optional>
-#include <nlohmann/json.hpp>
-#include "helper.hpp"
 
+#include <nlohmann/json.hpp>
+
+#include "ConsoleSize.hpp"
 #include "Env.hpp"
 #include "FilePath.hpp"
-#include "ConsoleSize.hpp"
-#include "User.hpp"
 #include "FluffyCapabilities.hpp"
 #include "IoPriority.hpp"
-#include "Scheduler.hpp"
 #include "Rlimits.hpp"
+#include "Scheduler.hpp"
+#include "User.hpp"
+#include "helper.hpp"
 
-namespace ocppi {
-namespace runtime {
-namespace config {
+namespace ocppi
+{
+namespace runtime
+{
+namespace config
+{
 using nlohmann::json;
 
 struct ProcessProperties {
-Env args;
-FilePath commandLine;
-ConsoleSize consoleSize;
-FilePath cwd;
-Env env;
-FilePath terminal;
-User user;
-FluffyCapabilities capabilities;
-FilePath apparmorProfile;
-FilePath oomScoreAdj;
-FilePath selinuxLabel;
-IoPriority ioPriority;
-FilePath noNewPrivileges;
-Scheduler scheduler;
-Rlimits rlimits;
+        Env args;
+        FilePath commandLine;
+        ConsoleSize consoleSize;
+        FilePath cwd;
+        Env env;
+        FilePath terminal;
+        User user;
+        FluffyCapabilities capabilities;
+        FilePath apparmorProfile;
+        FilePath oomScoreAdj;
+        FilePath selinuxLabel;
+        IoPriority ioPriority;
+        FilePath noNewPrivileges;
+        Scheduler scheduler;
+        Rlimits rlimits;
 };
 }
 }
 }
-
