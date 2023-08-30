@@ -1,0 +1,8 @@
+#pragma once
+
+namespace ocppi
+{
+
+constexpr auto semver = "@OCPPI_SEMVER@";
+
+}
