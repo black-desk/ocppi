@@ -156,6 +156,12 @@ target_sources (
                 ${CMAKE_CURRENT_BINARY_DIR}/include FILES ${HEADERS}
 )
 
+target_include_directories (
+        ocppi
+        PRIVATE
+                src ${CMAKE_CURRENT_BINARY_DIR}/src
+)
+
 target_compile_features (
         ocppi PUBLIC
                       cxx_std_17
