@@ -8,6 +8,8 @@
 
 #include "ocppi/cli/CLI.hpp"
 #include "ocppi/runtime/ContainerID.hpp"
+#include "ocppi/runtime/FeaturesOption.hpp"
+#include "ocppi/runtime/features/types/Features.hpp"
 #include "tl/expected.hpp"
 
 namespace ocppi
@@ -57,40 +59,36 @@ class CommonCLI : public virtual CLI {
         auto logger() const -> const std::unique_ptr<spdlog::logger> &;
 
         [[nodiscard]]
-        virtual auto generateGlobalOptions(const runtime::GlobalOption &option)
-                const noexcept -> std::vector<std::string>;
+        auto generateGlobalOptions(const runtime::GlobalOption &option)
+                const noexcept -> std::vector<std::string> override;
 
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::CreateOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::FeaturesOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::DeleteOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::CreateOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::ExecOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::DeleteOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::KillOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::ExecOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::ListOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::KillOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::StartOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::ListOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(
-                const runtime::StateOption &option) const noexcept
-                -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::StartOption &option)
+                const noexcept -> std::vector<std::string> override;
         [[nodiscard]]
-        virtual auto generateSubcommandOptions(const runtime::RunOption &option)
-                const noexcept -> std::vector<std::string>;
+        auto generateSubcommandOptions(const runtime::StateOption &option)
+                const noexcept -> std::vector<std::string> override;
+        [[nodiscard]]
+        auto generateSubcommandOptions(const runtime::RunOption &option)
+                const noexcept -> std::vector<std::string> override;
 
     public:
         CommonCLI(const CommonCLI &) = delete;
@@ -101,6 +99,15 @@ class CommonCLI : public virtual CLI {
 
         [[nodiscard]]
         auto bin() const noexcept -> const std::filesystem::path & override;
+
+        [[nodiscard]]
+        auto features() const noexcept
+                -> tl::expected<runtime::features::types::Features,
+                                std::exception_ptr> override;
+        [[nodiscard]]
+        auto features(const runtime::FeaturesOption &option) const noexcept
+                -> tl::expected<runtime::features::types::Features,
+                                std::exception_ptr> override;
 
         [[nodiscard]]
         auto state(const runtime::ContainerID &id) const noexcept

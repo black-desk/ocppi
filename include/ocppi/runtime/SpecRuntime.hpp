@@ -8,9 +8,11 @@
 #include "ocppi/runtime/ContainerID.hpp"
 #include "ocppi/runtime/CreateOption.hpp"
 #include "ocppi/runtime/DeleteOption.hpp"
+#include "ocppi/runtime/FeaturesOption.hpp"
 #include "ocppi/runtime/KillOption.hpp"
 #include "ocppi/runtime/StartOption.hpp"
 #include "ocppi/runtime/StateOption.hpp"
+#include "ocppi/runtime/features/types/Features.hpp"
 #include "ocppi/runtime/state/types/State.hpp"
 #include "tl/expected.hpp"
 
@@ -32,6 +34,15 @@ class SpecRuntime {
         auto operator=(const SpecRuntime &) -> SpecRuntime & = delete;
         auto operator=(SpecRuntime &&) -> SpecRuntime & = delete;
         virtual ~SpecRuntime() = default;
+
+        [[nodiscard]]
+        virtual auto features() const noexcept
+                -> tl::expected<features::types::Features,
+                                std::exception_ptr> = 0;
+        [[nodiscard]]
+        virtual auto features(const FeaturesOption &option) const noexcept
+                -> tl::expected<features::types::Features,
+                                std::exception_ptr> = 0;
 
         [[nodiscard]]
         virtual auto state(const ContainerID &id) const noexcept

@@ -29,7 +29,8 @@
 #include "ocppi/runtime/Signal.hpp"
 #include "ocppi/runtime/StartOption.hpp"
 #include "ocppi/runtime/StateOption.hpp"
-#include "ocppi/runtime/state/types/Generators.hpp" // IWYU pragma: keep
+#include "ocppi/runtime/features/types/Generators.hpp" // IWYU pragma: keep
+#include "ocppi/runtime/state/types/Generators.hpp"    // IWYU pragma: keep
 #include "ocppi/runtime/state/types/State.hpp"
 #include "ocppi/types/ContainerListItem.hpp"
 #include "ocppi/types/Generators.hpp" // IWYU pragma: keep
@@ -265,7 +266,6 @@ auto CommonCLI::run(const runtime::ContainerID &id,
         return this->run(id, pathToBundle, {});
 }
 
-[[nodiscard]]
 auto CommonCLI::run(const runtime::ContainerID &id,
                     const std::filesystem::path &pathToBundle,
                     const runtime::RunOption &option) noexcept
@@ -279,6 +279,23 @@ try {
                         this->generateGlobalOptions(opt), "run",
                         this->generateSubcommandOptions(opt), { id });
         return {};
+} catch (...) {
+        return tl::unexpected(std::current_exception());
+}
+
+auto CommonCLI::features() const noexcept
+        -> tl::expected<runtime::features::types::Features, std::exception_ptr>
+{
+        return this->features({});
+}
+
+auto CommonCLI::features(const runtime::FeaturesOption &option) const noexcept
+        -> tl::expected<runtime::features::types::Features, std::exception_ptr>
+try {
+        return doCommand<runtime::features::types::Features>(
+                this->bin(), this->logger(),
+                this->generateGlobalOptions(option), "features",
+                this->generateSubcommandOptions(option), {});
 } catch (...) {
         return tl::unexpected(std::current_exception());
 }
@@ -362,6 +379,12 @@ auto CommonCLI::generateSubcommandOptions(const runtime::StateOption &option)
 }
 
 auto CommonCLI::generateSubcommandOptions(const runtime::RunOption &option)
+        const noexcept -> std::vector<std::string>
+{
+        return option.extra;
+}
+
+auto CommonCLI::generateSubcommandOptions(const runtime::FeaturesOption &option)
         const noexcept -> std::vector<std::string>
 {
         return option.extra;
