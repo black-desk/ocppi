@@ -31,7 +31,7 @@ void from_json(const json & j, Status & x);
 void to_json(json & j, const Status & x);
 
 inline void from_json(const json & j, State& x) {
-x.annotations = get_stack_optional<std::map<std::string, nlohmann::json>>(j, "annotations");
+x.annotations = get_stack_optional<std::map<std::string, std::string>>(j, "annotations");
 x.bundle = j.at("bundle").get<std::string>();
 x.id = j.at("id").get<std::string>();
 x.ociVersion = j.at("ociVersion").get<std::string>();

@@ -41,7 +41,7 @@ using nlohmann::json;
 * Open Container Runtime State Schema
 */
 struct State {
-std::optional<std::map<std::string, nlohmann::json>> annotations;
+std::optional<std::map<std::string, std::string>> annotations;
 std::string bundle;
 /**
 * the container's ID
