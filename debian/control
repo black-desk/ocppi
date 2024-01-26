@@ -3,8 +3,7 @@ Maintainer: Chen Linxuan <me@black-desk.cn>
 Section: devel
 Priority: optional
 Standards-Version: 4.6.2
-Build-Depends: catch2,
-               cmake,
+Build-Depends: cmake,
                debhelper-compat (= 13),
                libboost-dev,
                libexpected-dev,
