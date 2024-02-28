@@ -18,6 +18,7 @@
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CommandFailedError.hpp"
+#include "ocppi/cli/ExecutableNotFoundError.hpp"
 #include "ocppi/runtime/ContainerID.hpp"
 #include "ocppi/runtime/CreateOption.hpp"
 #include "ocppi/runtime/DeleteOption.hpp"
@@ -96,7 +97,7 @@ CommonCLI::CommonCLI(std::filesystem::path bin,
         if (std::filesystem::exists(bin_)) {
                 return;
         }
-        throw std::system_error(ENOENT, std::generic_category());
+        throw ExecutableNotFoundError(bin_);
 }
 
 auto CommonCLI::bin() const noexcept -> const std::filesystem::path &

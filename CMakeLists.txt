@@ -117,6 +117,7 @@ pfl_add_library(
   ./src/ocppi/cli/CommandFailedError.cpp
   ./src/ocppi/cli/CommonCLI.cpp
   ./src/ocppi/cli/crun/Crun.cpp
+  ./src/ocppi/cli/ExecutableNotFoundError.cpp
   ./src/ocppi/cli/runc/Runc.cpp
   ./src/ocppi/cli/youki/Youki.cpp
   ./src/ocppi/configure.cpp
@@ -146,6 +147,7 @@ pfl_add_library(
   ./include/ocppi/cli/CommandFailedError.hpp
   ./include/ocppi/cli/CommonCLI.hpp
   ./include/ocppi/cli/crun/Crun.hpp
+  ./include/ocppi/cli/ExecutableNotFoundError.hpp
   ./include/ocppi/cli/runc/Runc.hpp
   ./include/ocppi/cli/youki/Youki.hpp
   ./include/ocppi/InvalidArgumentError.hpp
