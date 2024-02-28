@@ -113,6 +113,7 @@ pfl_add_library(
   include/ocppi/runtime/configure.hpp.in
   SOURCES
   # find -regex '\.\/src\/.*\.\(h\|c\)pp' | sort
+  ./src/ocppi/cli/CLI.cpp
   ./src/ocppi/cli/CommandFailedError.cpp
   ./src/ocppi/cli/CommonCLI.cpp
   ./src/ocppi/cli/crun/Crun.cpp
