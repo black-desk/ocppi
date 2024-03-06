@@ -261,6 +261,7 @@ pfl_add_library(
   EXAMPLES
   parse-config
   using-crun
+  use-default-logger
   LINK_LIBRARIES
   PUBLIC
   nlohmann_json::nlohmann_json

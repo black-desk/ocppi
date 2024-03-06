@@ -5,6 +5,7 @@
 #include <istream>
 #include <iterator>
 #include <map>
+#include <memory>
 #include <optional>
 #include <string>
 #include <system_error>
@@ -36,6 +37,7 @@
 #include "ocppi/types/ContainerListItem.hpp"
 #include "ocppi/types/Generators.hpp" // IWYU pragma: keep
 #include "spdlog/fmt/ranges.h"        // IWYU pragma: keep
+#include "spdlog/sinks/null_sink.h"
 #include "spdlog/spdlog.h"
 
 namespace spdlog
@@ -51,7 +53,7 @@ namespace
 
 template <typename Result>
 auto doCommand(const std::string &bin,
-               [[maybe_unused]] const std::unique_ptr<spdlog::logger> &logger,
+               [[maybe_unused]] const std::shared_ptr<spdlog::logger> &logger,
                std::vector<std::string> &&globalOption,
                const std::string &command, std::vector<std::string> &&options,
                std::vector<std::string> &&arguments) -> Result
@@ -90,9 +92,11 @@ auto doCommand(const std::string &bin,
 }
 
 CommonCLI::CommonCLI(std::filesystem::path bin,
-                     const std::unique_ptr<spdlog::logger> &logger)
+                     const std::shared_ptr<spdlog::logger> &logger)
         : bin_(std::move(bin))
-        , logger_(std::move(logger))
+        , logger_(logger != nullptr ?
+                          logger :
+                          spdlog::create<spdlog::sinks::null_sink_st>(""))
 {
         if (std::filesystem::exists(bin_)) {
                 return;
@@ -105,8 +109,9 @@ auto CommonCLI::bin() const noexcept -> const std::filesystem::path &
         return this->bin_;
 }
 
-auto CommonCLI::logger() const -> const std::unique_ptr<spdlog::logger> &
+auto CommonCLI::logger() const -> const std::shared_ptr<spdlog::logger> &
 {
+        assert(this->logger_ != nullptr);
         return this->logger_;
 }
 
