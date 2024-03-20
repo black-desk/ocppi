@@ -16,39 +16,87 @@ option(OCPPI_BUILD_SHARED_LIBRARY "Build a shared library or not"
 
 option(OCPPI_INSTALL "Enable install target or not" ${PROJECT_IS_TOP_LEVEL})
 
+option(OCPPI_USE_VENDOR_EXPECTED
+       "Use tl::expected which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_SEMVER "Use semver which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_JSON "Use nlohmann_json which from vendor of project."
+       OFF)
+
+option(OCPPI_USE_VENDOR_SPDLOG "Use spdlog which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_ALL
+       "Use all external dependencies which from vendor of project." OFF)
+
 include(./cmake/CPM.cmake)
 
-CPMFindPackage(
-  NAME expected
-  VERSION 1.0.0
-  GITHUB_REPOSITORY TartanLlama/expected
-  GIT_TAG v1.1.0
-  GIT_SHALLOW ON
-  OPTIONS "EXPECTED_BUILD_TESTS OFF"
-  FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
-  EXCLUDE_FROM_ALL ON)
+if(OCPPI_USE_VENDOR_ALL)
 
-if(NOT TARGET tl::expected)
-  # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias so we
-  # have to add it here.
-  add_library(tl::expected ALIAS expected)
+  set(OCPPI_USE_VENDOR_EXPECTED ON)
+  set(OCPPI_USE_VENDOR_SEMVER ON)
+  set(OCPPI_USE_VENDOR_JSON ON)
+  set(OCPPI_USE_VENDOR_SPDLOG ON)
+
 endif()
 
-CPMFindPackage(
-  NAME semver
-  VERSION 0.3.0
-  GITHUB_REPOSITORY Neargye/Semver
-  GIT_TAG v0.3.0
-  GIT_SHALLOW ON
-  GIT_PROGRESS ON
-  EXCLUDE_FROM_ALL ON)
+if(OCPPI_USE_VENDOR_EXPECTED)
+  add_subdirectory(external/expected EXCLUDE_FROM_ALL)
+  set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
+else()
+  CPMFindPackage(
+    NAME expected
+    VERSION 1.0.0
+    GITHUB_REPOSITORY TartanLlama/expected
+    GIT_TAG v1.1.0
+    GIT_SHALLOW ON
+    OPTIONS "EXPECTED_BUILD_TESTS OFF"
+    FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
+    EXCLUDE_FROM_ALL ON)
+endif()
 
-CPMFindPackage(
-  NAME nlohmann_json
-  VERSION 3.11.2
-  URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
-  EXCLUDE_FROM_ALL ON
-  OPTIONS "JSON_Install ON")
+if(OCPPI_USE_VENDOR_SEMVER)
+  add_subdirectory(external/semver EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME semver
+    VERSION 0.3.0
+    GITHUB_REPOSITORY Neargye/Semver
+    GIT_TAG v0.3.1
+    GIT_SHALLOW ON
+    GIT_PROGRESS ON
+    EXCLUDE_FROM_ALL ON)
+endif()
+
+if(OCPPI_USE_VENDOR_JSON)
+  set(JSON_Install ON)
+  add_subdirectory(external/json EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME nlohmann_json
+    VERSION 3.11.2
+    URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
+    EXCLUDE_FROM_ALL ON
+    OPTIONS "JSON_Install ON")
+endif()
+
+if(OCPPI_USE_VENDOR_SPDLOG)
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+  add_subdirectory(external/spdlog EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME spdlog
+    VERSION 1.10.0
+    GITHUB_REPOSITORY "gabime/spdlog"
+    GIT_TAG "v1.13.0"
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL ON
+    OPTIONS
+      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                           # https://github.com/gabime/spdlog/issues/1190
+  )
+
+endif()
 
 CPMFindPackage(
   NAME Boost COMPONENTS headers
@@ -60,26 +108,11 @@ if(NOT TARGET Boost::process)
   add_library(Boost::process ALIAS Boost::headers)
 endif()
 
-CPMFindPackage(
-  NAME fmt
-  VERSION 9.1.0
-  GITHUB_REPOSITORY "fmtlib/fmt"
-  GIT_TAG "10.2.1"
-  GIT_SHALLOW ON
-  EXCLUDE_FROM_ALL ON
-  OPTIONS "CMAKE_POSITION_INDEPENDENT_CODE ON")
-
-CPMFindPackage(
-  NAME spdlog
-  VERSION 1.10.0
-  GITHUB_REPOSITORY "gabime/spdlog"
-  GIT_TAG "v1.13.0"
-  GIT_SHALLOW ON
-  EXCLUDE_FROM_ALL ON
-  OPTIONS
-    "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                         # https://github.com/gabime/spdlog/issues/1190
-    "SPDLOG_FMT_EXTERNAL ON")
+if(NOT TARGET tl::expected)
+  # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias so we
+  # have to add it here.
+  add_library(tl::expected ALIAS expected)
+endif()
 
 include(./cmake/GitSemver.cmake)
 
