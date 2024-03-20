@@ -1,0 +1,144 @@
+{
+    "version": 6,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 25,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "OnlineRelease",
+            "displayName": "Default configuration",
+            "description": "Configure ocppi for installing from source.",
+            "binaryDir": "${sourceDir}/build-release",
+            "cacheVariables": {
+                "CPM_DOWNLOAD_ALL": true,
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -O2",
+                "CMAKE_COLOR_DIAGNOSTICS": true
+            }
+        },
+        {
+            "name": "VendorRelease",
+            "displayName": "Default configuration with vendor dependencies",
+            "description": "Configure ocppi for installing from source.",
+            "binaryDir": "${sourceDir}/build-vendorRelease",
+            "cacheVariables": {
+                "OCPPI_USE_VENDOR_ALL": true,
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -O2",
+                "CMAKE_COLOR_DIAGNOSTICS": true
+            }
+        },
+        {
+            "name": "OnlineDebug",
+            "displayName": "Debug configuration",
+            "description": "Configure ocppi for development and debugging.",
+            "binaryDir": "${sourceDir}/build-debug",
+            "cacheVariables": {
+                "CPM_DOWNLOAD_ALL": true,
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Og -g -fsanitize=address,undefined",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_COLOR_DIAGNOSTICS": true
+            }
+        },
+        {
+            "name": "VendorDebug",
+            "displayName": "Debug configuration with vendor dependencies",
+            "description": "Configure ocppi for development and debugging.",
+            "binaryDir": "${sourceDir}/build-vendorDebug",
+            "cacheVariables": {
+                "OCPPI_USE_VENDOR_ALL": true,
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Og -g -fsanitize=address,undefined",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": true,
+                "CMAKE_COLOR_DIAGNOSTICS": true
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "OnlineRelease",
+            "displayName": "Default build",
+            "description": "Build ocppi for installing from source.",
+            "configurePreset": "OnlineRelease"
+        },
+        {
+            "name": "VendorRelease",
+            "displayName": "Default build with vendor dependencies",
+            "description": "Build ocppi for installing from source.",
+            "configurePreset": "VendorRelease"
+        },
+        {
+            "name": "OnlineDebug",
+            "displayName": "Debug build",
+            "description": "Build ocppi for development and debugging.",
+            "configurePreset": "OnlineDebug"
+        },
+        {
+            "name": "VendorDebug",
+            "displayName": "Debug build",
+            "description": "Build ocppi for development and debugging with vendor dependencies",
+            "configurePreset": "VendorDebug"
+        }
+    ],
+    "workflowPresets": [
+        {
+            "name": "OnlineRelease",
+            "displayName": "Default workflow",
+            "description": "Configure, build then test for installing ocppi from source.",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "OnlineRelease"
+                },
+                {
+                    "type": "build",
+                    "name": "OnlineRelease"
+                }
+            ]
+        },
+        {
+            "name": "VendorRelease",
+            "displayName": "Default workflow with vendor dependencies",
+            "description": "Configure, build then test for installing ocppi from source.",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "VendorRelease"
+                },
+                {
+                    "type": "build",
+                    "name": "VendorRelease"
+                }
+            ]
+        },
+        {
+            "name": "OnlineDebug",
+            "displayName": "Workflow for developers",
+            "description": "Configure, build then test for developing and debuging ocppi.",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "OnlineDebug"
+                },
+                {
+                    "type": "build",
+                    "name": "OnlineDebug"
+                }
+            ]
+        },
+        {
+            "name": "VendorDebug",
+            "displayName": "Workflow for developers with vendor dependencies",
+            "description": "Configure, build then test for developing and debuging ocppi.",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "VendorDebug"
+                },
+                {
+                    "type": "build",
+                    "name": "VendorDebug"
+                }
+            ]
+        }
+    ]
+}
