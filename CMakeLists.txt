@@ -40,13 +40,15 @@ if(OCPPI_USE_VENDOR_ALL)
 
 endif()
 
+set(TL_EXPECTED_MINIMAL_VERSION 1.0.0)
+
 if(OCPPI_USE_VENDOR_EXPECTED)
   add_subdirectory(external/expected EXCLUDE_FROM_ALL)
   set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
 else()
   CPMFindPackage(
     NAME expected
-    VERSION 1.0.0
+    VERSION ${TL_EXPECTED_MINIMAL_VERSION}
     GITHUB_REPOSITORY TartanLlama/expected
     GIT_TAG v1.1.0
     GIT_SHALLOW ON
@@ -68,13 +70,15 @@ else()
     EXCLUDE_FROM_ALL ON)
 endif()
 
+set(JSON_MINIMAL_VERSION 3.11.2)
+
 if(OCPPI_USE_VENDOR_JSON)
   set(JSON_Install ON)
   add_subdirectory(external/json EXCLUDE_FROM_ALL)
 else()
   CPMFindPackage(
     NAME nlohmann_json
-    VERSION 3.11.2
+    VERSION ${JSON_MINIMAL_VERSION}
     URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
     EXCLUDE_FROM_ALL ON
     OPTIONS "JSON_Install ON")
