@@ -12,14 +12,11 @@
 #include <utility>
 #include <vector>
 
-#include "boost/process/args.hpp"
-#include "boost/process/io.hpp"
-#include "boost/process/pipe.hpp"
-#include "boost/process/system.hpp"
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CommandFailedError.hpp"
 #include "ocppi/cli/ExecutableNotFoundError.hpp"
+#include "ocppi/cli/Process.hpp"
 #include "ocppi/runtime/ContainerID.hpp"
 #include "ocppi/runtime/CreateOption.hpp"
 #include "ocppi/runtime/DeleteOption.hpp"
@@ -69,22 +66,19 @@ auto doCommand(const std::string &bin,
                             args);
 
         if constexpr (std::is_void_v<Result>) {
-                auto ret = boost::process::system(
-                        bin, boost::process::args(std::move(args)));
+                auto ret = runProcess(bin, args);
                 if (ret != 0) {
                         throw CommandFailedError(ret, bin);
                 }
                 return;
         } else {
-                boost::process::ipstream out_ips;
-                auto ret = boost::process::system(
-                        bin, boost::process::args(std::move(args)),
-                        boost::process::std_out > out_ips);
+                std::string output;
+                auto ret = runProcess(bin, args, output);
                 if (ret != 0) {
                         throw CommandFailedError(ret, bin);
                 }
 
-                auto json_result = nlohmann::json::parse(out_ips);
+                auto json_result = nlohmann::json::parse(output);
                 return json_result.get<Result>();
         }
 }

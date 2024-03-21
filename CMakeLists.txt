@@ -98,16 +98,6 @@ else()
 
 endif()
 
-CPMFindPackage(
-  NAME Boost COMPONENTS headers
-  VERSION 1.64.0
-  URL "https://github.com/boostorg/boost/releases/download/boost-1.84.0/boost-1.84.0.7z"
-  EXCLUDE_FROM_ALL ON)
-
-if(NOT TARGET Boost::process)
-  add_library(Boost::process ALIAS Boost::headers)
-endif()
-
 if(NOT TARGET tl::expected)
   # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias so we
   # have to add it here.
@@ -151,6 +141,8 @@ pfl_add_library(
   ./src/ocppi/cli/CommonCLI.cpp
   ./src/ocppi/cli/crun/Crun.cpp
   ./src/ocppi/cli/ExecutableNotFoundError.cpp
+  ./src/ocppi/cli/Process.cpp
+  ./src/ocppi/cli/Process.hpp
   ./src/ocppi/cli/runc/Runc.cpp
   ./src/ocppi/cli/youki/Youki.cpp
   ./src/ocppi/configure.cpp
@@ -302,7 +294,6 @@ pfl_add_library(
   PRIVATE
   spdlog::spdlog
   semver::semver
-  Boost::process
   COMPILE_FEATURES
   PUBLIC
   cxx_std_17)
