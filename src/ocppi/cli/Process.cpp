@@ -8,7 +8,12 @@
 #include <string>
 #include <vector>
 
+#include "spdlog/spdlog.h"
+#if !defined(SPDLOG_FMT_EXTERNAL)
 #include "spdlog/fmt/bundled/format.h"
+#else
+#include "fmt/format.h"
+#endif
 
 int runProcess(const std::string &binaryPath,
                const std::vector<std::string> &args, std::string &output)
