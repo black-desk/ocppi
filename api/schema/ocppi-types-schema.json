@@ -1,8 +1,9 @@
 {
-        "description": "Container list item, compatible wity crun.",
+        "description": "Extra types used by ocppi API.",
         "$schema": "http://json-schema.org/draft-04/schema#",
         "$defs": {
                 "ContainerListItem": {
+                        "description": "Container list item, compatible wity crun.",
                         "type": "object",
                         "properties": {
                                 "id": {
@@ -38,7 +39,7 @@
         },
         "type": "object",
         "properties": {
-                "containerListItem": {
+                "ContainerListItem": {
                         "$ref": "#/$defs/ContainerListItem"
                 }
         },

@@ -1,13 +1,14 @@
 # codegen
 
-[codegen.sh](./codegen.sh) use [quicktype] to
+[codegen.sh](../codegen.sh) use [quicktype] to
 generate json (de)serializing code in libs/runtime/include
-from [runtime-spec].
+from [runtime-spec] and some extra types we need.
 
 [quicktype]: https://github.com/glideapps/quicktype
 [runtime-spec]: https://github.com/opencontainers/runtime-spec
 
-The generated code needs to apply a little [patch](./fix.patch) to compile.
+The generated code needs to apply a little [patch](./fix.patch),
+as [quicktype] is not working very well.
 
 You can recreate that patch follow these instructions:
 

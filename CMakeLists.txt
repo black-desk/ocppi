@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.23)
 project(
   ocppi
   LANGUAGES CXX
-  VERSION 0.2.2)
+  VERSION 0.2.3)
 
 option(OCPPI_BUILD_EXAMPLES "Build examples of ocppi or not"
        ${PROJECT_IS_TOP_LEVEL})
@@ -16,70 +16,97 @@ option(OCPPI_BUILD_SHARED_LIBRARY "Build a shared library or not"
 
 option(OCPPI_INSTALL "Enable install target or not" ${PROJECT_IS_TOP_LEVEL})
 
+option(OCPPI_USE_VENDOR_EXPECTED
+       "Use tl::expected which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_SEMVER "Use semver which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_JSON "Use nlohmann_json which from vendor of project."
+       OFF)
+
+option(OCPPI_USE_VENDOR_SPDLOG "Use spdlog which from vendor of project." OFF)
+
+option(OCPPI_USE_VENDOR_ALL
+       "Use all external dependencies which from vendor of project." OFF)
+
 include(./cmake/CPM.cmake)
 
-CPMFindPackage(
-  NAME expected
-  VERSION 1.0.0
-  GITHUB_REPOSITORY TartanLlama/expected
-  GIT_TAG v1.1.0
-  GIT_SHALLOW ON
-  OPTIONS "EXPECTED_BUILD_TESTS OFF"
-  FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
-  EXCLUDE_FROM_ALL ON)
+if(OCPPI_USE_VENDOR_ALL)
+
+  set(OCPPI_USE_VENDOR_EXPECTED ON)
+  set(OCPPI_USE_VENDOR_SEMVER ON)
+  set(OCPPI_USE_VENDOR_JSON ON)
+  set(OCPPI_USE_VENDOR_SPDLOG ON)
+
+endif()
+
+set(TL_EXPECTED_MINIMAL_VERSION 1.0.0)
+
+if(OCPPI_USE_VENDOR_EXPECTED)
+  add_subdirectory(external/expected EXCLUDE_FROM_ALL)
+  set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
+else()
+  CPMFindPackage(
+    NAME expected
+    VERSION ${TL_EXPECTED_MINIMAL_VERSION}
+    GITHUB_REPOSITORY TartanLlama/expected
+    GIT_TAG v1.1.0
+    GIT_SHALLOW ON
+    OPTIONS "EXPECTED_BUILD_TESTS OFF"
+    FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
+    EXCLUDE_FROM_ALL ON)
+endif()
+
+if(OCPPI_USE_VENDOR_SEMVER)
+  add_subdirectory(external/semver EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME semver
+    VERSION 0.3.0
+    GITHUB_REPOSITORY Neargye/Semver
+    GIT_TAG v0.3.1
+    GIT_SHALLOW ON
+    GIT_PROGRESS ON
+    EXCLUDE_FROM_ALL ON)
+endif()
+
+set(JSON_MINIMAL_VERSION 3.11.2)
+
+if(OCPPI_USE_VENDOR_JSON)
+  set(JSON_Install ON)
+  add_subdirectory(external/json EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME nlohmann_json
+    VERSION ${JSON_MINIMAL_VERSION}
+    URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
+    EXCLUDE_FROM_ALL ON
+    OPTIONS "JSON_Install ON")
+endif()
+
+if(OCPPI_USE_VENDOR_SPDLOG)
+  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+  add_subdirectory(external/spdlog EXCLUDE_FROM_ALL)
+else()
+  CPMFindPackage(
+    NAME spdlog
+    VERSION 1.10.0
+    GITHUB_REPOSITORY "gabime/spdlog"
+    GIT_TAG "v1.13.0"
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL ON
+    OPTIONS
+      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                           # https://github.com/gabime/spdlog/issues/1190
+  )
+
+endif()
 
 if(NOT TARGET tl::expected)
   # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias so we
   # have to add it here.
   add_library(tl::expected ALIAS expected)
 endif()
-
-CPMFindPackage(
-  NAME semver
-  VERSION 0.3.0
-  GITHUB_REPOSITORY Neargye/Semver
-  GIT_TAG v0.3.0
-  GIT_SHALLOW ON
-  GIT_PROGRESS ON
-  EXCLUDE_FROM_ALL ON)
-
-CPMFindPackage(
-  NAME nlohmann_json
-  VERSION 3.11.2
-  URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
-  EXCLUDE_FROM_ALL ON
-  OPTIONS "JSON_Install ON")
-
-CPMFindPackage(
-  NAME Boost COMPONENTS headers
-  VERSION 1.64.0
-  URL "https://github.com/boostorg/boost/releases/download/boost-1.84.0/boost-1.84.0.7z"
-  EXCLUDE_FROM_ALL ON)
-
-if(NOT TARGET Boost::process)
-  add_library(Boost::process ALIAS Boost::headers)
-endif()
-
-CPMFindPackage(
-  NAME fmt
-  VERSION 9.1.0
-  GITHUB_REPOSITORY "fmtlib/fmt"
-  GIT_TAG "10.2.1"
-  GIT_SHALLOW ON
-  EXCLUDE_FROM_ALL ON
-  OPTIONS "CMAKE_POSITION_INDEPENDENT_CODE ON")
-
-CPMFindPackage(
-  NAME spdlog
-  VERSION 1.10.0
-  GITHUB_REPOSITORY "gabime/spdlog"
-  GIT_TAG "v1.13.0"
-  GIT_SHALLOW ON
-  EXCLUDE_FROM_ALL ON
-  OPTIONS
-    "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                         # https://github.com/gabime/spdlog/issues/1190
-    "SPDLOG_FMT_EXTERNAL ON")
 
 include(./cmake/GitSemver.cmake)
 
@@ -92,7 +119,7 @@ set(OCPPI_LIBRARY_TYPE "STATIC")
 if(OCPPI_BUILD_SHARED_LIBRARY)
   set(OCPPI_LIBRARY_TYPE "SHARED")
 endif()
-set(OCPPI_SOVERSION 1)
+set(OCPPI_SOVERSION 0)
 
 set(CMAKE_CXX_FLAGS_DEBUG "-DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE")
 
@@ -113,9 +140,13 @@ pfl_add_library(
   include/ocppi/runtime/configure.hpp.in
   SOURCES
   # find -regex '\.\/src\/.*\.\(h\|c\)pp' | sort
+  ./src/ocppi/cli/CLI.cpp
   ./src/ocppi/cli/CommandFailedError.cpp
   ./src/ocppi/cli/CommonCLI.cpp
   ./src/ocppi/cli/crun/Crun.cpp
+  ./src/ocppi/cli/ExecutableNotFoundError.cpp
+  ./src/ocppi/cli/Process.cpp
+  ./src/ocppi/cli/Process.hpp
   ./src/ocppi/cli/runc/Runc.cpp
   ./src/ocppi/cli/youki/Youki.cpp
   ./src/ocppi/configure.cpp
@@ -145,6 +176,7 @@ pfl_add_library(
   ./include/ocppi/cli/CommandFailedError.hpp
   ./include/ocppi/cli/CommonCLI.hpp
   ./include/ocppi/cli/crun/Crun.hpp
+  ./include/ocppi/cli/ExecutableNotFoundError.hpp
   ./include/ocppi/cli/runc/Runc.hpp
   ./include/ocppi/cli/youki/Youki.hpp
   ./include/ocppi/InvalidArgumentError.hpp
@@ -258,6 +290,7 @@ pfl_add_library(
   EXAMPLES
   parse-config
   using-crun
+  use-default-logger
   LINK_LIBRARIES
   PUBLIC
   nlohmann_json::nlohmann_json
@@ -265,7 +298,6 @@ pfl_add_library(
   PRIVATE
   spdlog::spdlog
   semver::semver
-  Boost::process
   COMPILE_FEATURES
   PUBLIC
   cxx_std_17)

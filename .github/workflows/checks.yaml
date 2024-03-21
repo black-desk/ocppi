@@ -8,6 +8,7 @@ jobs:
     permissions:
       checks: write
       contents: read
+      issues: write
       pull-requests: write
     runs-on: ubuntu-latest
     steps:
@@ -17,16 +18,17 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        type: [Debug, Release, RelWithDebInfo]
+        type: [Debug, Release]
+        dependency: [Vendor, Online]
         cxx: [g++, clang++]
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: hendrikmuhs/ccache-action@v1.2
-        with:
-          key: ${{ matrix.cxx }}-${{ matrix.type }}
+      # - uses: hendrikmuhs/ccache-action@v1.2
+        # with:
+          # key: ${{ matrix.cxx }}-${{ matrix.type }}
       - name: Cache CPM.cmake Source
         uses: actions/cache@v4
         with:
@@ -49,8 +51,8 @@ jobs:
           export CFLAGS="$CFLAGS -Wno-extra-semi -Wno-unused-command-line-argument -Wno-gnu-zero-variadic-macro-arguments" &&
           export CFLAGS="$CFLAGS -fsanitize=address,undefined" &&
           export CXXFLAGS="$CFLAGS" &&
-          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.type }}&&
-          cmake --build build -j
+          cmake --preset ${{ matrix.dependency }}${{ matrix.type }} &&
+          cmake --build --preset ${{ matrix.dependency }}${{ matrix.type }} -j
       - name: Run tests
         if: ${{ false }} # This project has no tests for now.
         run: |

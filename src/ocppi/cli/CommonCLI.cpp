@@ -5,19 +5,18 @@
 #include <istream>
 #include <iterator>
 #include <map>
+#include <memory>
 #include <optional>
 #include <string>
 #include <system_error>
 #include <utility>
 #include <vector>
 
-#include "boost/process/args.hpp"
-#include "boost/process/io.hpp"
-#include "boost/process/pipe.hpp"
-#include "boost/process/system.hpp"
 #include "nlohmann/json.hpp"
 #include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CommandFailedError.hpp"
+#include "ocppi/cli/ExecutableNotFoundError.hpp"
+#include "ocppi/cli/Process.hpp"
 #include "ocppi/runtime/ContainerID.hpp"
 #include "ocppi/runtime/CreateOption.hpp"
 #include "ocppi/runtime/DeleteOption.hpp"
@@ -35,6 +34,7 @@
 #include "ocppi/types/ContainerListItem.hpp"
 #include "ocppi/types/Generators.hpp" // IWYU pragma: keep
 #include "spdlog/fmt/ranges.h"        // IWYU pragma: keep
+#include "spdlog/sinks/null_sink.h"
 #include "spdlog/spdlog.h"
 
 namespace spdlog
@@ -50,7 +50,7 @@ namespace
 
 template <typename Result>
 auto doCommand(const std::string &bin,
-               [[maybe_unused]] const std::unique_ptr<spdlog::logger> &logger,
+               [[maybe_unused]] const std::shared_ptr<spdlog::logger> &logger,
                std::vector<std::string> &&globalOption,
                const std::string &command, std::vector<std::string> &&options,
                std::vector<std::string> &&arguments) -> Result
@@ -66,22 +66,19 @@ auto doCommand(const std::string &bin,
                             args);
 
         if constexpr (std::is_void_v<Result>) {
-                auto ret = boost::process::system(
-                        bin, boost::process::args(std::move(args)));
+                auto ret = runProcess(bin, args);
                 if (ret != 0) {
                         throw CommandFailedError(ret, bin);
                 }
                 return;
         } else {
-                boost::process::ipstream out_ips;
-                auto ret = boost::process::system(
-                        bin, boost::process::args(std::move(args)),
-                        boost::process::std_out > out_ips);
+                std::string output;
+                auto ret = runProcess(bin, args, output);
                 if (ret != 0) {
                         throw CommandFailedError(ret, bin);
                 }
 
-                auto json_result = nlohmann::json::parse(out_ips);
+                auto json_result = nlohmann::json::parse(output);
                 return json_result.get<Result>();
         }
 }
@@ -89,14 +86,16 @@ auto doCommand(const std::string &bin,
 }
 
 CommonCLI::CommonCLI(std::filesystem::path bin,
-                     const std::unique_ptr<spdlog::logger> &logger)
+                     const std::shared_ptr<spdlog::logger> &logger)
         : bin_(std::move(bin))
-        , logger_(std::move(logger))
+        , logger_(logger != nullptr ?
+                          logger :
+                          spdlog::create<spdlog::sinks::null_sink_st>(""))
 {
         if (std::filesystem::exists(bin_)) {
                 return;
         }
-        throw std::system_error(ENOENT, std::generic_category());
+        throw ExecutableNotFoundError(bin_);
 }
 
 auto CommonCLI::bin() const noexcept -> const std::filesystem::path &
@@ -104,8 +103,9 @@ auto CommonCLI::bin() const noexcept -> const std::filesystem::path &
         return this->bin_;
 }
 
-auto CommonCLI::logger() const -> const std::unique_ptr<spdlog::logger> &
+auto CommonCLI::logger() const -> const std::shared_ptr<spdlog::logger> &
 {
+        assert(this->logger_ != nullptr);
         return this->logger_;
 }
 

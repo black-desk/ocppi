@@ -12,7 +12,7 @@ if(PFL_INITIALIZED)
   return()
 endif()
 
-set_property(GLOBAL PROPERTY PFL_INITIALIZED true)
+message(STATUS "PFL: --==Version: v0.2.12==--")
 
 # You should call this function in your top level CMakeLists.txt to tell
 # PFL.cmake some global settings about your project.
@@ -25,8 +25,6 @@ set_property(GLOBAL PROPERTY PFL_INITIALIZED true)
 function(pfl_init)
   cmake_parse_arguments(PFL_INIT "" "INSTALL;ENABLE_TESTING;BUILD_EXAMPLES"
                         "EXTERNALS" ${ARGN})
-
-  message(STATUS "PFL: --==Version: v0.2.10==--")
 
   set(PFL_ENABLE_TESTING
       ${PFL_INIT_ENABLE_TESTING}
@@ -215,11 +213,10 @@ function(pfl_add_library)
   else()
     add_library("${TARGET_NAME}" ${PFL_ADD_LIBRARY_TYPE}
                                  ${PFL_ADD_LIBRARY_SOURCES})
-  endif()
-
-  if(PFL_ADD_LIBRARY_SOVERSION AND NOT PFL_ADD_LIBRARY_HEADER_ONLY)
-    set_target_properties("${TARGET_NAME}"
-                          PROPERTIES SOVERSION ${PFL_ADD_LIBRARY_SOVERSION})
+    if(NOT "${PFL_ADD_LIBRARY_SOVERSION}" STREQUAL "")
+      set_target_properties("${TARGET_NAME}"
+                            PROPERTIES SOVERSION ${PFL_ADD_LIBRARY_SOVERSION})
+    endif()
   endif()
 
   if(NOT "${TARGET_ALIAS}" STREQUAL "${TARGET_NAME}")
@@ -464,3 +461,5 @@ function(pfl_add_executable)
     DESTINATION ${CMAKE_INSTALL_BINDIR}/${PFL_ADD_EXECUTABLE_INSTALL_PREFIX})
 
 endfunction()
+
+set_property(GLOBAL PROPERTY PFL_INITIALIZED true)

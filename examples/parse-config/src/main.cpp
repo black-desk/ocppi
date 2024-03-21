@@ -30,7 +30,7 @@ class sink;
 } // namespace sinks
 } // namespace spdlog
 
-void printException(const std::unique_ptr<spdlog::logger> &logger,
+void printException(const std::shared_ptr<spdlog::logger> &logger,
                     std::string_view msg, std::exception_ptr ptr) noexcept
 try {
         std::rethrow_exception(ptr);
@@ -42,7 +42,7 @@ try {
 
 int main()
 {
-        std::unique_ptr<spdlog::logger> logger;
+        std::shared_ptr<spdlog::logger> logger;
         {
                 auto sinks = std::vector<std::shared_ptr<spdlog::sinks::sink>>(
                         { std::make_shared<spdlog::sinks::systemd_sink_mt>(
@@ -52,7 +52,7 @@ int main()
                                         spdlog::sinks::stderr_color_sink_mt>());
                 }
 
-                logger = std::make_unique<spdlog::logger>(
+                logger = std::make_shared<spdlog::logger>(
                         "ocppi", sinks.begin(), sinks.end());
 
                 logger->set_level(spdlog::level::trace);

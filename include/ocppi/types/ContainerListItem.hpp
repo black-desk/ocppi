@@ -19,8 +19,15 @@
 
 namespace ocppi {
 namespace types {
+/**
+* Container list item, compatible wity crun.
+*/
+
 using nlohmann::json;
 
+/**
+* Container list item, compatible wity crun.
+*/
 struct ContainerListItem {
 std::string bundle;
 std::string created;
