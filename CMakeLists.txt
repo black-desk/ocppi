@@ -40,66 +40,71 @@ if(OCPPI_USE_VENDOR_ALL)
 
 endif()
 
-set(TL_EXPECTED_MINIMAL_VERSION 1.0.0)
-
-if(OCPPI_USE_VENDOR_EXPECTED)
-  add_subdirectory(external/expected EXCLUDE_FROM_ALL)
-  set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
-else()
-  CPMFindPackage(
-    NAME expected
-    VERSION ${TL_EXPECTED_MINIMAL_VERSION}
-    GITHUB_REPOSITORY TartanLlama/expected
-    GIT_TAG v1.1.0
-    GIT_SHALLOW ON
-    OPTIONS "EXPECTED_BUILD_TESTS OFF"
-    FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
-    EXCLUDE_FROM_ALL ON)
+if(NOT TARGET expected)
+  set(TL_EXPECTED_MINIMAL_VERSION 1.0.0)
+  if(OCPPI_USE_VENDOR_EXPECTED)
+    add_subdirectory(external/expected EXCLUDE_FROM_ALL)
+    set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
+  else()
+    CPMFindPackage(
+      NAME expected
+      VERSION ${TL_EXPECTED_MINIMAL_VERSION}
+      GITHUB_REPOSITORY TartanLlama/expected
+      GIT_TAG v1.1.0
+      GIT_SHALLOW ON
+      OPTIONS "EXPECTED_BUILD_TESTS OFF"
+      FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
+      EXCLUDE_FROM_ALL ON)
+  endif()
 endif()
 
-if(OCPPI_USE_VENDOR_SEMVER)
-  add_subdirectory(external/semver EXCLUDE_FROM_ALL)
-else()
-  CPMFindPackage(
-    NAME semver
-    VERSION 0.3.0
-    GITHUB_REPOSITORY Neargye/Semver
-    GIT_TAG v0.3.1
-    GIT_SHALLOW ON
-    GIT_PROGRESS ON
-    EXCLUDE_FROM_ALL ON)
+if(NOT TARGET semver::semver)
+  if(OCPPI_USE_VENDOR_SEMVER)
+    add_subdirectory(external/semver EXCLUDE_FROM_ALL)
+  else()
+    CPMFindPackage(
+      NAME semver
+      VERSION 0.3.0
+      GITHUB_REPOSITORY Neargye/Semver
+      GIT_TAG v0.3.1
+      GIT_SHALLOW ON
+      GIT_PROGRESS ON
+      EXCLUDE_FROM_ALL ON)
+  endif()
 endif()
 
-set(JSON_MINIMAL_VERSION 3.11.2)
-
-if(OCPPI_USE_VENDOR_JSON)
-  set(JSON_Install ON)
-  add_subdirectory(external/json EXCLUDE_FROM_ALL)
-else()
-  CPMFindPackage(
-    NAME nlohmann_json
-    VERSION ${JSON_MINIMAL_VERSION}
-    URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
-    EXCLUDE_FROM_ALL ON
-    OPTIONS "JSON_Install ON")
+if(NOT TARGET nlohmann_json::nlohmann_json)
+  set(JSON_MINIMAL_VERSION 3.11.2)
+  if(OCPPI_USE_VENDOR_JSON)
+    set(JSON_Install ON)
+    add_subdirectory(external/json EXCLUDE_FROM_ALL)
+  else()
+    CPMFindPackage(
+      NAME nlohmann_json
+      VERSION ${JSON_MINIMAL_VERSION}
+      URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
+      EXCLUDE_FROM_ALL ON
+      OPTIONS "JSON_Install ON")
+  endif()
 endif()
 
-if(OCPPI_USE_VENDOR_SPDLOG)
-  set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-  add_subdirectory(external/spdlog EXCLUDE_FROM_ALL)
-else()
-  CPMFindPackage(
-    NAME spdlog
-    VERSION 1.10.0
-    GITHUB_REPOSITORY "gabime/spdlog"
-    GIT_TAG "v1.13.0"
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL ON
-    OPTIONS
-      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                           # https://github.com/gabime/spdlog/issues/1190
-  )
-
+if(NOT TARGET spdlog::spdlog)
+  if(OCPPI_USE_VENDOR_SPDLOG)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+    add_subdirectory(external/spdlog EXCLUDE_FROM_ALL)
+  else()
+    CPMFindPackage(
+      NAME spdlog
+      VERSION 1.10.0
+      GITHUB_REPOSITORY "gabime/spdlog"
+      GIT_TAG "v1.13.0"
+      GIT_SHALLOW ON
+      EXCLUDE_FROM_ALL ON
+      OPTIONS
+        "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                             # https://github.com/gabime/spdlog/issues/1190
+    )
+  endif()
 endif()
 
 if(NOT TARGET tl::expected)
