@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CLI.hpp"
 #include "ocppi/cli/crun/Crun.hpp"
 #include "ocppi/runtime/Signal.hpp"

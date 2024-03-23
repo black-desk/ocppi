@@ -37,27 +37,26 @@ if(NOT TARGET tl::expected)
 endif()
 list(APPEND OCPPI_LINK_LIBRARIES PUBLIC tl::expected)
 
-set(OCPPI_JSON_MINIMAL_VERSION 3.11.2)
+set(OCPPI_JSON_MINIMAL_VERSION 3.5.0) # debian buster
 CPMFindPackage(
   NAME nlohmann_json
   VERSION "${OCPPI_JSON_MINIMAL_VERSION}"
-  URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
+  URL "https://github.com/nlohmann/json/archive/refs/tags/v3.5.0.tar.gz"
   EXCLUDE_FROM_ALL ON)
 list(APPEND OCPPI_LINK_LIBRARIES PUBLIC nlohmann_json::nlohmann_json)
 
-set(OCPPI_SPDLOG_MINIMAL_VERSION 1.10.0)
+set(OCPPI_SPDLOG_MINIMAL_VERSION 1.3.1) # debian buster
 if(OCPPI_WITH_SPDLOG)
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOCPPI_WITH_SPDLOG")
   CPMFindPackage(
     NAME spdlog
     VERSION ${OCPPI_SPDLOG_MINIMAL_VERSION}
     GITHUB_REPOSITORY "gabime/spdlog"
-    GIT_TAG "v1.13.0"
+    GIT_TAG "v1.3.1"
     GIT_SHALLOW ON
     EXCLUDE_FROM_ALL ON
-    OPTIONS
-      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                           # https://github.com/gabime/spdlog/issues/1190
+    OPTIONS "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+            # https://github.com/gabime/spdlog/issues/1190
   )
   list(APPEND OCPPI_LINK_LIBRARIES PRIVATE spdlog::spdlog)
 endif()

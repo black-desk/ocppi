@@ -10,9 +10,10 @@
                         "name": "debug",
                         "displayName": "Debug configuration",
                         "description": "Configure ocppi for development and debugging.",
-                        "binaryDir": "${sourceDir}/build-debug",
+                        "binaryDir": "${sourceDir}/build",
                         "cacheVariables": {
                                 "CPM_DOWNLOAD_ALL": true,
+                                "OCPPI_WITH_SPDLOG": true,
                                 "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Og -g -fsanitize=address,undefined",
                                 "CMAKE_EXPORT_COMPILE_COMMANDS": true,
                                 "CMAKE_COLOR_DIAGNOSTICS": true
@@ -35,8 +36,6 @@
                         "description": "Configure ocppi with spdlog for CI.",
                         "binaryDir": "${sourceDir}/build-ci-with-spdlog",
                         "cacheVariables": {
-                                "CPM_LOCAL_PACKAGES_ONLY": true,
-                                "CMAKE_BUILD_TYPE": "Release",
                                 "OCPPI_WITH_SPDLOG": true
                         }
                 }

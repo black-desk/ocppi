@@ -9,7 +9,6 @@
 #include <vector>
 
 #include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CommandFailedError.hpp"
 #include "ocppi/cli/ExecutableNotFoundError.hpp"
 #include "ocppi/cli/Process.hpp"
@@ -34,7 +33,11 @@
 #ifdef OCPPI_WITH_SPDLOG
 #include <memory>
 
+#if __has_include("spdlog/fmt/ranges.h")
 #include "spdlog/fmt/ranges.h" // IWYU pragma: keep
+#else
+#include "spdlog/fmt/bundled/ranges.h" // IWYU pragma: keep
+#endif
 #include "spdlog/sinks/null_sink.h"
 #include "spdlog/spdlog.h"
 

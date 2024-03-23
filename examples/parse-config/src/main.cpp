@@ -5,7 +5,6 @@
 #include <string_view>
 
 #include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
 #include "ocppi/runtime/config/types/Config.hpp"
 #include "ocppi/runtime/config/types/Generators.hpp" // IWYU pragma: keep
 
