@@ -16,101 +16,50 @@ option(OCPPI_BUILD_SHARED_LIBRARY "Build a shared library or not"
 
 option(OCPPI_INSTALL "Enable install target or not" ${PROJECT_IS_TOP_LEVEL})
 
-option(OCPPI_USE_VENDOR_EXPECTED
-       "Use tl::expected which from vendor of project." OFF)
-
-option(OCPPI_USE_VENDOR_SEMVER "Use semver which from vendor of project." OFF)
-
-option(OCPPI_USE_VENDOR_JSON "Use nlohmann_json which from vendor of project."
-       OFF)
-
-option(OCPPI_USE_VENDOR_SPDLOG "Use spdlog which from vendor of project." OFF)
-
-option(OCPPI_USE_VENDOR_ALL
-       "Use all external dependencies which from vendor of project." OFF)
+option(OCPPI_WITH_SPDLOG "Build ocppi with spdlog or not." OFF)
 
 include(./cmake/CPM.cmake)
 
-if(OCPPI_USE_VENDOR_ALL)
-
-  set(OCPPI_USE_VENDOR_EXPECTED ON)
-  set(OCPPI_USE_VENDOR_SEMVER ON)
-  set(OCPPI_USE_VENDOR_JSON ON)
-  set(OCPPI_USE_VENDOR_SPDLOG ON)
-
-endif()
-
-if(NOT TARGET expected)
-  set(TL_EXPECTED_MINIMAL_VERSION 1.0.0)
-  if(OCPPI_USE_VENDOR_EXPECTED)
-    add_subdirectory(external/expected EXCLUDE_FROM_ALL)
-    set_target_properties(expected PROPERTIES EXPECTED_BUILD_TESTS OFF)
-  else()
-    CPMFindPackage(
-      NAME expected
-      VERSION ${TL_EXPECTED_MINIMAL_VERSION}
-      GITHUB_REPOSITORY TartanLlama/expected
-      GIT_TAG v1.1.0
-      GIT_SHALLOW ON
-      OPTIONS "EXPECTED_BUILD_TESTS OFF"
-      FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
-      EXCLUDE_FROM_ALL ON)
-  endif()
-endif()
-
-if(NOT TARGET semver::semver)
-  if(OCPPI_USE_VENDOR_SEMVER)
-    add_subdirectory(external/semver EXCLUDE_FROM_ALL)
-  else()
-    CPMFindPackage(
-      NAME semver
-      VERSION 0.3.0
-      GITHUB_REPOSITORY Neargye/Semver
-      GIT_TAG v0.3.1
-      GIT_SHALLOW ON
-      GIT_PROGRESS ON
-      EXCLUDE_FROM_ALL ON)
-  endif()
-endif()
-
-if(NOT TARGET nlohmann_json::nlohmann_json)
-  set(JSON_MINIMAL_VERSION 3.11.2)
-  if(OCPPI_USE_VENDOR_JSON)
-    set(JSON_Install ON)
-    add_subdirectory(external/json EXCLUDE_FROM_ALL)
-  else()
-    CPMFindPackage(
-      NAME nlohmann_json
-      VERSION ${JSON_MINIMAL_VERSION}
-      URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
-      EXCLUDE_FROM_ALL ON
-      OPTIONS "JSON_Install ON")
-  endif()
-endif()
-
-if(NOT TARGET spdlog::spdlog)
-  if(OCPPI_USE_VENDOR_SPDLOG)
-    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    add_subdirectory(external/spdlog EXCLUDE_FROM_ALL)
-  else()
-    CPMFindPackage(
-      NAME spdlog
-      VERSION 1.10.0
-      GITHUB_REPOSITORY "gabime/spdlog"
-      GIT_TAG "v1.13.0"
-      GIT_SHALLOW ON
-      EXCLUDE_FROM_ALL ON
-      OPTIONS
-        "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                             # https://github.com/gabime/spdlog/issues/1190
-    )
-  endif()
-endif()
-
+set(OCPPI_TL_EXPECTED_MINIMAL_VERSION 1.0.0)
+CPMFindPackage(
+  NAME expected
+  VERSION "${OCPPI_TL_EXPECTED_MINIMAL_VERSION}"
+  GITHUB_REPOSITORY TartanLlama/expected
+  GIT_TAG v1.1.0
+  GIT_SHALLOW ON
+  OPTIONS "EXPECTED_BUILD_TESTS OFF"
+  FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
+  EXCLUDE_FROM_ALL ON)
 if(NOT TARGET tl::expected)
   # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias so we
   # have to add it here.
   add_library(tl::expected ALIAS expected)
+endif()
+list(APPEND OCPPI_LINK_LIBRARIES PUBLIC tl::expected)
+
+set(OCPPI_JSON_MINIMAL_VERSION 3.11.2)
+CPMFindPackage(
+  NAME nlohmann_json
+  VERSION "${OCPPI_JSON_MINIMAL_VERSION}"
+  URL "https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz"
+  EXCLUDE_FROM_ALL ON)
+list(APPEND OCPPI_LINK_LIBRARIES PUBLIC nlohmann_json::nlohmann_json)
+
+set(OCPPI_SPDLOG_MINIMAL_VERSION 1.10.0)
+if(OCPPI_WITH_SPDLOG)
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOCPPI_WITH_SPDLOG")
+  CPMFindPackage(
+    NAME spdlog
+    VERSION ${OCPPI_SPDLOG_MINIMAL_VERSION}
+    GITHUB_REPOSITORY "gabime/spdlog"
+    GIT_TAG "v1.13.0"
+    GIT_SHALLOW ON
+    EXCLUDE_FROM_ALL ON
+    OPTIONS
+      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                           # https://github.com/gabime/spdlog/issues/1190
+  )
+  list(APPEND OCPPI_LINK_LIBRARIES PRIVATE spdlog::spdlog)
 endif()
 
 include(./cmake/GitSemver.cmake)
@@ -125,8 +74,6 @@ if(OCPPI_BUILD_SHARED_LIBRARY)
   set(OCPPI_LIBRARY_TYPE "SHARED")
 endif()
 set(OCPPI_SOVERSION 0)
-
-set(CMAKE_CXX_FLAGS_DEBUG "-DSPDLOG_ACTIVE_LEVEL=SPDLOG_LEVEL_TRACE")
 
 include(./cmake/PFL.cmake)
 
@@ -156,12 +103,7 @@ pfl_add_library(
   ./src/ocppi/cli/youki/Youki.cpp
   ./src/ocppi/configure.cpp
   ./src/ocppi/InvalidArgumentError.cpp
-  ./src/ocppi/runtime/config/ConfigLoader.cpp
-  ./src/ocppi/runtime/config/IncompatibleVersionError.cpp
-  ./src/ocppi/runtime/config/InvalidConfigError.cpp
-  ./src/ocppi/runtime/config/KeyMissingError.cpp
   ./src/ocppi/runtime/configure.cpp
-  ./src/ocppi/runtime/config/WrongTypeError.cpp
   ./src/ocppi/runtime/ContainerID.cpp
   ./src/ocppi/runtime/CreateOption.cpp
   ./src/ocppi/runtime/DeleteOption.cpp
@@ -170,8 +112,6 @@ pfl_add_library(
   ./src/ocppi/runtime/KillOption.cpp
   ./src/ocppi/runtime/RunOption.cpp
   ./src/ocppi/runtime/Runtime.cpp
-  ./src/ocppi/runtime/semver_range.cpp
-  ./src/ocppi/runtime/semver_range.hpp
   ./src/ocppi/runtime/Signal.cpp
   ./src/ocppi/runtime/StartOption.cpp
   ./src/ocppi/runtime/StateOption.cpp
@@ -185,10 +125,6 @@ pfl_add_library(
   ./include/ocppi/cli/runc/Runc.hpp
   ./include/ocppi/cli/youki/Youki.hpp
   ./include/ocppi/InvalidArgumentError.hpp
-  ./include/ocppi/runtime/config/ConfigLoader.hpp
-  ./include/ocppi/runtime/config/IncompatibleVersionError.hpp
-  ./include/ocppi/runtime/config/InvalidConfigError.hpp
-  ./include/ocppi/runtime/config/KeyMissingError.hpp
   ./include/ocppi/runtime/config/types/Anet.hpp
   ./include/ocppi/runtime/config/types/BlockIODeviceThrottle.hpp
   ./include/ocppi/runtime/config/types/BlockIODeviceWeight.hpp
@@ -256,7 +192,6 @@ pfl_add_library(
   ./include/ocppi/runtime/config/types/WindowsResources.hpp
   ./include/ocppi/runtime/config/types/ZosDevice.hpp
   ./include/ocppi/runtime/config/types/Zos.hpp
-  ./include/ocppi/runtime/config/WrongTypeError.hpp
   ./include/ocppi/runtime/ContainerID.hpp
   ./include/ocppi/runtime/CreateOption.hpp
   ./include/ocppi/runtime/DeleteOption.hpp
@@ -295,14 +230,9 @@ pfl_add_library(
   EXAMPLES
   parse-config
   using-crun
-  use-default-logger
+  with-logger
   LINK_LIBRARIES
-  PUBLIC
-  nlohmann_json::nlohmann_json
-  tl::expected
-  PRIVATE
-  spdlog::spdlog
-  semver::semver
+  ${OCPPI_LINK_LIBRARIES}
   COMPILE_FEATURES
   PUBLIC
   cxx_std_17)

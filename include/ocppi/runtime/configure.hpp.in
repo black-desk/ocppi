@@ -1,6 +1,6 @@
 #pragma once
 
-namespace ocppi
+namespace ocppi::runtime
 {
 
 constexpr auto oci_runtime_spec_min = "@OCPPI_OCI_RUNTIME_SPEC_MIN@";

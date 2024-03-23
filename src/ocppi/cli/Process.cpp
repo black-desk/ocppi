@@ -1,19 +1,15 @@
 #include "ocppi/cli/Process.hpp"
 
+#include <errno.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
 #include <array>
+#include <cstddef>
 #include <memory>
 #include <string>
+#include <system_error>
 #include <vector>
-
-#include "spdlog/spdlog.h"
-#if !defined(SPDLOG_FMT_EXTERNAL)
-#include "spdlog/fmt/bundled/format.h"
-#else
-#include "fmt/format.h"
-#endif
 
 int runProcess(const std::string &binaryPath,
                const std::vector<std::string> &args, std::string &output)
@@ -29,13 +25,13 @@ int runProcess(const std::string &binaryPath,
 
         int pipes[2];
         if (::pipe(pipes) == -1) {
-                throw fmt::system_error(errno, "pipe");
+                throw std::system_error(errno, std::generic_category(), "pipe");
         }
 
         pid_t childId{ -1 };
         childId = fork();
         if (childId == -1) {
-                throw fmt::system_error(errno, "fork");
+                throw std::system_error(errno, std::generic_category(), "fork");
         }
 
         int ret{ 0 };
@@ -44,7 +40,8 @@ int runProcess(const std::string &binaryPath,
                 ::dup2(pipes[1], 1);
 
                 ret = execvp(binaryPath.data(), (char **)(cArgs.get()));
-                throw fmt::system_error(errno, "execvp");
+                throw std::system_error(errno, std::generic_category(),
+                                        "execvp");
         }
 
         ::close(pipes[1]);
@@ -58,7 +55,8 @@ int runProcess(const std::string &binaryPath,
                                 continue;
                         }
 
-                        throw fmt::system_error(errno, "read");
+                        throw std::system_error(errno, std::generic_category(),
+                                                "read");
                 }
 
                 if (readCount == 0) {
@@ -69,7 +67,7 @@ int runProcess(const std::string &binaryPath,
         }
 
         if (::wait(&ret) == -1) {
-                throw fmt::system_error(errno, "wait");
+                throw std::system_error(errno, std::generic_category(), "wait");
         }
 
         ::close(pipes[0]);
@@ -90,17 +88,18 @@ int runProcess(const std::string &binaryPath,
         pid_t childId{ -1 };
         childId = fork();
         if (childId == -1) {
-                throw fmt::system_error(errno, "fork");
+                throw std::system_error(errno, std::generic_category(), "fork");
         }
 
         int ret{ 0 };
         if (childId == 0) {
                 ret = execvp(binaryPath.data(), (char **)(cArgs.get()));
-                throw fmt::system_error(errno, "execvp");
+                throw std::system_error(errno, std::generic_category(),
+                                        "execvp");
         }
 
         if (::wait(&ret) == -1) {
-                throw fmt::system_error(errno, "wait");
+                throw std::system_error(errno, std::generic_category(), "wait");
         }
 
         return ret;

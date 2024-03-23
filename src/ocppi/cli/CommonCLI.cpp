@@ -1,14 +1,10 @@
 #include "ocppi/cli/CommonCLI.hpp"
 
 #include <algorithm>
-#include <cerrno>
-#include <istream>
 #include <iterator>
 #include <map>
-#include <memory>
 #include <optional>
 #include <string>
-#include <system_error>
 #include <utility>
 #include <vector>
 
@@ -21,6 +17,7 @@
 #include "ocppi/runtime/CreateOption.hpp"
 #include "ocppi/runtime/DeleteOption.hpp"
 #include "ocppi/runtime/ExecOption.hpp"
+#include "ocppi/runtime/FeaturesOption.hpp"
 #include "ocppi/runtime/GlobalOption.hpp"
 #include "ocppi/runtime/KillOption.hpp"
 #include "ocppi/runtime/ListOption.hpp"
@@ -33,7 +30,11 @@
 #include "ocppi/runtime/state/types/State.hpp"
 #include "ocppi/types/ContainerListItem.hpp"
 #include "ocppi/types/Generators.hpp" // IWYU pragma: keep
-#include "spdlog/fmt/ranges.h"        // IWYU pragma: keep
+
+#ifdef OCPPI_WITH_SPDLOG
+#include <memory>
+
+#include "spdlog/fmt/ranges.h" // IWYU pragma: keep
 #include "spdlog/sinks/null_sink.h"
 #include "spdlog/spdlog.h"
 
@@ -41,6 +42,7 @@ namespace spdlog
 {
 class logger;
 } // namespace spdlog
+#endif
 
 namespace ocppi::cli
 {
@@ -50,7 +52,9 @@ namespace
 
 template <typename Result>
 auto doCommand(const std::string &bin,
+#ifdef OCPPI_WITH_SPDLOG
                [[maybe_unused]] const std::shared_ptr<spdlog::logger> &logger,
+#endif
                std::vector<std::string> &&globalOption,
                const std::string &command, std::vector<std::string> &&options,
                std::vector<std::string> &&arguments) -> Result
@@ -62,8 +66,10 @@ auto doCommand(const std::string &bin,
         args.insert(args.end(), std::make_move_iterator(arguments.begin()),
                     std::make_move_iterator(arguments.end()));
 
+#ifdef OCPPI_WITH_SPDLOG
         SPDLOG_LOGGER_DEBUG(logger, R"(Executing "{}" with arguments: {})", bin,
                             args);
+#endif
 
         if constexpr (std::is_void_v<Result>) {
                 auto ret = runProcess(bin, args);
@@ -84,6 +90,7 @@ auto doCommand(const std::string &bin,
 }
 
 }
+#ifdef OCPPI_WITH_SPDLOG
 
 CommonCLI::CommonCLI(std::filesystem::path bin,
                      const std::shared_ptr<spdlog::logger> &logger)
@@ -98,15 +105,26 @@ CommonCLI::CommonCLI(std::filesystem::path bin,
         throw ExecutableNotFoundError(bin_);
 }
 
-auto CommonCLI::bin() const noexcept -> const std::filesystem::path &
-{
-        return this->bin_;
-}
-
 auto CommonCLI::logger() const -> const std::shared_ptr<spdlog::logger> &
 {
         assert(this->logger_ != nullptr);
         return this->logger_;
+}
+
+#else
+CommonCLI::CommonCLI(std::filesystem::path bin)
+        : bin_(std::move(bin))
+{
+        if (std::filesystem::exists(bin_)) {
+                return;
+        }
+        throw ExecutableNotFoundError(bin_);
+}
+#endif
+
+auto CommonCLI::bin() const noexcept -> const std::filesystem::path &
+{
+        return this->bin_;
 }
 
 auto CommonCLI::state(const runtime::ContainerID &id) const noexcept
@@ -120,7 +138,10 @@ auto CommonCLI::state(const runtime::ContainerID &id,
         -> tl::expected<runtime::state::types::State, std::exception_ptr>
 try {
         return doCommand<runtime::state::types::State>(
-                this->bin(), this->logger(),
+                this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                this->logger(),
+#endif
                 this->generateGlobalOptions(option), "state",
                 this->generateSubcommandOptions(option), { id });
 } catch (...) {
@@ -143,7 +164,10 @@ try {
         opt.extra.emplace_back("-b");
         opt.extra.emplace_back(pathToBundle);
 
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(opt), "create",
                         this->generateSubcommandOptions(opt), { id });
         return {};
@@ -161,7 +185,10 @@ auto CommonCLI::start(const runtime::ContainerID &id,
                       const runtime::StartOption &option) noexcept
         -> tl::expected<void, std::exception_ptr>
 try {
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(option), "start",
                         this->generateSubcommandOptions(option), { id });
         return {};
@@ -181,7 +208,10 @@ auto CommonCLI::kill(const runtime::ContainerID &id,
                      const runtime::KillOption &option) noexcept
         -> tl::expected<void, std::exception_ptr>
 try {
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(option), "kill",
                         this->generateSubcommandOptions(option),
                         { id, signal });
@@ -201,7 +231,10 @@ auto CommonCLI::delete_(const runtime::ContainerID &id,
                         const runtime::DeleteOption &option) noexcept
         -> tl::expected<void, std::exception_ptr>
 try {
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(option), "delete",
                         this->generateSubcommandOptions(option), { id });
         return {};
@@ -228,7 +261,10 @@ try {
         arguments.push_back(executable);
         arguments.insert(arguments.end(), command.begin(), command.end());
 
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(option), "exec",
                         this->generateSubcommandOptions(option),
                         std::move(arguments));
@@ -252,7 +288,10 @@ try {
         new_option.format = runtime::ListOption::OutputFormat::Json;
 
         return doCommand<std::vector<types::ContainerListItem>>(
-                this->bin(), this->logger(),
+                this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                this->logger(),
+#endif
                 this->generateGlobalOptions(option), "list",
                 this->generateSubcommandOptions(option), {});
 } catch (...) {
@@ -275,7 +314,10 @@ try {
         opt.extra.emplace_back("-b");
         opt.extra.emplace_back(pathToBundle);
 
-        doCommand<void>(this->bin(), this->logger(),
+        doCommand<void>(this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                        this->logger(),
+#endif
                         this->generateGlobalOptions(opt), "run",
                         this->generateSubcommandOptions(opt), { id });
         return {};
@@ -293,7 +335,10 @@ auto CommonCLI::features(const runtime::FeaturesOption &option) const noexcept
         -> tl::expected<runtime::features::types::Features, std::exception_ptr>
 try {
         return doCommand<runtime::features::types::Features>(
-                this->bin(), this->logger(),
+                this->bin(),
+#ifdef OCPPI_WITH_SPDLOG
+                this->logger(),
+#endif
                 this->generateGlobalOptions(option), "features",
                 this->generateSubcommandOptions(option), {});
 } catch (...) {
