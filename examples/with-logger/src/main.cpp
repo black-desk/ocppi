@@ -15,7 +15,6 @@
 #include <bits/types/struct_FILE.h>
 
 #include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
 #include "ocppi/cli/CLI.hpp"
 #include "ocppi/cli/crun/Crun.hpp"
 #include "ocppi/runtime/Signal.hpp"
@@ -24,18 +23,14 @@
 #include "ocppi/types/Generators.hpp" // IWYU pragma: keep
 #include "spdlog/common.h"
 #include "spdlog/logger.h"
-#include "spdlog/sinks/ansicolor_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/sinks/systemd_sink.h"
+#include "spdlog/sinks/syslog_sink.h"
 #include "spdlog/spdlog.h"
 #include "tl/expected.hpp"
 
-namespace spdlog
-{
-namespace sinks
+namespace spdlog::sinks
 {
 class sink;
-} // namespace sinks
 } // namespace spdlog
 
 void printException(const std::shared_ptr<spdlog::logger> &logger,
@@ -50,21 +45,9 @@ try {
 
 auto main() -> int
 {
-        std::shared_ptr<spdlog::logger> logger;
-        {
-                auto sinks = std::vector<std::shared_ptr<spdlog::sinks::sink>>(
-                        { std::make_shared<spdlog::sinks::systemd_sink_mt>(
-                                "ocppi") });
-                if (isatty(stderr->_fileno) != 0) {
-                        sinks.push_back(std::make_shared<
-                                        spdlog::sinks::stderr_color_sink_mt>());
-                }
-
-                logger = std::make_shared<spdlog::logger>(
-                        "ocppi", sinks.begin(), sinks.end());
-
-                logger->set_level(spdlog::level::trace);
-        }
+        std::shared_ptr<spdlog::logger> logger =
+                spdlog::stderr_color_mt("ocppi");
+        logger->set_level(spdlog::level::trace);
 
         try {
                 std::unique_ptr<ocppi::cli::CLI> cli;

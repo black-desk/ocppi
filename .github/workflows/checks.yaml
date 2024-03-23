@@ -18,45 +18,51 @@ jobs:
     runs-on: "ubuntu-latest"
     strategy:
       matrix:
-        type: [Debug, Release]
-        dependency: [Vendor, Online]
+        container:
+          - debian:oldstable-slim
+          - debian:stable-slim
+          - debian:sid-slim
         cxx: [g++, clang++]
+    container:
+      image: ${{ matrix.container }}
     steps:
       - name: Checkout project
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      # - uses: hendrikmuhs/ccache-action@v1.2
-        # with:
-          # key: ${{ matrix.cxx }}-${{ matrix.type }}
       - name: Cache CPM.cmake Source
         uses: actions/cache@v4
         with:
           path: .cache/cpm/source
-          key: ${{ runner.os }}-${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+          key: ${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v1.14
       - name: Install system dependencies
         run: |
-          sudo apt update &&
-          sudo apt install libsystemd-dev
-      - name: Build project with cmake
+          apt update &&
+          apt install pkg-config make git g++ clang -y
+      - name: Build project with cmake by preset debug
         run: |
           mkdir -p .cache/cpm/source &&
           export CXX="${{ matrix.cxx }}" &&
-          export PATH="/usr/lib/ccache:/usr/local/opt/ccache/libexec:$PATH" &&
-          export CPM_DOWNLOAD_ALL="ON" &&
           export CPM_SOURCE_CACHE="$PWD/.cache/cpm/source" &&
-          export CFLAGS="$CFLAGS -Wall" &&
-          export CFLAGS="$CFLAGS -Wextra" &&
-          export CFLAGS="$CFLAGS -Wpedantic" &&
-          export CFLAGS="$CFLAGS -Wno-extra-semi -Wno-unused-command-line-argument -Wno-gnu-zero-variadic-macro-arguments" &&
-          export CFLAGS="$CFLAGS -fsanitize=address,undefined" &&
-          export CXXFLAGS="$CFLAGS" &&
-          cmake --preset ${{ matrix.dependency }}${{ matrix.type }} &&
-          cmake --build --preset ${{ matrix.dependency }}${{ matrix.type }} -j
-      - name: Run tests
-        if: ${{ false }} # This project has no tests for now.
+          cmake --workflow --preset debug
+      - name: Install extra dependencies
         run: |
-          cmake --build build -t test -j
+          apt update &&
+          apt install libexpected-dev libspdlog-dev nlohmann-json3-dev -y
+      - name: Build project with cmake by preset ci
+        run: |
+          mkdir -p .cache/cpm/source &&
+          export CXX="${{ matrix.cxx }}" &&
+          export CPM_SOURCE_CACHE="$PWD/.cache/cpm/source" &&
+          cmake --workflow --preset ci
+      - name: Build project with cmake by preset ci-with-spdlog
+        run: |
+          mkdir -p .cache/cpm/source &&
+          export CXX="${{ matrix.cxx }}" &&
+          export CPM_SOURCE_CACHE="$PWD/.cache/cpm/source" &&
+          cmake --workflow --preset ci
   pass:
     name: Pass
     needs: [checks, build-and-test]

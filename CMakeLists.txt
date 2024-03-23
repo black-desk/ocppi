@@ -55,8 +55,9 @@ if(OCPPI_WITH_SPDLOG)
     GIT_TAG "v1.3.1"
     GIT_SHALLOW ON
     EXCLUDE_FROM_ALL ON
-    OPTIONS "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-            # https://github.com/gabime/spdlog/issues/1190
+    OPTIONS
+      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                           # https://github.com/gabime/spdlog/issues/1190
   )
   list(APPEND OCPPI_LINK_LIBRARIES PRIVATE spdlog::spdlog)
 endif()

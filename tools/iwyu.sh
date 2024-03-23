@@ -30,9 +30,7 @@ mv build-iwyu/{new-,}compile_commands.json
 
 # shellcheck disable=SC2046
 "$IWYU_TOOL" -p build-iwyu \
-	$(find . -path './libs*' \( -name '*.c' -o -name '*.cpp' \) -printf "%p ") \
-	-- \
-	-Xiwyu --mapping_file="$(pwd)/tools/iwyu/mapping.imp" |
+	$(find . -path './libs*' \( -name '*.c' -o -name '*.cpp' \) -printf "%p ") |
 	tee build/iwyu.out
 
 IWYU_FIX_INCLUDES=${IWYU_FIX_INCLUDES:=$({
