@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: LGPL-3.0-or-later
 
-cmake_minimum_required(VERSION 3.23 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.11.4..3.28.3 FATAL_ERROR)
 
 get_property(
   PFL_INITIALIZED GLOBAL ""
@@ -12,7 +12,9 @@ if(PFL_INITIALIZED)
   return()
 endif()
 
-message(STATUS "PFL: --==Version: v0.2.12==--")
+set_property(GLOBAL PROPERTY PFL_INITIALIZED true)
+
+message(STATUS "PFL: --==Version: v0.2.15==--")
 
 # You should call this function in your top level CMakeLists.txt to tell
 # PFL.cmake some global settings about your project.
@@ -40,7 +42,8 @@ function(pfl_init)
       PARENT_SCOPE)
 
   foreach(EXTERNAL ${PFL_INIT_EXTERNALS})
-    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/${EXTERNAL})
+    add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/external/${EXTERNAL}
+                     EXCLUDE_FROM_ALL)
   endforeach()
 endfunction()
 
@@ -169,7 +172,7 @@ function(pfl_add_library)
     PFL_ADD_LIBRARY "HEADER_ONLY;INTERNAL" "OUTPUT_NAME;SOVERSION;VERSION;TYPE"
     "INS;SOURCES;HEADERS;LINK_LIBRARIES;COMPILE_FEATURES;APPS;EXAMPLES" ${ARGN})
 
-  cmake_path(GET CMAKE_CURRENT_SOURCE_DIR FILENAME TARGET_DIR_NAME)
+  get_filename_component(TARGET_DIR_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
   if(TARGET_DIR_NAME MATCHES ".*__.*")
     message(
@@ -211,8 +214,9 @@ function(pfl_add_library)
     add_library("${TARGET_NAME}__BUILD" ${PFL_ADD_LIBRARY_SOURCES})
     target_link_libraries("${TARGET_NAME}__BUILD" PUBLIC "${TARGET_NAME}")
   else()
-    add_library("${TARGET_NAME}" ${PFL_ADD_LIBRARY_TYPE}
-                                 ${PFL_ADD_LIBRARY_SOURCES})
+    add_library(
+      "${TARGET_NAME}" ${PFL_ADD_LIBRARY_TYPE} ${PFL_ADD_LIBRARY_SOURCES}
+                       ${PFL_ADD_LIBRARY_HEADERS})
     if(NOT "${PFL_ADD_LIBRARY_SOVERSION}" STREQUAL "")
       set_target_properties("${TARGET_NAME}"
                             PROPERTIES SOVERSION ${PFL_ADD_LIBRARY_SOVERSION})
@@ -229,23 +233,22 @@ function(pfl_add_library)
   set_target_properties("${TARGET_NAME}"
                         PROPERTIES OUTPUT_NAME ${PFL_ADD_LIBRARY_OUTPUT_NAME})
 
-  target_sources(
+  target_include_directories(
     ${TARGET_NAME}
-    PUBLIC FILE_SET
-           HEADERS
-           BASE_DIRS
-           include
-           ${CMAKE_CURRENT_BINARY_DIR}/include
-           FILES
-           ${PFL_ADD_LIBRARY_HEADERS})
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+           $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>)
 
   if(NOT PFL_ADD_LIBRARY_HEADER_ONLY)
     if(PFL_ADD_LIBRARY_INTERNAL)
-      target_include_directories(${TARGET_NAME}
-                                 PUBLIC src ${CMAKE_CURRENT_BINARY_DIR}/src)
+      target_include_directories(
+        ${TARGET_NAME}
+        PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+               $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>)
     else()
-      target_include_directories(${TARGET_NAME}
-                                 PRIVATE src ${CMAKE_CURRENT_BINARY_DIR}/src)
+      target_include_directories(
+        ${TARGET_NAME}
+        PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+                $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>)
     endif()
   endif()
 
@@ -265,10 +268,24 @@ function(pfl_add_library)
       set(EXPORT_NAME ${TARGET_NAME})
     endif()
 
+    foreach(FILE ${PFL_ADD_LIBRARY_HEADERS})
+      if(NOT FILE MATCHES "(\./)?include")
+        message(
+          FATAL_ERROR
+            "PFL: HEADERS of pfl_add_library must be under ./include directory."
+        )
+      endif()
+      get_filename_component(DIR ${FILE} DIRECTORY)
+      string(REGEX REPLACE "^(\./)?include/" "" DIR ${DIR})
+      install(FILES ${FILE} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${DIR})
+    endforeach()
+
     install(
       TARGETS "${TARGET_NAME}"
       EXPORT "${EXPORT_NAME}"
-      FILE_SET HEADERS)
+      LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+      INCLUDES
+      DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
     install(
       EXPORT "${EXPORT_NAME}"
@@ -378,13 +395,15 @@ endfunction()
 #
 # OUTPUT_NAME string: The output file name of your executable.
 #
+# INSTALL_PREFIX string: The extra prefix for binaries under libexec.
+#
 # Other parameters is just like pfl_add_library.
 function(pfl_add_executable)
   cmake_parse_arguments(
     PFL_ADD_EXECUTABLE "LIBEXEC;INTERNAL" "OUTPUT_NAME;INSTALL_PREFIX"
     "INS;SOURCES;HEADERS;LINK_LIBRARIES;COMPILE_FEATURES" ${ARGN})
 
-  cmake_path(GET CMAKE_CURRENT_SOURCE_DIR FILENAME TARGET_DIR_NAME)
+  get_filename_component(TARGET_DIR_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
 
   string(REPLACE " " "_" TARGET_NAME "${TARGET_DIR_NAME}")
 
@@ -411,7 +430,8 @@ function(pfl_add_executable)
     INS ${PFL_ADD_EXECUTABLE_INS} HEADERS PFL_ADD_EXECUTABLE_HEADERS SOURCES
     PFL_ADD_EXECUTABLE_SOURCES)
 
-  add_executable("${TARGET_NAME}" ${PFL_ADD_EXECUTABLE_SOURCES})
+  add_executable("${TARGET_NAME}" ${PFL_ADD_EXECUTABLE_SOURCES}
+                                  ${PFL_ADD_EXECUTABLE_HEADERS})
 
   if(NOT "${TARGET_ALIAS}" STREQUAL "${TARGET_NAME}")
     add_executable("${TARGET_ALIAS}" ALIAS "${TARGET_NAME}")
@@ -420,18 +440,12 @@ function(pfl_add_executable)
   set_target_properties(
     "${TARGET_NAME}" PROPERTIES OUTPUT_NAME ${PFL_ADD_EXECUTABLE_OUTPUT_NAME})
 
-  target_sources(
+  target_include_directories(
     ${TARGET_NAME}
-    PUBLIC FILE_SET
-           HEADERS
-           BASE_DIRS
-           include
-           ${CMAKE_CURRENT_BINARY_DIR}/include
-           FILES
-           ${PFL_ADD_EXECUTABLE_HEADERS})
-
-  target_include_directories(${TARGET_NAME}
-                             PRIVATE src ${CMAKE_CURRENT_BINARY_DIR}/src)
+    PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}include>
+           $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/include>
+    PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}src>
+            $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>)
 
   if(PFL_ADD_EXECUTABLE_LINK_LIBRARIES)
     target_link_libraries(${TARGET_NAME} ${PFL_ADD_EXECUTABLE_LINK_LIBRARIES})
@@ -456,10 +470,6 @@ function(pfl_add_executable)
     return()
   endif()
 
-  install(
-    TARGETS ${TARGET_NAME}
-    DESTINATION ${CMAKE_INSTALL_BINDIR}/${PFL_ADD_EXECUTABLE_INSTALL_PREFIX})
+  install(TARGETS ${TARGET_NAME} DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 endfunction()
-
-set_property(GLOBAL PROPERTY PFL_INITIALIZED true)
