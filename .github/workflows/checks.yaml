@@ -36,7 +36,7 @@ jobs:
           path: .cache/cpm/source
           key: ${{ hashFiles('**/CMakeLists.txt', '**/*.cmake') }}
       - name: Setup cmake
-        uses: jwlawson/actions-setup-cmake@v1.14
+        uses: jwlawson/actions-setup-cmake@v2.0
       - name: Install system dependencies
         run: |
           apt update &&
