@@ -3,7 +3,7 @@ if(NOT OCPPI_WITH_SPDLOG)
 endif()
 
 pfl_add_executable(
-  INTERNAL
+  DISABLE_INSTALL
   SOURCES
   src/main.cpp
   LINK_LIBRARIES
