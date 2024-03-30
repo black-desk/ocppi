@@ -5,11 +5,8 @@ Priority: optional
 Standards-Version: 4.6.2
 Build-Depends: cmake,
                debhelper-compat (= 13),
-               libexpected-dev,
-               libsemver-dev,
-               libspdlog-dev,
-               libsystemd-dev,
-               nlohmann-json3-dev,
+               libexpected-dev (>= 1.0.0~dfsg-2~bpo10+1),
+               nlohmann-json3-dev (>= 3.5.0),
                pkgconf
 
 Package: libocppi-dev
