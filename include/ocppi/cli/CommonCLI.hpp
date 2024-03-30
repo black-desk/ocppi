@@ -2,15 +2,20 @@
 
 #include <exception>
 #include <filesystem>
-#include <memory>
 #include <string>
 #include <vector>
 
 #include "ocppi/cli/CLI.hpp"
 #include "ocppi/runtime/ContainerID.hpp"
-#include "ocppi/runtime/FeaturesOption.hpp"
 #include "ocppi/runtime/features/types/Features.hpp"
 #include "tl/expected.hpp"
+
+#ifdef OCPPI_WITH_SPDLOG
+namespace spdlog
+{
+class logger;
+}
+#endif
 
 namespace ocppi
 {
@@ -31,32 +36,28 @@ struct StartOption;
 struct StateOption;
 struct GlobalOption;
 struct RunOption;
+struct FeaturesOption;
 
-namespace state
-{
-namespace types
+namespace state::types
 {
 struct State;
-} // namespace types
 } // namespace state
 } // namespace runtime
 } // namespace ocppi
-
-namespace spdlog
-{
-class logger;
-} // namespace spdlog
 
 namespace ocppi::cli
 {
 
 class CommonCLI : public virtual CLI {
     protected:
+#ifdef OCPPI_WITH_SPDLOG
         CommonCLI(std::filesystem::path,
                   const std::shared_ptr<spdlog::logger> &);
-
         [[nodiscard]]
         auto logger() const -> const std::shared_ptr<spdlog::logger> &;
+#else
+        CommonCLI(std::filesystem::path);
+#endif
 
         [[nodiscard]]
         auto generateGlobalOptions(const runtime::GlobalOption &option)
@@ -185,7 +186,9 @@ class CommonCLI : public virtual CLI {
 
     private:
         std::filesystem::path bin_;
+#ifdef OCPPI_WITH_SPDLOG
         std::shared_ptr<spdlog::logger> logger_;
+#endif
 };
 
 }

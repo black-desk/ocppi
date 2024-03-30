@@ -1,63 +1,23 @@
-#include <unistd.h>
-
-#include <algorithm>
-#include <cstdio>
 #include <exception>
-#include <map>
-#include <memory>
+#include <iostream>
 #include <string>
 #include <string_view>
-#include <vector>
-
-#include <bits/types/struct_FILE.h>
 
 #include "nlohmann/json.hpp"
-#include "nlohmann/json_fwd.hpp"
 #include "ocppi/runtime/config/types/Config.hpp"
 #include "ocppi/runtime/config/types/Generators.hpp" // IWYU pragma: keep
-#include "spdlog/common.h"
-#include "spdlog/logger.h"
-#include "spdlog/sinks/ansicolor_sink.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
-#include "spdlog/sinks/systemd_sink.h"
-#include "spdlog/spdlog.h"
 
-namespace spdlog
-{
-namespace sinks
-{
-class sink;
-} // namespace sinks
-} // namespace spdlog
-
-void printException(const std::shared_ptr<spdlog::logger> &logger,
-                    std::string_view msg, std::exception_ptr ptr) noexcept
+void printException(std::string_view msg, std::exception_ptr ptr) noexcept
 try {
         std::rethrow_exception(ptr);
 } catch (const std::exception &e) {
-        SPDLOG_LOGGER_ERROR(logger, "{}: {}", msg, e.what());
+        std::cerr << msg << ": " << e.what() << std::endl;
 } catch (...) {
-        SPDLOG_LOGGER_ERROR(logger, "{}: unknown exception", msg);
+        std::cerr << msg << ": unknown exception" << std::endl;
 }
 
 int main()
 {
-        std::shared_ptr<spdlog::logger> logger;
-        {
-                auto sinks = std::vector<std::shared_ptr<spdlog::sinks::sink>>(
-                        { std::make_shared<spdlog::sinks::systemd_sink_mt>(
-                                "ocppi") });
-                if (isatty(stderr->_fileno)) {
-                        sinks.push_back(std::make_shared<
-                                        spdlog::sinks::stderr_color_sink_mt>());
-                }
-
-                logger = std::make_shared<spdlog::logger>(
-                        "ocppi", sinks.begin(), sinks.end());
-
-                logger->set_level(spdlog::level::trace);
-        }
-
         try {
                 auto j = nlohmann::json::parse(R"(
 {
@@ -454,13 +414,12 @@ int main()
                 ocppi::runtime::config::types::Config cfg =
                         j.get<ocppi::runtime::config::types::Config>();
 
-                SPDLOG_LOGGER_INFO(logger, "OCI runtime config version: {}",
-                                   cfg.ociVersion);
-
-                SPDLOG_LOGGER_INFO(logger, "Parsed OCI runtime config: {}",
-                                   nlohmann::json(cfg).dump());
+                std::cerr << "OCI runtime config version: " << cfg.ociVersion
+                          << std::endl;
+                std::cerr << "Parsed OCI runtime config: "
+                          << nlohmann::json(cfg).dump() << std::endl;
         } catch (...) {
-                printException(logger, "Parse OCI runtime config failed",
+                printException("Parse OCI runtime config",
                                std::current_exception());
                 return -1;
         }

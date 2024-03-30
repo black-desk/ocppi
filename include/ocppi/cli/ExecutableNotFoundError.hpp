@@ -1,6 +1,9 @@
 #pragma once
 
+#include <errno.h>
+
 #include <filesystem>
+#include <string>
 #include <system_error>
 
 namespace ocppi::cli

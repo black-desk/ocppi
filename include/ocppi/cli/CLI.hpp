@@ -1,8 +1,26 @@
 #pragma once
 #include <filesystem>
+#include <string>
+#include <vector>
 
-#include "ocppi/runtime/FeaturesOption.hpp"
 #include "ocppi/runtime/Runtime.hpp"
+
+namespace ocppi
+{
+namespace runtime
+{
+struct CreateOption;
+struct DeleteOption;
+struct ExecOption;
+struct FeaturesOption;
+struct GlobalOption;
+struct KillOption;
+struct ListOption;
+struct RunOption;
+struct StartOption;
+struct StateOption;
+} // namespace runtime
+} // namespace ocppi
 
 namespace ocppi::cli
 {

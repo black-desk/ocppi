@@ -1,15 +1,13 @@
 #include "ocppi/cli/crun/Crun.hpp"
 
-#include "spdlog/spdlog.h" // IWYU pragma: keep
-
-namespace spdlog
-{
-class logger;
-} // namespace spdlog
+#ifdef OCPPI_WITH_SPDLOG
+#include "spdlog/spdlog.h"
+#endif
 
 namespace ocppi::cli::crun
 {
 
+#ifdef OCPPI_WITH_SPDLOG
 auto Crun::New(const std::filesystem::path &bin) noexcept
         -> tl::expected<std::unique_ptr<Crun>, std::exception_ptr>
 try {
@@ -27,4 +25,15 @@ try {
         return tl::unexpected(std::current_exception());
 }
 
+#else
+
+auto Crun::New(const std::filesystem::path &bin) noexcept
+        -> tl::expected<std::unique_ptr<Crun>, std::exception_ptr>
+try {
+        return std::unique_ptr<Crun>(new Crun(bin));
+} catch (...) {
+        return tl::unexpected(std::current_exception());
+}
+
+#endif
 }
