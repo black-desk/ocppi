@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.14..3.28.3)
 project(
   ocppi
   LANGUAGES CXX
-  VERSION 0.2.3)
+  VERSION 0.3.0)
 
 option(OCPPI_WITH_SPDLOG "Build ocppi with spdlog or not." OFF)
 
