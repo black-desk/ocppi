@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14..3.28.3)
+cmake_minimum_required(VERSION 3.11.4)
 
 project(
   ocppi
@@ -7,21 +7,56 @@ project(
 
 option(OCPPI_WITH_SPDLOG "Build ocppi with spdlog or not." OFF)
 
-include(./cmake/CPM.cmake)
-
 set(OCPPI_TL_EXPECTED_VERSION 1.0.0) # debian buster-backports
-CPMFindPackage(
-  NAME expected
-  VERSION "${OCPPI_TL_EXPECTED_VERSION}"
-  GITHUB_REPOSITORY TartanLlama/expected
-  GIT_TAG "v1.0.0"
-  GIT_SHALLOW ON
-  OPTIONS "EXPECTED_BUILD_TESTS OFF"
-  FIND_PACKAGE_ARGUMENTS "NAMES tl-expected"
-  EXCLUDE_FROM_ALL ON)
-list(APPEND OCPPI_LINK_LIBRARIES PUBLIC tl::expected)
-list(APPEND OCPPI_FIND_DEPENDENCY_ARGUMENTS
-     "expected ${OCPPI_TL_EXPECTED_VERSION} NAMES tl-expected")
+list(APPEND OCPPI_DEPENDENCIES PUBLIC
+     "tl-expected ${OCPPI_TL_EXPECTED_VERSION} REQUIRED")
+list(APPEND OCPPI_LINK_LIBRARIES PUBLIC "tl::expected")
+
+set(OCPPI_JSON_VERSION 3.5.0) # debian buster
+list(APPEND OCPPI_DEPENDENCIES PUBLIC
+     "nlohmann_json ${OCPPI_JSON_VERSION} REQUIRED")
+list(APPEND OCPPI_LINK_LIBRARIES PUBLIC "nlohmann_json::nlohmann_json")
+
+if(OCPPI_WITH_SPDLOG)
+  set(OCPPI_SPDLOG_VERSION 1.3.1) # debian buster
+  list(APPEND OCPPI_COMPILE_OPTIONS PUBLIC -DOCPPI_WITH_SPDLOG)
+  list(APPEND OCPPI_LINK_LIBRARIES PUBLIC "spdlog::spdlog")
+endif()
+
+if(CMAKE_VERSION LESS 3.14)
+  message("CPM.cmake disabled")
+else()
+  include(./cmake/CPM.cmake)
+  CPMFindPackage(
+    NAME tl-expected
+    VERSION "${OCPPI_TL_EXPECTED_VERSION}"
+    GITHUB_REPOSITORY TartanLlama/expected
+    GIT_TAG "v1.1.0"
+    GIT_SHALLOW ON
+    OPTIONS "EXPECTED_BUILD_TESTS OFF"
+    EXCLUDE_FROM_ALL ON)
+  CPMFindPackage(
+    NAME nlohmann_json
+    VERSION "${OCPPI_JSON_VERSION}"
+    URL "https://github.com/nlohmann/json/archive/refs/tags/v3.5.0.tar.gz"
+    EXCLUDE_FROM_ALL ON)
+  if(OCPPI_WITH_SPDLOG)
+    CPMFindPackage(
+      NAME spdlog
+      VERSION ${OCPPI_SPDLOG_VERSION}
+      GITHUB_REPOSITORY "gabime/spdlog"
+      GIT_TAG "v1.3.1"
+      GIT_SHALLOW ON
+      EXCLUDE_FROM_ALL ON
+      OPTIONS
+        "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
+                                             # https://github.com/gabime/spdlog/issues/1190
+    )
+  endif()
+endif()
+
+find_package(
+  tl-expected ${OCPPI_TL_EXPECTED_VERSION} REQUIRED)
 
 if(NOT TARGET tl::expected)
   # NOTE: v1.0.0 version of tl::expected doesn't have a namespaced alias when
@@ -29,32 +64,14 @@ if(NOT TARGET tl::expected)
   add_library(tl::expected ALIAS expected)
 endif()
 
-set(OCPPI_JSON_VERSION 3.5.0) # debian buster
-CPMFindPackage(
-  NAME nlohmann_json
-  VERSION "${OCPPI_JSON_VERSION}"
-  URL "https://github.com/nlohmann/json/archive/refs/tags/v3.5.0.tar.gz"
-  EXCLUDE_FROM_ALL ON)
-list(APPEND OCPPI_LINK_LIBRARIES PUBLIC nlohmann_json::nlohmann_json)
-list(APPEND OCPPI_FIND_DEPENDENCY_ARGUMENTS
-     "nlohmann_json ${OCPPI_JSON_VERSION}")
+find_package(
+  nlohmann_json ${OCPPI_JSON_VERSION} QUIET)
 
-if(OCPPI_WITH_SPDLOG)
-  set(OCPPI_SPDLOG_VERSION 1.3.1) # debian buster
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DOCPPI_WITH_SPDLOG")
-  CPMFindPackage(
-    NAME spdlog
-    VERSION ${OCPPI_SPDLOG_VERSION}
-    GITHUB_REPOSITORY "gabime/spdlog"
-    GIT_TAG "v1.3.1"
-    GIT_SHALLOW ON
-    EXCLUDE_FROM_ALL ON
-    OPTIONS
-      "CMAKE_POSITION_INDEPENDENT_CODE ON" # NOTE:
-                                           # https://github.com/gabime/spdlog/issues/1190
-  )
-  list(APPEND OCPPI_LINK_LIBRARIES PRIVATE spdlog::spdlog)
-  list(APPEND OCPPI_FIND_DEPENDENCY_ARGUMENTS "spdlog ${OCPPI_SPDLOG_VERSION}")
+if(NOT nlohmann_json_FOUND)
+  # NOTE: v3.5.0 version of nlohmann_json doesn't have a cmake config file in
+  # debian, so we have to fix this manually.
+  list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake.fix)
+  find_package(nlohmann_json ${OCPPI_JSON_VERSION} REQUIRED)
 endif()
 
 include(./cmake/GitSemver.cmake)
@@ -74,8 +91,23 @@ include(./cmake/PFL.cmake)
 pfl_init(AUTO)
 
 pfl_add_library(
-  SOVERSION
-  0
+  OUTPUT_NAME
+  ocppi
+  EXAMPLES
+  parse-config
+  using-crun
+  with-logger
+  LINK_LIBRARIES
+  ${OCPPI_LINK_LIBRARIES}
+  PUBLIC
+  stdc++fs
+  COMPILE_FEATURES
+  PUBLIC
+  cxx_std_17
+  COMPILE_OPTIONS
+  ${OCPPI_COMPILE_OPTIONS}
+  DEPENDENCIES
+  ${OCPPI_DEPENDENCIES}
   SOURCES
   # find -regex '\./src/.+\.[ch]\(pp\)?(\.in)?' -type f -printf '%P\n'| sort
   include/ocppi/cli/CLI.hpp
@@ -212,15 +244,4 @@ pfl_add_library(
   src/ocppi/runtime/Runtime.cpp
   src/ocppi/runtime/Signal.cpp
   src/ocppi/runtime/StartOption.cpp
-  src/ocppi/runtime/StateOption.cpp
-  EXAMPLES
-  parse-config
-  using-crun
-  with-logger
-  LINK_LIBRARIES
-  ${OCPPI_LINK_LIBRARIES}
-  COMPILE_FEATURES
-  PUBLIC
-  cxx_std_17
-  FIND_DEPENDENCY_ARGUMENTS
-  ${OCPPI_FIND_DEPENDENCY_ARGUMENTS})
+  src/ocppi/runtime/StateOption.cpp)

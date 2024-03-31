@@ -3,6 +3,8 @@ if(NOT OCPPI_WITH_SPDLOG)
 endif()
 
 pfl_add_executable(
+  OUTPUT_NAME
+  with-logger
   DISABLE_INSTALL
   SOURCES
   src/main.cpp
