@@ -4,7 +4,7 @@ Section: devel
 Priority: optional
 Standards-Version: 4.6.2
 Build-Depends: cmake,
-               debhelper-compat (= 13),
+               debhelper-compat (= 12),
                libexpected-dev (>= 1.0.0~dfsg-2~bpo10+1),
                nlohmann-json3-dev (>= 3.5.0),
                pkgconf
@@ -17,7 +17,7 @@ Description: c++ library for OCI runtime and distribution
  .
  A C++ library for using OCI runtime cli, distribution, or implement OCI runtime.
 
-Package: libocppi0
+Package: libocppi0.3.2
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: c++ library for OCI runtime and distribution
