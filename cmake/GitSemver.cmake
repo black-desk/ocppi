@@ -16,11 +16,24 @@ function(gitsemver_message)
   message(STATUS "GitSemver: " ${ARGN})
 endfunction()
 
-message(STATUS "GitSemver: --==Version: v0.1.2==--")
+message(STATUS "GitSemver: --==Version: v0.1.4==--")
 
 # GitSemver will write the result to varname if it successfully get version
 # string from git repository.
 function(GitSemver varname)
+  if(CMAKE_VERSION VERSION_LESS 3.21)
+    # https://www.scivision.dev/cmake-project-is-top-level/
+    get_property(
+      not_top
+      DIRECTORY
+      PROPERTY PARENT_DIRECTORY)
+    if(NOT not_top)
+      set(PROJECT_IS_TOP_LEVEL true)
+    else()
+      set(PROJECT_IS_TOP_LEVEL false)
+    endif()
+  endif()
+
   if(NOT PROJECT_IS_TOP_LEVEL)
     return()
   endif()
@@ -45,7 +58,7 @@ function(GitSemver varname)
     COMMAND ${SED_EXECUTABLE} -e s/^v//
     COMMAND ${SED_EXECUTABLE} -e s/+\$//
     OUTPUT_VARIABLE ${varname} RESULTS_VARIABLE rets
-    OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET COMMAND_ECHO STDOUT)
+    OUTPUT_STRIP_TRAILING_WHITESPACE ERROR_QUIET)
 
   foreach(ret ${rets})
     if(NOT ret EQUAL 0)
