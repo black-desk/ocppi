@@ -27,7 +27,7 @@ jobs:
       image: ${{ matrix.container }}
     steps:
       - name: Checkout project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           fetch-depth: 0
       - name: Cache CPM.cmake Source
